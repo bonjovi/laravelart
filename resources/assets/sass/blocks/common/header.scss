@@ -1,0 +1,54 @@
+.header	{
+	height: 700px;
+	background-color: #000;
+	text-align: center;
+
+	
+
+	@media only screen and (max-width: 640px) {
+		height: 320px;
+	}
+
+	&_inner {
+		height: 150px;
+		background-color: #fff;
+
+		@media only screen and (max-width: 640px) {
+			height: 120px;
+		}
+
+		& .header__toggler i {
+			color: $basegrey;
+		}
+	}
+
+	&__toggler {
+		display: none;
+		width: 100%;
+		text-align: right;
+		margin-bottom: -50px;
+		position: relative;
+    	z-index: 2;
+    	padding: 20px 0 0 0;
+    	box-sizing: border-box;
+
+		& i {
+			font-size: 32px;
+			color: #fff;
+			cursor: pointer;
+			transition: opacity 0.5s;
+
+			&:hover {
+				opacity: 0.7;
+			}
+
+			&:focus {
+				opacity: 0.4;
+			}
+		}
+
+		@media only screen and (max-width: 768px) {
+			display: block;
+		}
+	}
+}

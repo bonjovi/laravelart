@@ -1,0 +1,78 @@
+.product {
+	display: flex;
+	margin-bottom: 60px;
+
+	@media only screen and (max-width: 768px) {
+		flex-wrap: wrap;
+	}
+
+	&__painter {
+		margin-bottom: 30px;
+		display: block;
+	}
+
+	&__seller {
+		display: flex;
+
+
+	}
+
+	&__info {
+		& > div {
+			margin-bottom: 5px;
+		}
+	}
+
+	&__lastbet {
+		display: flex;
+		align-items: center;
+    	margin-top: 30px;
+
+		& > .title {
+			margin: 0 10px;
+			padding: 0;
+		}
+	}
+
+	&__auctionend {
+		margin-top: 11px;
+	}
+
+	&__makebet {
+		display: flex;
+		width: 350px;
+		margin-top: 40px;
+	}
+
+	&__makebetbutton {
+		width: 250px;
+    	padding: 13px 0 11px 0;
+	}
+
+	&__betmore {
+		margin-top: 20px;
+		text-decoration: none;
+		border-bottom: 1px dashed $grey;
+		padding-bottom: 4px;
+    	display: inline-block;
+    	cursor: pointer;
+
+    	&:hover {
+    		border-bottom: none;
+    	}
+	}
+
+	& a:hover {
+		text-decoration: none;
+	}
+
+	& > div {
+		width: 50%;
+
+		@media only screen and (max-width: 768px) {
+			width: 100%;
+		}
+	}
+
+
+}

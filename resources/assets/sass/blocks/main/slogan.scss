@@ -1,0 +1,31 @@
+.slogan {
+	display: inline-block;
+	margin: 150px auto 0 auto;
+
+	@media only screen and (max-width: 640px) {
+		margin-top: 30px;
+	}
+
+	&::after {
+		content: "";
+	    width: 100%;
+	    display: block;
+	    height: 12px;
+	    background-color: $violet;
+	    margin-top: -18px;
+	    z-index: -1;
+
+	    @media only screen and (max-width: 768px) {
+			height: 9px;
+			margin-top: -11px;
+		}
+
+	    @media only screen and (max-width: 640px) {
+	    	display: none;
+			height: 9px;
+			margin-top: -10px;
+		}
+	}
+
+	
+}

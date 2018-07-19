@@ -1,0 +1,36 @@
+.search	{
+	box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+	display: flex;
+    margin: 55px auto 30px auto;
+    position: relative;
+    width: 100%;
+    max-width: 945px;
+    border-radius: 6px;
+    color: rgba(0,0,0, 0.87);
+    background: #fff;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    
+    @media only screen and (max-width: 1200px) {
+        margin-top: 35px;
+    }
+
+     @media only screen and (max-width: 640px) {
+        flex-wrap: wrap;
+        background: transparent;
+        padding: 0;
+    }
+
+    &__inputwrapper {
+        background-color: #fff;
+        padding: 0 5px 5px 5px;
+        height: 36px;
+        border-radius: 6px;
+        width: 100%;
+        margin-bottom: 10px;
+
+        @media only screen and (max-width: 640px) {
+            display: block;
+        } 
+    }
+}
