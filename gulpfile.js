@@ -4,7 +4,17 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     plumber = require('gulp-plumber'),
     prefix = require('gulp-autoprefixer'),
+    concatjs = require('gulp-concat'),
     browserSync = require('browser-sync').create();
+
+
+
+
+gulp.task('scripts', function() {
+    return gulp.src('resources/assets/js/artmarket/*.js')
+        .pipe(concatjs('main.js'))
+        .pipe(gulp.dest('public/js'));
+});
 
 gulp.task('blocks', function() {
     return gulp.src('resources/assets/sass/blocks/**/*.scss')
