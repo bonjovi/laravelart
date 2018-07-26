@@ -1,6 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
+<header class="header">
+    <div class="container">
+        <div class="header__toggler">
+            <i class="material-icons">menu</i>
+        </div>
+        <div class="topline">
+            <a class="logo" href="#"><span class="logo_violet">Art</span>Market</a>
+            <div class="topmenu__wrapper topmenu__wrapper_hidden">
+                <a class="logo" href="#"><span class="logo_violet">Art</span>Market</a>
+                <div class="topcontacts">
+                    <div class="topcontacts__phone">
+                        <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
+                    </div>
+                    <span class="topcontacts__tomessengers text text_xsmall text_grey">
+	    					Написать в мессенджеры
+	    				</span>
+                </div>
+                <ul class="topmenu">
+                    <li>
+                        <a href="#" class="topmenu__link text text_white text_uppercase">О проекте</a>
+                    </li>
+                    <li>
+                        <a href="#" class="topmenu__link text text_white text_uppercase">Аукцион</a>
+                    </li>
+                    <li>
+                        <a href="#" class="topmenu__link text text_white text_uppercase">Художники</a>
+                    </li>
+                    <li>
+                        <a href="#" class="topmenu__link text text_white text_uppercase">Галереи</a>
+                    </li>
+                    <li>
+                        <a href="#" class="topmenu__link text text_white text_uppercase">FAQ</a>
+                    </li>
+                </ul><!-- /.topmenu -->
+            </div>
+            <div class="topcontacts">
+                <div class="topcontacts__phone">
+                    <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
+                </div>
+                <span class="topcontacts__tomessengers text text_small text_grey">
+    					Написать в мессенджеры
+    				</span>
+            </div>
+        </div><!-- /.topline -->
+        <h1 class="slogan title title_xlarge title_white">Найди своего художника</h1>
+        <h2 class="descriptor text text_white text_large">
+            ArtMarket - это современная интернет-площадка, где продавцы и покупатели произведений искусства находят друг друга. На нашем портале размещено более 2000 работ и каждый день эта коллекция активно пополняется!
+        </h2>
+
+
+        <div class="search">
+            <div class="search__inputwrapper">
+                <input type="text" class="input" placeholder="Введите фамилию художника или название картины">
+            </div>
+            <button data-ripple class="button button_wide">
+                Искать
+            </button>
+        </div>
+    </div><!-- /.container -->
+    <div class="banner" style="background-image: url(img/banner1.jpg);"></div>
+</header>
+@endsection
+
+@section('content')
 
     <section class="selectedFilters">
         <button data-ripple class="button button_grey selectedFilters__button">

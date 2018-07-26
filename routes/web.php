@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/fuck', function () {
-    return view('index');
+Route::get('/painters', function () {
+    return view('inner');
 });
 Auth::routes();
 
