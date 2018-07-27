@@ -1,3 +1,5 @@
+@php $topmenuColor = 'basegrey' @endphp
+
 @extends('layouts.app')
 
 @section('header')
@@ -23,23 +25,7 @@
 	    					Написать в мессенджеры
 	    				</span>
                 </div>
-                <ul class="topmenu">
-                    <li>
-                        <a href="#" class="topmenu__link text text_basegrey text_uppercase">О проекте</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_basegrey text_uppercase">Аукцион</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_basegrey text_uppercase">Художники</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_basegrey text_uppercase">Галереи</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_basegrey text_uppercase">FAQ</a>
-                    </li>
-                </ul><!-- /.topmenu -->
+                @include('layouts.topmenu')
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone topcontacts__phone_basegrey">

@@ -1,10 +1,17 @@
+@php $topmenuColor = 'white' @endphp
+
 @extends('layouts.app')
 
-@section('content')
+@section('header')
 <header class="header">
     <div class="container">
         <div class="header__toggler">
             <i class="material-icons">menu</i>
+        </div>
+        <div class="registrationLine registrationLine_main">
+            <a href="#" class="registrationLine__link text text_small text_white">Вход</a>
+            <span class="text text_small text_grey">&nbsp;или&nbsp;</span>
+            <a href="#" class="registrationLine__link text text_small text_white">регистрация</a>
         </div>
         <div class="topline">
             <a class="logo" href="#"><span class="logo_violet">Art</span>Market</a>
@@ -18,23 +25,7 @@
 	    					Написать в мессенджеры
 	    				</span>
                 </div>
-                <ul class="topmenu">
-                    <li>
-                        <a href="#" class="topmenu__link text text_white text_uppercase">О проекте</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_white text_uppercase">Аукцион</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_white text_uppercase">Художники</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_white text_uppercase">Галереи</a>
-                    </li>
-                    <li>
-                        <a href="#" class="topmenu__link text text_white text_uppercase">FAQ</a>
-                    </li>
-                </ul><!-- /.topmenu -->
+                @include('layouts.topmenu')
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone">

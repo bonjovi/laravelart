@@ -18,8 +18,7 @@
 </head>
 <body>
 
-@section('header')
-@endsection
+@yield('header')
 
 <main class="main">
     <div class="container">

@@ -12,12 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('layouts.main', ['title' => 'Найди своего художника']);
 });
 
 Route::get('/painters', function () {
-    return view('inner');
+    return view('layouts.inner');
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
