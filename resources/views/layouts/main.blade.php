@@ -1,4 +1,9 @@
-@php $topmenuColor = 'white' @endphp
+@php
+    $topmenuColor = 'white';
+    $layoutName = 'main';
+@endphp
+
+
 
 @extends('layouts.app')
 
@@ -8,15 +13,11 @@
         <div class="header__toggler">
             <i class="material-icons">menu</i>
         </div>
-        <div class="registrationLine registrationLine_main">
-            <a href="#" class="registrationLine__link text text_small text_white">Вход</a>
-            <span class="text text_small text_grey">&nbsp;или&nbsp;</span>
-            <a href="#" class="registrationLine__link text text_small text_white">регистрация</a>
-        </div>
+        @include('layouts.registrationline')
         <div class="topline">
-            <a class="logo" href="#"><span class="logo_violet">Art</span>Market</a>
+            <a class="logo" href="#"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
             <div class="topmenu__wrapper topmenu__wrapper_hidden">
-                <a class="logo" href="#"><span class="logo_violet">Art</span>Market</a>
+                <a class="logo" href="#"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
                 <div class="topcontacts">
                     <div class="topcontacts__phone">
                         <span class="topcontacts__phone_small">+7 (495) </span>507-64-85

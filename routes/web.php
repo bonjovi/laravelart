@@ -16,9 +16,18 @@ Route::get('/', function () {
 });
 
 Route::get('/painters', function () {
-    return view('layouts.inner');
+    return view('painters');
 });
+
+
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

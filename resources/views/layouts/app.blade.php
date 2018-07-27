@@ -18,15 +18,17 @@
 </head>
 <body>
 
-@yield('header')
+<div class="wrapper">
+    @yield('header')
 
-<main class="main">
-    <div class="container">
-        @yield('content')
-    </div><!-- /.container -->
-</main>
+    <main class="main">
+        <div class="container">
+            @yield('content')
+        </div><!-- /.container -->
+    </main>
 
-@include('layouts.footer')
+    @include('layouts.footer')
+</div><!-- /.wrapper-->
 
 <script>
     Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
