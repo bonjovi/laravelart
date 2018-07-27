@@ -19,6 +19,15 @@ Route::get('/painters', function () {
     return view('painters');
 });
 
+Route::get('/account', function () {
+    return view('account', ['user' => Auth::user()]);
+});
+
+Route::post('/updateaccount', [
+    'uses' => 'UserController@postSaveAccount',
+    'as' => 'account.save'
+]);
+
 
 
 

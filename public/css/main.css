@@ -1138,14 +1138,14 @@ textarea:-ms-input-placeholder {
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 20px 0 20px 0; }
-  .registrationLine__useremail {
-    margin-right: 20px; }
   .registrationLine_main {
     position: absolute;
     z-index: 2; }
   @media only screen and (max-width: 640px) {
     .registrationLine {
       visibility: hidden; } }
+  .registrationLine__link_useremail {
+    margin-right: 20px; }
   .registrationLine__link:hover {
     text-decoration: none; }
 

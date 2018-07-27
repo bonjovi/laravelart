@@ -4,10 +4,6 @@
 	justify-content: flex-end;
 	padding: 20px 0 20px 0;
 
-	&__useremail {
-		margin-right: 20px;
-	}
-
 	&_main {
 		position: absolute;
 		z-index: 2;
@@ -19,6 +15,10 @@
 	}
 
 	&__link {
+		&_useremail {
+			margin-right: 20px;
+		}
+
 		&:hover {
 			text-decoration: none;
 		}
