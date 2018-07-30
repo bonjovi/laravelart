@@ -162,3 +162,7 @@ Route::get('/rules', function () {
         '
     ]);
 });
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
