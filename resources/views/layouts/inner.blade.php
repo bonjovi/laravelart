@@ -13,9 +13,9 @@
         </div>
         @include('layouts.registrationline')
         <div class="topline topline_inner">
-            <a class="logo logo_inner" href="#"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
+            <a class="logo logo_inner" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
             <div class="topmenu__wrapper topmenu__wrapper_hidden" style="background-image: none;">
-                <a class="logo logo_inner" href="#"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
+                <a class="logo logo_inner" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
                 <div class="topcontacts">
                     <div class="topcontacts__phone topcontacts__phone_basegrey">
                         <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (495) </span>507-64-85

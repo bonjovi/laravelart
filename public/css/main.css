@@ -1066,7 +1066,8 @@ textarea:-ms-input-placeholder {
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
-          flex: 1 0 auto; }
+          flex: 1 0 auto;
+  padding-bottom: 60px; }
 
 .pagination {
   display: -webkit-box;
@@ -1200,6 +1201,8 @@ textarea:-ms-input-placeholder {
     font-size: 16px; }
   .text_large {
     font-size: 18px; }
+  .text_content {
+    line-height: 28px; }
 
 .title {
   font-family: 'Roboto Slab';
@@ -1210,7 +1213,8 @@ textarea:-ms-input-placeholder {
   .title_basegrey {
     color: #3c4858; }
   .title_centered {
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 40px; }
   .title_small {
     font-size: 18px; }
   .title_middle {

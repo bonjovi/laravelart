@@ -1,60 +1,4 @@
-@php
-    $topmenuColor = 'white';
-    $layoutName = 'main';
-@endphp
-
-
-
-@extends('layouts.app')
-
-@section('header')
-<header class="header">
-    <div class="container">
-        <div class="header__toggler">
-            <i class="material-icons">menu</i>
-        </div>
-        @include('layouts.registrationline')
-        <div class="topline">
-            <a class="logo" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
-            <div class="topmenu__wrapper topmenu__wrapper_hidden">
-                <a class="logo" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
-                <div class="topcontacts">
-                    <div class="topcontacts__phone">
-                        <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
-                    </div>
-                    <span class="topcontacts__tomessengers text text_xsmall text_grey">
-	    					Написать в мессенджеры
-	    				</span>
-                </div>
-                @include('layouts.topmenu')
-            </div>
-            <div class="topcontacts">
-                <div class="topcontacts__phone">
-                    <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
-                </div>
-                <span class="topcontacts__tomessengers text text_small text_grey">
-    					Написать в мессенджеры
-    				</span>
-            </div>
-        </div><!-- /.topline -->
-        <h1 class="slogan title title_xlarge title_white">Найди своего художника</h1>
-        <h2 class="descriptor text text_white text_large">
-            ArtMarket24 - это современная интернет-площадка, где продавцы и покупатели произведений искусства находят друг друга. На нашем портале размещено более 2000 работ и каждый день эта коллекция активно пополняется!
-        </h2>
-
-
-        <div class="search">
-            <div class="search__inputwrapper">
-                <input type="text" class="input" placeholder="Введите фамилию художника или название картины">
-            </div>
-            <button data-ripple class="button button_wide">
-                Искать
-            </button>
-        </div>
-    </div><!-- /.container -->
-    <div class="banner" style="background-image: url(img/banner1.jpg);"></div>
-</header>
-@endsection
+@extends('layouts.inner')
 
 @section('content')
 
@@ -116,33 +60,14 @@
                 </div>
 
                 <div class="filter__sectioncontent">
+                    @foreach ($styles as $style)
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" checked=""><span class="checkbox-material"><span class="check"></span></span>
-                            <span class="text">Живопись</span>
+                            <span class="text">{{ $style->name }}</span>
                         </label>
                     </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                            <span class="text">Графика</span>
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                            <span class="text">Импрессионизм</span>
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                            <span class="text">Абстракционизм</span>
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
             </div><!--/.filter__section-->
 
@@ -256,28 +181,28 @@
 
         <section class="cards">
             @foreach ($products as $product)
-            <div class="card">
-                <div class="card__pic">
-                    <a href="{{ route('shop.show', $product->slug) }}">
-                        <img data-ripple class="card__img" src="/img/{{ $product->slug }}.jpg" alt="">
-                    </a>
-                    <div class="card__coloredbg" style="background-image: url(img/{{ $product->slug }}.jpg); opacity: 1;"></div>
-                </div>
-                <div class="card__content">
-                    <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                    <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter }}</div>
-                    <div class="text text_grey text_small card__text">{{ $product->material }}</div>
-                    <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
-                    <div class="text text_grey text_small card__text">{{ $product->year }}</div>
-                    <div class="card__bottom">
-                        <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-                        <div class="card__bottominfo">
-                            <div class="card__price title title_small">{{ $product->price }} руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->country }}</div>
+                <div class="card">
+                    <div class="card__pic">
+                        <a href="{{ route('shop.show', $product->slug) }}">
+                            <img data-ripple class="card__img" src="/img/{{ $product->slug }}.jpg" alt="">
+                        </a>
+                        <div class="card__coloredbg" style="background-image: url(img/{{ $product->slug }}.jpg); opacity: 1;"></div>
+                    </div>
+                    <div class="card__content">
+                        <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
+                        <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter }}</div>
+                        <div class="text text_grey text_small card__text">{{ $product->material }}</div>
+                        <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
+                        <div class="text text_grey text_small card__text">{{ $product->year }}</div>
+                        <div class="card__bottom">
+                            <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
+                            <div class="card__bottominfo">
+                                <div class="card__price title title_small">{{ $product->price }} руб.</div>
+                                <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->country }}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- /.card -->
+                </div><!-- /.card -->
             @endforeach
 
 
@@ -312,43 +237,11 @@
                         </div>
                     </div>
                 </div>
-            </div>->
-
-
-
-
-
-
-
-            <div class="card">
-                <div class="card__pic">
-                    <a href="#">
-                        <img data-ripple class="card__img" src="/img/card5.jpg" alt="">
-                    </a>
-                    <div class="card__coloredbg" style="background-image: url(img/card5.jpg); opacity: 1;"></div>
-                </div>
-                <div class="card__content">
-                    <a class="title title_small card__title" href="#">Морской шторм</a>
-                    <div class="text text_grey text_small card__text card__text_painter">Егоров Андрей Афанасьевич</div>
-                    <div class="text text_grey text_small card__text">Картон, темпера , гуашь</div>
-                    <div class="text text_grey text_small card__text">35 х 25,5 см</div>
-                    <div class="text text_grey text_small card__text">1925г.</div>
-                    <div class="card__bottom">
-                        <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-                        <div class="card__bottominfo">
-                            <div class="card__price title title_small">65 000 руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.card -->
-
+            </div>-->
 
         </section><!-- /.cards -->
     </div>
 
-    <!--<a class="promobanner" href="#">
-        <img src="/img/promobanner.jpg" alt="">
-    </a>-->
+
 
 @endsection

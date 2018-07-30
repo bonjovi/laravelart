@@ -676,6 +676,7 @@
 	position: relative;
     z-index: 0;
     flex: 1 0 auto;
+    padding-bottom: 60px;
 }
 .pagination	{
 	display: flex;
@@ -829,6 +830,10 @@
 		font-size: 18px;
 	}
 
+	&_content {
+		line-height: 28px;
+	}
+
 
 
 
@@ -848,6 +853,7 @@
 
 	&_centered {
 		text-align: center;
+		margin-bottom: 40px;
 	}
 
 	&_small {

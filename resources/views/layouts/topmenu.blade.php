@@ -1,6 +1,6 @@
 <ul class="topmenu">
     <li>
-        <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase" >О проекте</a>
+        <a href="/about" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase" >О проекте</a>
     </li>
     <li>
         <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Аукцион</a>
@@ -12,6 +12,6 @@
         <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Галереи</a>
     </li>
     <li>
-        <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">FAQ</a>
+        <a href="/faq" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">FAQ</a>
     </li>
 </ul><!-- /.topmenu -->

@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         return view('account', ['user' => Auth::user()]);
     }
-    public function postSaveAccount(Request $request)
+    /*public function postSaveAccount(Request $request)
     {
         $this->validate($request, [
             'first_name' => 'required|max:120'
@@ -77,5 +77,5 @@ class UserController extends Controller
     {
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
-    }
+    }*/
 }

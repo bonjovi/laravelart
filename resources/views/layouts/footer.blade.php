@@ -8,7 +8,7 @@
                 <div class="title title_white footer__title">АртМаркет</div>
                 <ul class="footer__list">
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">О проекте</a>
+                        <a class="text text_small text_grey footer__link" href="/about">О проекте</a>
                     </li>
                     <li class="footer__listitem">
                         <a class="text text_small text_grey footer__link" href="#">Художники</a>
@@ -20,13 +20,13 @@
                         <a class="text text_small text_grey footer__link" href="#">Галерея</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">FAQ</a>
+                        <a class="text text_small text_grey footer__link" href="/faq">FAQ</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Персональные данные</a>
+                        <a class="text text_small text_grey footer__link" href="/personal">Персональные данные</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Карта сайта</a>
+                        <a class="text text_small text_grey footer__link" href="/sitemap">Карта сайта</a>
                     </li>
                 </ul>
             </div><!-- /.footer__section -->
@@ -35,16 +35,16 @@
                 <div class="title title_white footer__title">Покупателям</div>
                 <ul class="footer__list">
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Доставка</a>
+                        <a class="text text_small text_grey footer__link" href="/delivery">Доставка</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Способы оплаты</a>
+                        <a class="text text_small text_grey footer__link" href="/payment">Способы оплаты</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Гарантии</a>
+                        <a class="text text_small text_grey footer__link" href="/guarantees">Гарантии</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Поддержка</a>
+                        <a class="text text_small text_grey footer__link" href="/support">Поддержка</a>
                     </li>
                 </ul>
             </div><!-- /.footer__section -->
@@ -53,13 +53,13 @@
                 <div class="title title_white footer__title">Художникам</div>
                 <ul class="footer__list">
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Почему именно АртМаркет?</a>
+                        <a class="text text_small text_grey footer__link" href="/why">Почему именно АртМаркет?</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Правила и условия</a>
+                        <a class="text text_small text_grey footer__link" href="/rules">Правила и условия</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Поддержка</a>
+                        <a class="text text_small text_grey footer__link" href="/support">Поддержка</a>
                     </li>
                 </ul>
             </div><!-- /.footer__section -->
