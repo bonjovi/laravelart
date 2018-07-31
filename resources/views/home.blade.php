@@ -2,24 +2,21 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+    <div class="login-wrapper" style="width: 500px; margin:0 auto;">
+        <h1 class="title title_centered">Добро пожаловать!</h1>
 
-                <div class="card-body">
+                <div class="text" style="text-align: center;">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="text" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    You are logged in!
+                    Вы успешно авторизовались
 
-                    <a href="/logout">Выйти</a>
+                    <a class="text" href="/logout">Выйти</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 @endsection

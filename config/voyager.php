@@ -143,17 +143,17 @@ return [
     'dashboard' => [
         // Add custom list items to navbar's dropdown
         'navbar_items' => [
-            'Profile' => [
+            'Профайл' => [
                 'route'      => 'voyager.profile',
                 'classes'    => 'class-full-of-rum',
                 'icon_class' => 'voyager-person',
             ],
-            'Home' => [
+            'Главная' => [
                 'route'        => '/',
                 'icon_class'   => 'voyager-home',
                 'target_blank' => true,
             ],
-            'Logout' => [
+            'Выход' => [
                 'route'      => 'voyager.logout',
                 'icon_class' => 'voyager-power',
             ],
@@ -199,13 +199,13 @@ return [
     |
     */
 
-    'primary_color' => '#22A7F0',
+    'primary_color' => '#9c27b0',
 
     'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        //'css/custom.css',
+        'css/customvoyager.css',
     ],
 
     'additional_js' => [

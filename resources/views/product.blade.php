@@ -1,23 +1,38 @@
 @extends('layouts.inner')
 
 @section('content')
-
+@section('extra-js')
+	<script>
+        $(function() {
+            $('.productGallery__thumbnail').on('click', function() {
+                $('.productGallery__thumbnail').removeClass('productGallery__thumbnail_active');
+                $(this).addClass('productGallery__thumbnail_active');
+                $('.productGallery__mainpic img').attr('src', $(this).find('img').attr('src'));
+			});
+        });
+	</script>
+@endsection
 <main class="main">
 		<div class="container">
 
 			<div class="product">
 				<div class="productGallery">
 					<div class="productGallery__mainpic">
-						<img src="/img/{{ $product->slug }}.jpg" alt="{{ $product->name }}" title="{{ $product->name }}">
+						<img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
 					</div>
+
 					<div class="productGallery__thumbnails">
 						<div class="productGallery__navigation productGallery__leftarrow"></div>
-						<div class="productGallery__thumbnail">
-							<img src="/img/mainpic.png" alt="">
+						<div class="productGallery__thumbnail productGallery__thumbnail_active">
+							<img src="{{ productImage($product->image) }}" alt="product">
 						</div>
-						<div class="productGallery__thumbnail">
-							<img src="/img/mainpic2.png" alt="">
-						</div>
+						@if ($product->images)
+							@foreach (json_decode($product->images, true) as $image)
+								<div class="productGallery__thumbnail">
+									<img src="{{ productImage($image) }}" alt="product">
+								</div>
+							@endforeach
+						@endif
 						<div class="productGallery__navigation productGallery__rightarrow"></div>
 					</div>
 				</div><!-- /.productGallery -->
@@ -287,3 +302,7 @@
 	</main>
 
 @endsection
+
+
+
+

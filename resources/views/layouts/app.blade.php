@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ArtMarket - @yield('title')</title>
+    <title>{{ setting('site.title') }} - @yield('title')</title>
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
     <link rel="icon" type="image/png" href="img/favicon.png">
 
@@ -36,7 +36,11 @@
     });
 </script>
 
+@yield('extra-js')
+
 <script src="js/main.js"></script>
+
+<script src="{{ asset('js/artmarket/custom.js') }}"></script>
 
 </body>
 </html>

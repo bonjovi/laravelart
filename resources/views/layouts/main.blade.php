@@ -258,10 +258,10 @@
             @foreach ($products as $product)
             <div class="card">
                 <div class="card__pic">
-                    <a href="{{ route('shop.show', $product->slug) }}">
-                        <img data-ripple class="card__img" src="/img/{{ $product->slug }}.jpg" alt="">
+                    <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
+                        <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
                     </a>
-                    <div class="card__coloredbg" style="background-image: url(img/{{ $product->slug }}.jpg); opacity: 1;"></div>
+                    <div class="card__coloredbg" style="background-image: url({{ productImage($product->image) }}); opacity: 1;"></div>
                 </div>
                 <div class="card__content">
                     <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>

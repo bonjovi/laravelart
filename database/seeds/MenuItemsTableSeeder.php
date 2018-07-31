@@ -17,7 +17,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.dashboard'),
+            'title'   => 'Панель управления',
             'url'     => '',
             'route'   => 'voyager.dashboard',
         ]);
@@ -33,7 +33,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.media'),
+            'title'   => 'Медиа',
             'url'     => '',
             'route'   => 'voyager.media.index',
         ]);
@@ -49,7 +49,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.users'),
+            'title'   => 'Пользователи',
             'url'     => '',
             'route'   => 'voyager.users.index',
         ]);
@@ -65,7 +65,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.roles'),
+            'title'   => 'Группы пользователей',
             'url'     => '',
             'route'   => 'voyager.roles.index',
         ]);
@@ -81,7 +81,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $toolsMenuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.tools'),
+            'title'   => 'Инструменты',
             'url'     => '',
         ]);
         if (!$toolsMenuItem->exists) {
@@ -96,7 +96,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.menu_builder'),
+            'title'   => 'Построитель меню',
             'url'     => '',
             'route'   => 'voyager.menus.index',
         ]);
@@ -112,7 +112,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.database'),
+            'title'   => 'База данных',
             'url'     => '',
             'route'   => 'voyager.database.index',
         ]);
@@ -128,7 +128,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.compass'),
+            'title'   => 'Compass',
             'url'     => '',
             'route'   => 'voyager.compass.index',
         ]);
@@ -144,7 +144,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.bread'),
+            'title'   => 'BREAD',
             'url'     => '',
             'route'   => 'voyager.bread.index',
         ]);
@@ -160,7 +160,7 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.settings'),
+            'title'   => 'Настройки',
             'url'     => '',
             'route'   => 'voyager.settings.index',
         ]);
@@ -173,5 +173,97 @@ class MenuItemsTableSeeder extends Seeder
                 'order'      => 14,
             ])->save();
         }
+
+
+
+
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Категории',
+            'url'     => '',
+            'route'   => 'voyager.categories.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-categories',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 8,
+            ])->save();
+        }
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Записи',
+            'url'     => '',
+            'route'   => 'voyager.posts.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-news',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 6,
+            ])->save();
+        }
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Страницы',
+            'url'     => '',
+            'route'   => 'voyager.pages.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-file-text',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 7,
+            ])->save();
+        }
+
+
+
+
+
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Картины',
+            'url'     => '',
+            'route'   => 'voyager.products.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-crop',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 15,
+            ])->save();
+        }
+
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => 'Стили искусства',
+            'url'     => '',
+            'route'   => 'voyager.styles.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-dot',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 7,
+            ])->save();
+        }
+
+
     }
 }

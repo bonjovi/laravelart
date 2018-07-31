@@ -14,8 +14,8 @@ class DataTypesTableSeeder extends Seeder
         if (!$dataType->exists) {
             $dataType->fill([
                 'name'                  => 'users',
-                'display_name_singular' => __('voyager::seeders.data_types.user.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.user.plural'),
+                'display_name_singular' => 'пользователя',
+                'display_name_plural'   => 'Пользователи',
                 'icon'                  => 'voyager-person',
                 'model_name'            => 'TCG\\Voyager\\Models\\User',
                 'policy_name'           => 'TCG\\Voyager\\Policies\\UserPolicy',
@@ -29,8 +29,8 @@ class DataTypesTableSeeder extends Seeder
         if (!$dataType->exists) {
             $dataType->fill([
                 'name'                  => 'menus',
-                'display_name_singular' => __('voyager::seeders.data_types.menu.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.menu.plural'),
+                'display_name_singular' => 'меню',
+                'display_name_plural'   => 'Меню',
                 'icon'                  => 'voyager-list',
                 'model_name'            => 'TCG\\Voyager\\Models\\Menu',
                 'controller'            => '',
@@ -43,10 +43,62 @@ class DataTypesTableSeeder extends Seeder
         if (!$dataType->exists) {
             $dataType->fill([
                 'name'                  => 'roles',
-                'display_name_singular' => __('voyager::seeders.data_types.role.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.role.plural'),
+                'display_name_singular' => 'право пользователя',
+                'display_name_plural'   => 'Права пользователей',
                 'icon'                  => 'voyager-lock',
                 'model_name'            => 'TCG\\Voyager\\Models\\Role',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+
+
+
+
+
+
+
+
+        $dataType = $this->dataType('slug', 'categories');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'categories',
+                'display_name_singular' => 'категорию',
+                'display_name_plural'   => 'Категории',
+                'icon'                  => 'voyager-categories',
+                'model_name'            => 'TCG\Voyager\Models\Category',
+                'policy_name'           => '',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'posts');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'posts',
+                'display_name_singular' => 'запись',
+                'display_name_plural'   => 'Записи',
+                'icon'                  => 'voyager-news',
+                'model_name'            => 'TCG\\Voyager\\Models\\Post',
+                'policy_name'           => 'TCG\\Voyager\\Policies\\UserPolicy',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'pages');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'pages',
+                'display_name_singular' => 'страницу',
+                'display_name_plural'   => 'Страницы',
+                'icon'                  => 'voyager-file-text',
+                'model_name'            => 'TCG\\Voyager\\Models\\Page',
                 'controller'            => '',
                 'generate_permissions'  => 1,
                 'description'           => '',
