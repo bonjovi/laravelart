@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Style;
 use Illuminate\Http\Request;
-use App\Product;
+use App\Painter;
 
-class ShopController extends Controller
+class PainterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +14,11 @@ class ShopController extends Controller
      */
     public function index()
     {
-
-        if(request()->style) {
-            $products = Product::with('styles')->whereHas('styles', function($query) {
-                $query->where('slug', request()->style);
-            })->get();
-            $styles = Style::all();
-        } else {
-            $products = Product::with('painters')->inRandomOrder()->take(8)->get();
-            $styles = Style::all();
-        }
-
-       
+        $painters = Painter::inRandomOrder()->take(8)->get();
 
 
-        return view('shop')->with([
-            'products' => $products,
-            'styles' => $styles
+        return view('painters')->with([
+            'painters' => $painters
         ]);
     }
 
@@ -59,14 +46,12 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-
-        return view('product')->with('product', $product);
+        //
     }
 
     /**

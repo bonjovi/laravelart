@@ -22,9 +22,10 @@ Route::get('/shop', 'ShopController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 
-Route::get('/painters', function () {
-    return view('painters');
-});
+Route::get('/painters', 'PainterController@index')->name('painters.index');
+
+Route::get('/painters/{painter}', 'PainterController@index')->name('painters.show');
+
 
 Route::get('/account', function () {
     return view('account', ['user' => Auth::user()]);

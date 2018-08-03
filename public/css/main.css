@@ -603,7 +603,10 @@ textarea:-ms-input-placeholder {
   .card__text {
     margin-bottom: 5px; }
     .card__text_painter {
-      margin: 10px 0; }
+      margin: 10px 0;
+      display: block; }
+      .card__text_painter:hover {
+        text-decoration: none; }
   .card__bottom {
     display: -webkit-box;
     display: -webkit-flex;

@@ -2,6 +2,11 @@
 
 @section('content')
 
+@foreach ($painters as $painter)
+	
+	<a href="{{ route('painters.index', $painter->id) }}">{{ $painter->full_name }}</a><br>
+@endforeach
+
 	<h1 class="title title_basegrey title_centered">Художники</h1>
 
 	<div class="painters">

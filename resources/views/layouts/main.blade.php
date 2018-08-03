@@ -265,7 +265,7 @@
                 </div>
                 <div class="card__content">
                     <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                    <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter }}</div>
+                    <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey text_small card__text card__text_painter">{{ $product->painter->full_name }}</a>
                     <div class="text text_grey text_small card__text">{{ $product->material }}</div>
                     <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                     <div class="text text_grey text_small card__text">{{ $product->year }}</div>

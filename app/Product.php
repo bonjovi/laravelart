@@ -13,4 +13,11 @@ class Product extends Model
 
         return $this->belongsToMany('App\Style', 'style_product');
     }
+
+
+    public function painter()
+    {
+
+        return $this->hasOne('App\Painter', 'id', 'painter_id');
+    }
 }
