@@ -27,14 +27,38 @@ Route::get('/painters', 'PainterController@index')->name('painters.index');
 Route::get('/painters/{painter}', 'PainterController@index')->name('painters.show');
 
 
-Route::get('/account', function () {
-    return view('account', ['user' => Auth::user()]);
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/account/profile', function () {
+        return view('account.profile', ['user' => Auth::user(), 'title' => 'Профиль']);
+    })->name('account.profile');
+
+    Route::get('/account/settings', function () {
+        return view('account.settings', ['user' => Auth::user(), 'title' => 'Настройки аккаунта']);
+    })->name('account.settings');
+
+    Route::get('/account/orders', function () {
+        return view('account.orders', ['user' => Auth::user(), 'title' => 'Заказы']);
+    })->name('account.orders');
+
+    Route::get('/account/messages', function () {
+        return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
+    })->name('account.messages');
+
+    Route::get('/account/auctions', function () {
+        return view('account.auctions', ['user' => Auth::user(), 'title' => 'Аукционы']);
+    })->name('account.auctions');
+
+    Route::get('/account/favs', function () {
+        return view('account.favs', ['user' => Auth::user(), 'title' => 'Избранное']);
+    })->name('account.favs');
+    
+    Route::post('/account/profile', 'UserController@update')->name('user.update');
 });
 
-/*Route::post('/updateaccount', [
-    'uses' => 'UserController@postSaveAccount',
-    'as' => 'account.save'
-]);*/
+
 
 
 

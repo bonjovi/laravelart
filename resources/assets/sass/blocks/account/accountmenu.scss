@@ -1,0 +1,21 @@
+.accountmenu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 40px;
+
+    &__link {
+        text-decoration: none;
+        transition: color 0.5s;
+        margin-right: 40px;
+
+        &_active {
+            color:$violet !important;
+        }
+
+        &:hover {
+            color:$violet;
+        }
+    }
+}

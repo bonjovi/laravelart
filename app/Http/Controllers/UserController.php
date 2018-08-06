@@ -6,6 +6,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Session;
+
 class UserController extends Controller
 {
     /*public function postSignUp(Request $request)
@@ -45,7 +47,31 @@ class UserController extends Controller
 
     public function getAccount()
     {
-        return view('account', ['user' => Auth::user()]);
+        return view('account.profile', ['user' => Auth::user()]);
+    }
+
+    // public function update(User $user, Request $request)
+    // { 
+    //     $data = $request->validate([
+    //         'name' => 'required',
+    //         'email' => 'required|email|unique:users',
+    //     ]);
+
+    //     $user->fill($data);
+    //     $user->save();
+    //     Flash::message('Your account has been updated!');
+    //     return back();
+    // }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->save();
+
+        Session::flash('message', 'Ваш профиль был обновлён'); 
+
+        return back();
     }
     /*public function postSaveAccount(Request $request)
     {
@@ -73,6 +99,7 @@ class UserController extends Controller
         }
         return redirect()->route('account');
     }
+    
     public function getUserImage($filename)
     {
         $file = Storage::disk('local')->get($filename);

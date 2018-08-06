@@ -273,7 +273,7 @@
                         <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
                         <div class="card__bottominfo">
                             <div class="card__price title title_small">{{ $product->price }} руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->country }}</div>
+                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
                         </div>
                     </div>
                 </div>
