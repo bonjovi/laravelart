@@ -12,7 +12,7 @@
     </li>
 
     <li>
-        <a class="text text_middle accountmenu__link {{ Request::is('account/messages') ? 'accountmenu__link_active' : '' }}" href="{{route('account.messages')}}">Сообщения</a>
+        <a class="text text_middle accountmenu__link {{ Request::is('account/paintings') ? 'accountmenu__link_active' : '' }}" href="{{route('account.paintings')}}">Картины</a>
     </li>
 
     <li>

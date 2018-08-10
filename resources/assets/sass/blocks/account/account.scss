@@ -1,4 +1,5 @@
 .account {
+    
     display: flex;
 
     &__control-group {
@@ -17,4 +18,61 @@
     &__savebutton {
         margin-top: 30px;
     }
+
+    &__painting {
+        display: flex;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 30px;
+    }
+
+    &__paintingdesc {
+        padding: 15px 0 20px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-grow: 1;
+
+        & a {
+            display: block;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__paintingpic {
+        width: 190px;
+        
+        & img {
+            width: 190px;
+            height: 135px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 3px;
+            pointer-events: none;
+            box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &__paintingcontrols {
+        width: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & i {
+            font-size: 18px;
+            color: #b2b2b2;
+            transition: opacity 0.5s;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
+
 }

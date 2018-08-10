@@ -44,12 +44,14 @@
 
 
         <div class="search">
-            <div class="search__inputwrapper">
-                <input type="text" class="input" placeholder="Введите фамилию художника или название картины">
-            </div>
-            <button data-ripple class="button button_wide">
-                Искать
-            </button>
+            <form action="{{ route('search') }}" method="GET">
+                <div class="search__inputwrapper">
+                    <input type="text" class="input" placeholder="Введите фамилию художника или название картины" name="query">
+                </div>
+                <button data-ripple class="button button_wide">
+                    Искать
+                </button>
+            </form>
         </div>
     </div><!-- /.container -->
     <div class="banner" style="background-image: url(img/banner1.jpg);"></div>

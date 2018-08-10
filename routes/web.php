@@ -47,6 +47,23 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('account.messages');
 
+    Route::get('/account/paintings', function () {
+        return view('account.paintings', ['user' => Auth::user(), 'title' => 'Картины']);
+    })->name('account.paintings');
+
+
+
+
+    Route::get('/account/paintings/{id}/edit', 'ShopController@edit', function () {
+        return view('account.paintings_edit', ['user' => Auth::user(), 'title' => 'Картины']);
+    });
+
+    Route::post('/account/paintings/{id}/update', 'ShopController@update')->name('account.paintings.update');
+
+
+
+
+
     Route::get('/account/auctions', function () {
         return view('account.auctions', ['user' => Auth::user(), 'title' => 'Аукционы']);
     })->name('account.auctions');
@@ -66,7 +83,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/search', 'ShopController@search')->name('search');
 
 
 Auth::routes();

@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use App\Style;
 use Illuminate\Http\Request;
 use App\Product;
+use Auth;
+
 
 class ShopController extends Controller
 {
+
+    
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+
     public function index()
     {
 
@@ -77,7 +86,8 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('account.paintings_edit')->with(['user' => Auth::user(), 'product' => $product, 'title'=> 'Картины']);
     }
 
     /**
@@ -89,7 +99,11 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->fill($request->all());
+        $product->save();
+
+        return redirect()->route('account.paintings');
     }
 
     /**
@@ -101,5 +115,22 @@ class ShopController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|min:3',
+        ]);
+        $query = $request->input('query');
+        // $products = Product::where('name', 'like', "%$query%")
+        //                    ->orWhere('details', 'like', "%$query%")
+        //                    ->orWhere('description', 'like', "%$query%")
+        //                    ->paginate(10);
+        $products = Product::search($query);
+        return view('searchresults')->with('products', $products);
     }
 }

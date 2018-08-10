@@ -32,21 +32,22 @@ gulp.task('sass', function() {
             browsers: ['last 10 versions'],
             cascade: true
         }))
-        .pipe(gulp.dest('public/css'));
-        //.pipe(browserSync.stream());
+        .pipe(gulp.dest('public/css'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('clean', function () {
     return gulp.src('resources/assets/sass/build/_blocks.scss', {read: false})
-        .pipe(clean());
-    //.pipe(browserSync.stream());
+        .pipe(clean())
+    .pipe(browserSync.stream());
 });
 
 
 gulp.task('watch', function() {
-    /*browserSync.init({
-        server: "./app"
-    });*/
+    browserSync.init({
+        //server: "./app"
+        proxy: 'http://laravel.jside.loc/account/paintings'
+    });
 
     gulp.watch('resources/assets/sass/blocks/**/*.scss', gulp.series('blocks', 'sass', 'clean'));
 });
