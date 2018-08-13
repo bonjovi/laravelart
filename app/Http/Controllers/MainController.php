@@ -32,11 +32,12 @@ class MainController extends Controller
         $max_price = Product::max('price');
 
 
-        return view('layouts.main')->with('products', $products->get());
+        //return view('layouts.main')->with('products', $products->get());
 
-        return view('shop')->with([
-            'products' => $products,
-            'styles' => $styles,
+
+
+        return view('layouts.main')->with([
+            'products' => $products->get(),
             'min_price' => $min_price,
             'max_price' => $max_price
         ]);

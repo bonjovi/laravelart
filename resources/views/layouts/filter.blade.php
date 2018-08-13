@@ -1,10 +1,17 @@
-@if($_GET['min_price'] && $_GET['max_price'])
-    $min_price = $_GET['min_price'];
-    $max_price = $_GET['max_price'];
-@else
-    $min_price = $min_price;
-    $max_price = $max_price;
-@endif   
+
+
+
+@php
+   if(isset($_GET['min_price']) && isset($_GET['max_price'])) {
+        $min_price = $_GET['min_price'];
+        $max_price = $_GET['max_price'];
+   } else {
+        $min_price = $min_price;
+        $max_price = $max_price;
+   }
+@endphp
+
+
 
 <form action="{{ route('layouts.main') }}" method="GET" class="filterform">
 <div class="filter">
