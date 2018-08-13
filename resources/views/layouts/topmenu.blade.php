@@ -6,7 +6,7 @@
         <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Аукцион</a>
     </li>
     <li>
-        <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Художники</a>
+        <a href="{{ route('painters.index') }}" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Художники</a>
     </li>
     <li>
         <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Галереи</a>

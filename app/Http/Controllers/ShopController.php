@@ -24,17 +24,22 @@ class ShopController extends Controller
 
     public function index()
     {
-
+        
+        
         if(request()->style) {
             $products = Product::with('styles')->whereHas('styles', function($query) {
                 $query->where('slug', request()->style);
             })->get();
             $styles = Style::all();
         } else {
-            $products = Product::with('painters')->inRandomOrder()->take(8)->get();
+            $products = Product::inRandomOrder()->take(8)->get();
             $styles = Style::all();
         }
 
+
+
+
+        
        
 
 
@@ -122,15 +127,26 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
-        $request->validate([
-            'query' => 'required|min:3',
-        ]);
+        // $request->validate([
+        //     'query' => 'required|min:3',
+        // ]);
         $query = $request->input('query');
+        
         // $products = Product::where('name', 'like', "%$query%")
-        //                    ->orWhere('details', 'like', "%$query%")
-        //                    ->orWhere('description', 'like', "%$query%")
-        //                    ->paginate(10);
-        $products = Product::search($query);
+        //                    ->orWhere('description', 'like', "%$query%")->get();
+        $products = Product::search($query)->paginate(10);
         return view('searchresults')->with('products', $products);
     }
+
+    // public function filter(Request $request)
+    // {
+    //     $query = $request->input('painting');
+        
+
+    //     $products = Product::with('styles')->whereHas('styles', function($query) {
+    //         $query->where('slug', 'painting');
+    //     })->get();
+
+    //     return view('shop')->with('products', $products);
+    // }
 }

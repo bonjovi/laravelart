@@ -12,10 +12,34 @@ class MainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::inRandomOrder()->take(8)->get();
-        return view('layouts.main')->with('products', $products);
+        $products = Product::inRandomOrder()->take(8);
+
+        if ($request->has('style'))
+        {
+            $products = Product::with('styles')->whereHas('styles', function($query) {
+                $query->whereIn('slug', request()->style);
+            });
+        }
+
+        if($request->min_price && $request->max_price){
+            $products = $products->where('price','>=',$request->min_price);
+            $products = $products->where('price','<=',$request->max_price);
+        }
+
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
+
+
+        return view('layouts.main')->with('products', $products->get());
+
+        return view('shop')->with([
+            'products' => $products,
+            'styles' => $styles,
+            'min_price' => $min_price,
+            'max_price' => $max_price
+        ]);
     }
 
     /**

@@ -23,7 +23,7 @@
 
     &__inputwrapper {
         background-color: #fff;
-        padding: 0 5px 5px 5px;
+        padding: 0 25px 5px 5px;
         height: 36px;
         border-radius: 6px;
         width: 100%;
@@ -32,5 +32,10 @@
         @media only screen and (max-width: 640px) {
             display: block;
         } 
+    }
+
+    & form {
+        display: flex;
+        width: 100%;
     }
 }

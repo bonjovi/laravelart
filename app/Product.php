@@ -26,8 +26,11 @@ class Product extends Model
         'columns' => [
             'products.name' => 10,
             'products.description' => 10,
-            'users.full_name' => 2,
+            'painters.lastname' => 2,
         ],
+        'joins' => [
+            'painters' => ['products.painter_id','painters.id'],
+        ]
     ];
 
 

@@ -1,4 +1,14 @@
 $(function() {
+
+    var sliderInputs = $('.slider__input');
+    
+
+    $.each(sliderInputs, function(index, element){
+        $(this).width((($(this).val().length + 1) * 8) + 'px');
+        console.log($('[name=min_price]').val());
+    });
+
+
 	$('.footer__toggler i').on('click', function() {
 		$('.footer__left .footer__section').slideToggle();
 	});
@@ -29,8 +39,7 @@ $(function() {
 		},
 		format: wNumb({
             decimals: 0,
-            thousand: ' ',
-            postfix: ' руб.',
+            thousand: ''
         })
 	});
 
@@ -39,9 +48,9 @@ $(function() {
 
 	slider.noUiSlider.on('update', function ( values, handle ) {
 		if ( handle ) {
-			marginMax.innerHTML = values[handle];
+			marginMax.value = values[handle];
 		} else {
-			marginMin.innerHTML = values[handle];
+			marginMin.value = values[handle];
 		}
 	});
 	// end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ

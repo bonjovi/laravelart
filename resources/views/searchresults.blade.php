@@ -4,6 +4,10 @@
 
     <h1 class="title title_basegrey title_centered">{{ request()->input('query') }}</h1>
 
+    <div class="text" style="margin-bottom: 60px;">
+        Для запроса <strong>{{ request()->input('query') }}</strong> найдено результатов: {{ $products->count() }}
+    </div>
+
     <div class="cardswrapper">
         
         <section class="cards">
@@ -17,7 +21,7 @@
                     </div>
                     <div class="card__content">
                         <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                        <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter }}</div>
+                        <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter->full_name }}</div>
                         <div class="text text_grey text_small card__text">{{ $product->material }}</div>
                         <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                         <div class="text text_grey text_small card__text">{{ $product->year }}</div>

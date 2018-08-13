@@ -40,7 +40,7 @@
 
 <script src="js/main.js"></script>
 
-<script src="{{ asset('js/artmarket/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/artmarket/custom.js') }}"></script> -->
 
 </body>
 </html>

@@ -85,6 +85,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/search', 'ShopController@search')->name('search');
 
+Route::get('/filter', 'ShopController@filter')->name('filter');
+
 
 Auth::routes();
 

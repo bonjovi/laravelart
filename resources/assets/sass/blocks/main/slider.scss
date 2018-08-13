@@ -3,6 +3,21 @@
 	height: 2px;
     margin: 15px 0;
     position: relative;
+
+    &__numbers {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__price {
+        display: flex;
+    }
+
+    &__input {
+        background-color: transparent;
+        border: none;
+        width: 100%;
+    }
 }
 
 .noUi-base {
@@ -50,7 +65,3 @@
     background-color: $violet;
 }
 
-.sliderNumbers {
-    display: flex;
-    justify-content: space-between;
-}
