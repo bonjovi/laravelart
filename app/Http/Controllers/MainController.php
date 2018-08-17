@@ -26,6 +26,10 @@ class MainController extends Controller
         if($request->min_price && $request->max_price){
             $products = $products->where('price','>=',$request->min_price);
             $products = $products->where('price','<=',$request->max_price);
+
+            $filterVisibility = 'filter_uncollapsed';
+        } else {
+            $filterVisibility = '';
         }
 
         $min_price = Product::min('price');
@@ -34,12 +38,18 @@ class MainController extends Controller
 
         //return view('layouts.main')->with('products', $products->get());
 
+        $products = $products->get();
+        
+        count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';
 
+        
 
         return view('layouts.main')->with([
-            'products' => $products->get(),
+            'products' => $products,
             'min_price' => $min_price,
-            'max_price' => $max_price
+            'max_price' => $max_price,
+            'notfound' => $notfound,
+            'filterVisibility' => $filterVisibility
         ]);
     }
 

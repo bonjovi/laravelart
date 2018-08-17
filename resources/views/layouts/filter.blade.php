@@ -14,7 +14,7 @@
 
 
 <form action="{{ route('layouts.main') }}" method="GET" class="filterform">
-<div class="filter">
+<div class="filter {{ $filterVisibility }}">
     <div class="filter__section">
         <div class="title title_small filter__title">
             Типы

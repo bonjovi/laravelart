@@ -76,10 +76,8 @@ $(function() {
 
 		if($('.filter').hasClass('filter_uncollapsed')) {
 			$('.filter > *').hide();
-			$('.filter').css('padding', '0').css('margin-right', '0');
 		} else {
 			$('.filter > *').show();
-			$('.filter').css('padding', '40px 20px 40px 40px').css('margin-right', '20px');
 		}
 
 		$('.filter').toggleClass('filter_uncollapsed');

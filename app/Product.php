@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Auth;
 
 class Product extends Model
 {
@@ -45,11 +46,38 @@ class Product extends Model
     ];
 
 
+
+
+
+
     public function styles()
     {
 
         return $this->belongsToMany('App\Style', 'style_product');
     }
+
+    public function materials()
+    {
+
+        return $this->belongsToMany('App\Material', 'material_product');
+    }
+
+    public function surfaces()
+    {
+
+        return $this->belongsToMany('App\Surface', 'surface_product');
+    }
+
+    public function themes()
+    {
+
+        return $this->belongsToMany('App\Theme', 'theme_product');
+    }
+
+
+
+
+    
 
 
     public function painter()
@@ -63,4 +91,20 @@ class Product extends Model
 
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+
+
+
+
+
+    public function save(array $options = [])
+    {
+        
+        // If no author has been assigned, assign the current user's id as the author of the post
+        if (!$this->user_id && Auth::user()) {
+            $this->user_id = Auth::user()->id;
+        }
+        parent::save();
+    }
+
 }
