@@ -11,28 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-var concat = require('concat-files');
-
-// concat([
-//    'resources/assets/sass/blocks'
-// ], 'resources/assets/sass/blocks.scss', function(err) {
-//     if (err) throw err
-//     console.log('done');
-// });
-
-
-
-
-mix
-   .setPublicPath('public/build')
-   .setResourceRoot('build')
-   .js('resources/assets/js/app.js', 'public/js')
-   .then(function() {
-       concat([
-           'resources/assets/sass/blocks'
-       ], 'resources/assets/sass/blocks.scss', function(err) {
-           if (err) throw err
-           console.log('done');
-       });
-   })
-   .sass('resources/assets/sass/main.scss', 'css');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/main.scss', 'public/css');
