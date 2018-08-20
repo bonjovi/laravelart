@@ -47192,7 +47192,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47201,9 +47201,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0ca92eac", Component.options)
+    hotAPI.createRecord("data-v-7168fb6a", Component.options)
   } else {
-    hotAPI.reload("data-v-0ca92eac", Component.options)
+    hotAPI.reload("data-v-7168fb6a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47390,7 +47390,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0ca92eac", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
   }
 }
 
@@ -47398,7 +47398,7 @@ if (false) {
 /* 43 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n@import 'blocks/account/*';\r\n^\r\n      File to import not found or unreadable: blocks/account/*.\r\n      in C:\\OSPanel\\domains\\laravel.jside.loc\\resources\\assets\\sass\\main.scss (line 8, column 1)\n    at runLoaders (C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\webpack\\lib\\NormalModule.js:195:19)\n    at C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\sass-loader\\lib\\loader.js:55:13)\n    at Object.done [as callback] (C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\neo-async\\async.js:7974:18)\n    at options.error (C:\\OSPanel\\domains\\laravel.jside.loc\\node_modules\\node-sass\\lib\\index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

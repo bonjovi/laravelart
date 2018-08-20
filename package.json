@@ -23,13 +23,14 @@
         "gulp-sass": "^4.0.0"
     },
     "dependencies": {
+        "browser-sync": "^2.14.0",
+        "gulp-autoprefixer": "^3.1.1",
         "gulp-clean": "^0.3.2",
         "gulp-concat": "^2.6.1",
         "gulp-concat-css": "^2.3.0",
         "gulp-plumber": "^1.1.0",
         "gulp-watch": "^4.3.11",
-        "purecss-onefile": "^0.3.20",
-        "gulp-autoprefixer": "^3.1.1",
-        "browser-sync": "^2.14.0"
+        "node-sass-glob-importer": "^5.2.0",
+        "purecss-onefile": "^0.3.20"
     }
 }

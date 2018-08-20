@@ -1,14 +1,15 @@
 .selectedFilters {
 	padding: 40px 0;
-	margin-bottom: 30px;
 
 	&__button {
 		margin-right: 10px;
+		margin-bottom: 13px;
 	}
 
 	&_sorting {
 		justify-content: space-between;
 		padding-top: 0;
+		margin-bottom: 30px;
 
 		& a:hover {
 			text-decoration: none;

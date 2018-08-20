@@ -12,10 +12,9 @@
 @endphp
 
 
-
-<form action="{{ route('layouts.main') }}" method="GET" class="filterform">
+{!! Form::open(['action' => 'MainController@index', 'method' => 'GET', 'class' => 'filterform']) !!}
 <div class="filter {{ $filterVisibility }}">
-    <div class="filter__section">
+    <!--<div class="filter__section">
         <div class="title title_small filter__title">
             Типы
             <i class="material-icons">remove</i>
@@ -42,8 +41,8 @@
                     <span class="text">Со скидкой</span>
                 </label>
             </div>
-        </div><!--/.filter__sectioncontent-->
-    </div><!--/.filter__section-->
+        </div>
+    </div>-->
 
     <div class="filter__section">
         <div class="title title_small filter__title">
@@ -52,33 +51,18 @@
         </div>
 
         <div class="filter__sectioncontent">
+            @foreach($styles as $style)
             <div class="checkbox">
-                <label>
-                    <input type="checkbox" checked="" name="style[]" value="painting"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Живопись</span>
+                <label>                   
+                    <input {{ in_array($style->slug, Request::get('style') ? Request::get('style') : []) ? 
+                    'checked="checked"' :
+                    '' }}
+                    type="checkbox" name="style[]" value="{{ $style->slug }}">    
+                    <span class="checkbox-material"><span class="check"></span></span>
+                    <span class="text">{{ $style->name }}</span>
                 </label>
             </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="style[]" value="graphics"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Графика</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="style[]" value="impressionism"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Импрессионизм</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="style[]" value="abstractionism"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Абстракционизм</span>
-                </label>
-            </div>
+            @endforeach
         </div>
     </div><!--/.filter__section-->
 
@@ -89,33 +73,40 @@
         </div>
 
         <div class="filter__sectioncontent">
+            @foreach($materials as $material)
             <div class="checkbox">
-                <label>
-                    <input type="checkbox" checked=""><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Акрил</span>
+                <label>                   
+                    <input {{ in_array($material->slug, Request::get('material') ? Request::get('material') : []) ? 
+                    'checked="checked"' :
+                    '' }}
+                    type="checkbox" name="material[]" value="{{ $material->slug }}">    
+                    <span class="checkbox-material"><span class="check"></span></span>
+                    <span class="text">{{ $material->name }}</span>
                 </label>
             </div>
+            @endforeach
+        </div>
+    </div><!--/.filter__section-->
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Гуашь</span>
-                </label>
-            </div>
+    <div class="filter__section">
+        <div class="title title_small filter__title">
+             Поверхность
+            <i class="material-icons">remove</i>
+        </div>
 
+        <div class="filter__sectioncontent">
+            @foreach($surfaces as $surface)
             <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Масло</span>
+                <label>                   
+                    <input {{ in_array($surface->slug, Request::get('surface') ? Request::get('surface') : []) ? 
+                    'checked="checked"' :
+                    '' }}
+                    type="checkbox" name="surface[]" value="{{ $surface->slug }}">    
+                    <span class="checkbox-material"><span class="check"></span></span>
+                    <span class="text">{{ $surface->name }}</span>
                 </label>
             </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Карандаш</span>
-                </label>
-            </div>
+            @endforeach
         </div>
     </div><!--/.filter__section-->
 
@@ -126,47 +117,18 @@
         </div>
 
         <div class="filter__sectioncontent">
+            @foreach($themes as $theme)
             <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Звери и птицы</span>
+                <label>                   
+                    <input {{ in_array($theme->slug, Request::get('theme') ? Request::get('theme') : []) ? 
+                    'checked="checked"' :
+                    '' }}
+                    type="checkbox" name="theme[]" value="{{ $theme->slug }}">    
+                    <span class="checkbox-material"><span class="check"></span></span>
+                    <span class="text">{{ $theme->name }}</span>
                 </label>
             </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Цветы и растения</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" checked=""><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Абстрактные фигуры</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" checked=""><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Архитектура</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Природа, море, небо</span>
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"><span class="checkbox-material"><span class="check"></span></span>
-                    <span class="text">Люди и портреты</span>
-                </label>
-            </div>
+            @endforeach
         </div>
     </div><!--/.filter__section-->
 
@@ -181,19 +143,20 @@
                 <!-- <div id="slider-margin-value-min" class="text text_small"></div>
                 <div id="slider-margin-value-max" class="text text_small"></div> -->
                 <div class="slider__price">
-                    <input id="slider-margin-value-min" type="text" name="min_price" class="slider__input text text_small" value="{{ $min_price }}">
+                    <input disabled id="slider-margin-value-min" type="text" name="min_price" class="slider__input text text_small" value="{{ $min_price }}">
                     <span class="text text_small">руб.</span>
                 </div>
                 <div class="slider__price">
-                    <input id="slider-margin-value-max" type="text" name="max_price" class="slider__input text text_small" value="{{ $max_price }}">
+                    <input disabled id="slider-margin-value-max" type="text" name="max_price" class="slider__input text text_small" value="{{ $max_price }}">
                     <span class="text text_small">руб.</span>
                 </div>  
             </div>
         </div>
     </div><!--/.filter__section-->
 
-    <button data-ripple class="button selectedFilters__button">
+    <button data-ripple class="button selectedFilters__button filter__applyfilters">
         Применить фильтры
     </button>
 </div>
-</form>
+
+{!! Form::close() !!}

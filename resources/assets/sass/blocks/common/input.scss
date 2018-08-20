@@ -21,11 +21,8 @@
 
     @media only screen and (max-width: 640px) {
         height: 30px;
+        width: 100%;
     }  
-}
-
-@media only screen and (max-width: 640px) {
-    width: 100%;
 }
 
 .input:focus {

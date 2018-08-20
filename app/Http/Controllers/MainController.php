@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Style;
+use App\Material;
+use App\Surface;
+use App\Theme;
+use Illuminate\Routing\Route;
 
 class MainController extends Controller
 {
@@ -21,7 +26,14 @@ class MainController extends Controller
             $products = Product::with('styles')->whereHas('styles', function($query) {
                 $query->whereIn('slug', request()->style);
             });
+            
+            
         }
+
+        $styles = Style::all();
+        $materials = Material::all();
+        $surfaces = Surface::all();
+        $themes = Theme::all();
 
         if($request->min_price && $request->max_price){
             $products = $products->where('price','>=',$request->min_price);
@@ -46,6 +58,10 @@ class MainController extends Controller
 
         return view('layouts.main')->with([
             'products' => $products,
+            'styles' => $styles,
+            'materials' => $materials,
+            'themes' => $themes,
+            'surfaces' => $surfaces,
             'min_price' => $min_price,
             'max_price' => $max_price,
             'notfound' => $notfound,

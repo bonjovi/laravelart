@@ -2,11 +2,47 @@
 @import 'utils/variables';
 @import 'base/fonts';
 @import 'utils/placeholders';
-
 @import 'base/media';
 
-@import 'blocks/account/*';
-@import 'blocks/common/*';
-@import 'blocks/main/*';
-@import 'blocks/painters/*';
-@import 'blocks/product/*';
+@import 'blocks/account/account';
+@import 'blocks/account/accountmenu';
+
+@import 'blocks/common/button';
+@import 'blocks/common/card';
+@import 'blocks/common/cards';
+@import 'blocks/common/cardswrapper';
+@import 'blocks/common/checkbox';
+@import 'blocks/common/container';
+@import 'blocks/common/control-group';
+@import 'blocks/common/copyright';
+@import 'blocks/common/descriptor';
+@import 'blocks/common/flash';
+@import 'blocks/common/footer';
+@import 'blocks/common/header';
+@import 'blocks/common/input';
+@import 'blocks/common/logo';
+@import 'blocks/common/main';
+@import 'blocks/common/pagination';
+@import 'blocks/common/promobanner';
+@import 'blocks/common/registrationLine';
+@import 'blocks/common/selectedFilters';
+@import 'blocks/common/subscribe';
+@import 'blocks/common/text';
+@import 'blocks/common/title';
+@import 'blocks/common/topcontacts';
+@import 'blocks/common/topline';
+@import 'blocks/common/topmenu';
+@import 'blocks/common/wrapper';
+
+@import 'blocks/main/banner';
+@import 'blocks/main/filter';
+@import 'blocks/main/filterform';
+@import 'blocks/main/search';
+@import 'blocks/main/slider';
+@import 'blocks/main/slogan';
+
+@import 'blocks/painters/painters';
+@import 'blocks/painters/onepainter';
+
+@import 'blocks/product/product';
+@import 'blocks/product/productGallery';
