@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title>{{ setting('site.title') }} - @yield('title')</title>
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -12,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 
 </head>
 <body>
@@ -30,17 +32,19 @@
     @include('layouts.footer')
 </div><!-- /.wrapper-->
 
-<script>
+<!-- <script>
     Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
         new RippleEffect(element);
     });
-</script>
+</script> -->
 
 @yield('extra-js')
 
-<script src="js/main.js"></script>
-
-<!-- <script src="{{ asset('js/artmarket/custom.js') }}"></script> -->
+<script src="{{ asset('js/manifest.js') }}"></script>
+<script src="{{ asset('js/vendor.js') }}"></script>
+<script src="{{ asset('js/nouislider.min.js') }}"></script>
+<script src="{{ asset('js/wNumb.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>

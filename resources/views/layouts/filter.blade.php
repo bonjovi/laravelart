@@ -1,6 +1,3 @@
-
-
-
 @php
    if(isset($_GET['min_price']) && isset($_GET['max_price'])) {
         $min_price = $_GET['min_price'];
@@ -140,14 +137,12 @@
         <div class="filter__sectioncontent">
             <div id="slider" class="slider slider-info noUi-target noUi-ltr noUi-horizontal"></div>
             <div class="slider__numbers">
-                <!-- <div id="slider-margin-value-min" class="text text_small"></div>
-                <div id="slider-margin-value-max" class="text text_small"></div> -->
                 <div class="slider__price">
-                    <input disabled id="slider-margin-value-min" type="text" name="min_price" class="slider__input text text_small" value="{{ $min_price }}">
+                    <input id="slider-margin-value-min" type="text" name="min_price" class="slider__input text text_small" value="{{ $min_price }}"/>
                     <span class="text text_small">руб.</span>
                 </div>
                 <div class="slider__price">
-                    <input disabled id="slider-margin-value-max" type="text" name="max_price" class="slider__input text text_small" value="{{ $max_price }}">
+                    <input id="slider-margin-value-max" type="text" name="max_price" class="slider__input text text_small" value="{{ $max_price }}"/>
                     <span class="text text_small">руб.</span>
                 </div>  
             </div>

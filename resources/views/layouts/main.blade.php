@@ -61,10 +61,12 @@
 @section('content')
 
     <section class="selectedFilters">
+        @if(Request::get('style') || Request::get('material') || Request::get('theme') || Request::get('surface'))
         <a href="/" data-ripple class="button button_grey selectedFilters__button">
             Сбросить фильтры
             <i class="material-icons">delete</i>
         </a>
+        @endif
         
 
         
@@ -118,14 +120,20 @@
         @include('layouts.filter')
 
         <section class="cards">
-            <div class="text">{{ $notfound }}</div>
+            @if($notfound)
+            <div class="text">
+                {{ $notfound }}
+            </div>
+            @endif
             @foreach ($products as $product)
             <div class="card">
                 <div class="card__pic">
                     <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
                         <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
                     </a>
-                    <div class="card__coloredbg" style="background-image: url({{ productImage($product->image) }}); opacity: 1;"></div>
+                    <div class="card__coloredbg" style="opacity: 1;">
+                        <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+                    </div>
                 </div>
                 <div class="card__content">
                     <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
@@ -180,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-            </div>->
+            </div>
 
 
 
@@ -209,7 +217,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.card -->
+            </div>-->
 
 
         </section><!-- /.cards -->

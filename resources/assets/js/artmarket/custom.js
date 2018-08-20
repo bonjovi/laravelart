@@ -1,4 +1,16 @@
 $(function() {
+
+	var sliderInputs = $('.slider__input');
+    
+    $.each(sliderInputs, function(index, element){
+        $(this).width((($(this).val().length + 1) * 7) + 'px');
+        console.log($('[name=min_price]').val());
+	});
+	
+
+
+
+
 	$('.footer__toggler i').on('click', function() {
 		$('.footer__left .footer__section').slideToggle();
 	});
@@ -17,21 +29,35 @@ $(function() {
 		$('.header__toggler i.active').text('close');
 	});
 
+
+
+
+
+
+
+
+
+
+
 	// СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
 	var slider = document.getElementById('slider');
+	var minimumPrice = document.getElementById('slider-margin-value-min').value;
+	var maximumPrice = document.getElementById('slider-margin-value-max').value;
+	console.log(minimumPrice);
+	console.log(maximumPrice);
 
 	noUiSlider.create(slider, {
-		start: [20000, 80000],
+		start: [minimumPrice, maximumPrice],
 		connect: true,
 		range: {
-			'min': 0,
-			'max': 100000
+			'min': 15000,
+			'max': 325000
 		},
 		format: wNumb({
-            decimals: 0,
-            thousand: ' ',
-            postfix: ' руб.',
-        })
+			decimals: 0,
+			thousand: '',
+			postfix: '',
+		})
 	});
 
 	var marginMin = document.getElementById('slider-margin-value-min'),
@@ -39,12 +65,17 @@ $(function() {
 
 	slider.noUiSlider.on('update', function ( values, handle ) {
 		if ( handle ) {
-			marginMax.innerHTML = values[handle];
+			marginMax.value = values[handle];
 		} else {
-			marginMin.innerHTML = values[handle];
+			marginMin.value = values[handle];
 		}
 	});
 	// end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
+
+
+
+
+
 
 	$('.filter__title').on('click', function() {
 		$(this).next('.filter__sectioncontent').slideToggle();

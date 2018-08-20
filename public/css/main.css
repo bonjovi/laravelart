@@ -815,9 +815,12 @@ textarea:-ms-input-placeholder {
   background: #fff;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  margin-right: 15px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  width: calc(33.3333% - 8px);
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 calc(33.3333% - 12px);
+          flex: 0 0 calc(33.3333% - 12px);
 }
 
 .card_auction {
@@ -827,31 +830,14 @@ textarea:-ms-input-placeholder {
   margin-top: -1px;
 }
 
-@media only screen and (min-width: 1200px) {
-  .card:nth-child(3n) {
-    margin-right: 0px;
-    width: 384px;
-  }
-}
-
 @media only screen and (max-width: 1200px) {
   .card {
     width: 342px;
-  }
-
-  .card:nth-child(2n) {
-    margin-right: 0px;
-    width: 343px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .card {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .card:nth-child(2n) {
     width: 100%;
     margin-right: 0;
   }
@@ -1069,6 +1055,9 @@ textarea:-ms-input-placeholder {
   width: 100%;
   -ms-flex-item-align: start;
       align-self: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .cardswrapper {
@@ -2113,6 +2102,7 @@ textarea:-ms-input-placeholder {
   height: 2px;
   margin: 15px 0;
   position: relative;
+  padding: 0 4px 0 10px;
 }
 
 .slider__numbers {

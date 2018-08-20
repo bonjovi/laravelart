@@ -31,6 +31,7 @@
         "gulp-plumber": "^1.1.0",
         "gulp-watch": "^4.3.11",
         "node-sass-glob-importer": "^5.2.0",
+        "nouislider": "^11.1.0",
         "purecss-onefile": "^0.3.20"
     }
 }
