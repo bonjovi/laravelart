@@ -15,8 +15,8 @@ function painterDeathYear($deathYear) {
     return $deathYear ? $deathYear : 'н.в.';
 }
 
-function removeGetParams($str)
+function removeGetParams($url, $key, $val)
 {
-    //$params = parse_str(explode("?", $str)[1], $params);
-    return $str . '123';
+    $url = preg_replace('~(\?|&)' . $key . '[^&]*=' . $val . '~','$1', $url);
+    return $url;
 }

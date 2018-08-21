@@ -23,6 +23,5 @@ window.Vue = require('vue');
 //     el: '#app'
 // });
 
-// import 'nouislider';
-//require('./artmarket/nouislider.min.js');
+
 require('./artmarket/custom.js');

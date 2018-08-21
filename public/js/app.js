@@ -13897,8 +13897,7 @@ window.Vue = __webpack_require__(36);
 //     el: '#app'
 // });
 
-// import 'nouislider';
-//require('./artmarket/nouislider.min.js');
+
 __webpack_require__(39);
 
 /***/ }),
@@ -47177,12 +47176,42 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /* WEBPACK VAR INJECTION */(function($) {$(function () {
 
+	/* Прокрутка к поисковой выдаче */
+
+	function get_var(var_name) {
+		var query = window.location.search.substring(1);
+		var vars = query.split("&");
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split("=");
+			if (pair[0] == var_name) {
+				return pair[1];
+			}
+		}
+		return false;
+	}
+
+	var get_variable = get_var("min_price");
+	console.log(get_variable);
+
+	if (get_variable !== false) {
+		var scrollToBlock = $('.cardswrapper');
+		var heightpage = $(window).height();
+		var topel = scrollToBlock.offset().top;
+		var heightorder = scrollToBlock.height();
+		var positionscroll = topel - heightpage / 2 + heightorder / 2 - 350;
+		$('body,html').animate({ scrollTop: positionscroll }, 1000);
+	}
+
+	/* end of Прокрутка к поисковой выдаче */
+
+	/* Ширина поля с ценой в фильтре */
 	var sliderInputs = $('.slider__input');
 
 	$.each(sliderInputs, function (index, element) {
 		$(this).width(($(this).val().length + 1) * 7 + 'px');
 		console.log($('[name=min_price]').val());
 	});
+	/* end of Ширина поля с ценой в фильтре */
 
 	$('.footer__toggler i').on('click', function () {
 		$('.footer__left .footer__section').slideToggle();
@@ -47247,6 +47276,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 	$('.filterToggler').on('click', function (e) {
 		e.preventDefault();
+
+		if (window.matchMedia('(min-width: 992px)').matches) {
+			$('.card').toggleClass('card_twoinrow');
+		}
+
 		if ($(this).text() == 'ПОКАЗАТЬ ФИЛЬТРЫ') {
 			$(this).text('СКРЫТЬ ФИЛЬТРЫ');
 		} else {
@@ -47258,7 +47292,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 			$('.filter').css('padding', '0').css('margin-right', '0');
 		} else {
 			$('.filter > *').show();
-			$('.filter').css('padding', '40px 20px 40px 40px').css('margin-right', '20px');
+			$('.filter').css('padding', '40px').css('margin-right', '20px');
 		}
 
 		$('.filter').toggleClass('filter_uncollapsed');

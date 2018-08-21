@@ -19,6 +19,10 @@ Route::get('/', 'MainController@index')->name('layouts.main');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 
+Route::get('/cart', 'CartController@index')->name('cart.index');
+Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 

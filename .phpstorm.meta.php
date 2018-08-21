@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-08-18 16:33:26.
+    * Generated on 2018-08-21 16:34:23.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -195,6 +196,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -345,6 +347,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -495,6 +498,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -645,6 +649,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -795,6 +800,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
@@ -945,6 +951,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,

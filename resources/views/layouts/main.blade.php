@@ -73,7 +73,7 @@
 
         @foreach($styles as $style)
             @if(in_array($style->slug, Request::get('style') ? Request::get('style') : [])) 
-                <a href="{{ removeGetParams(Request::fullUrl()) }}" data-ripple class="button selectedFilters__button">
+                <a href="{{ removeGetParams(Request::fullUrl(), 'style', $style->slug) }}" data-ripple class="button selectedFilters__button">
                     {{ $style->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -82,7 +82,7 @@
 
         @foreach($materials as $material)
             @if(in_array($material->slug, Request::get('material') ? Request::get('material') : [])) 
-                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
+                <a href="{{ removeGetParams(Request::fullUrl(), 'material', $material->slug) }}" data-ripple class="button selectedFilters__button">
                     {{ $material->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -91,7 +91,7 @@
 
         @foreach($themes as $theme)
             @if(in_array($theme->slug, Request::get('theme') ? Request::get('theme') : [])) 
-                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
+                <a href="{{ removeGetParams(Request::fullUrl(), 'theme', $theme->slug) }}" data-ripple class="button selectedFilters__button">
                     {{ $theme->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -100,7 +100,7 @@
 
         @foreach($surfaces as $surface)
             @if(in_array($surface->slug, Request::get('surface') ? Request::get('surface') : [])) 
-                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
+                <a href="{{ removeGetParams(Request::fullUrl(), 'surface', $surface->slug) }}" data-ripple class="button selectedFilters__button">
                     {{ $surface->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -113,7 +113,7 @@
     </section><!-- /.selectedFilters -->
 
     <section class="selectedFilters selectedFilters_sorting">
-        <a href="#" class="text text_small text_grey filterToggler">ПОКАЗАТЬ ФИЛЬТРЫ</a>
+        <a href="#" class="text text_small text_grey filterToggler">{{ Request::get('min_price') ? 'СКРЫТЬ ФИЛЬТРЫ' : 'ПОКАЗАТЬ ФИЛЬТРЫ' }}</a>
     </section>
 
     <div class="cardswrapper">
@@ -126,7 +126,7 @@
             </div>
             @endif
             @foreach ($products as $product)
-            <div class="card">
+            <div class="card {{ Request::get('min_price') ? 'card_twoinrow' : '' }}">
                 <div class="card__pic">
                     <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
                         <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
@@ -146,7 +146,14 @@
                     <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                     <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                     <div class="card__bottom">
-                        <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
+                        
+                        <form action="{{ route('cart.store') }}" method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            <input type="hidden" name="name" value="{{ $product->name }}">
+                            <input type="hidden" name="price" value="{{ $product->price }}">
+                            <button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>
+                        </form>
                         <div class="card__bottominfo">
                             <div class="card__price title title_small">{{ $product->price }} руб.</div>
                             <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
