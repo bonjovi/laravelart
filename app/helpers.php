@@ -14,3 +14,9 @@ function painterPic($path)
 function painterDeathYear($deathYear) {
     return $deathYear ? $deathYear : 'н.в.';
 }
+
+function removeGetParams($str)
+{
+    //$params = parse_str(explode("?", $str)[1], $params);
+    return $str . '123';
+}

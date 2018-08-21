@@ -73,7 +73,7 @@
 
         @foreach($styles as $style)
             @if(in_array($style->slug, Request::get('style') ? Request::get('style') : [])) 
-                <a href="#" data-ripple class="button selectedFilters__button">
+                <a href="{{ removeGetParams(Request::fullUrl()) }}" data-ripple class="button selectedFilters__button">
                     {{ $style->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -82,7 +82,7 @@
 
         @foreach($materials as $material)
             @if(in_array($material->slug, Request::get('material') ? Request::get('material') : [])) 
-                <a href="#" data-ripple class="button selectedFilters__button">
+                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
                     {{ $material->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -91,7 +91,7 @@
 
         @foreach($themes as $theme)
             @if(in_array($theme->slug, Request::get('theme') ? Request::get('theme') : [])) 
-                <a href="#" data-ripple class="button selectedFilters__button">
+                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
                     {{ $theme->name }}
                     <i class="material-icons">close</i>
                 </a>
@@ -100,7 +100,7 @@
 
         @foreach($surfaces as $surface)
             @if(in_array($surface->slug, Request::get('surface') ? Request::get('surface') : [])) 
-                <a href="#" data-ripple class="button selectedFilters__button">
+                <a href="{{ Request::fullUrl() }}" data-ripple class="button selectedFilters__button">
                     {{ $surface->name }}
                     <i class="material-icons">close</i>
                 </a>
