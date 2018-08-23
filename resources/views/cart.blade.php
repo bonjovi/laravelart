@@ -90,7 +90,7 @@
                 </div>
                 <div class="cart__amountvalue">
                     <div class="title title_small title_grey">
-                        3000 руб.
+                        {{ Cart::count() > 0 ? '3000 руб.' : '0 руб.' }}
                     </div>
                 </div>
             </div><!-- /.cart__amountrow -->
@@ -103,7 +103,7 @@
                 </div>
                 <div class="cart__amountvalue">
                     <div class="title title_small">
-                        {{ intval(Cart::total()) - 3000 }} руб.
+                        {{ Cart::count() > 0 ? intval(Cart::total()) - 3000 : '0' }} руб.
                     </div>
                 </div>
             </div><!-- /.cart__amountrow -->

@@ -48,8 +48,6 @@ class MainController extends Controller
         $max_price = Product::max('price');
 
 
-        //return view('layouts.main')->with('products', $products->get());
-
         $products = $products->get();
         
         count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';

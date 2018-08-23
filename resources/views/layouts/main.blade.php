@@ -106,10 +106,6 @@
                 </a>
             @endif
         @endforeach
-        <!--<a href="#" data-ripple class="button selectedFilters__button">
-            Со скидкой
-            <i class="material-icons">close</i>
-        </a>-->
     </section><!-- /.selectedFilters -->
 
     <section class="selectedFilters selectedFilters_sorting">
@@ -195,37 +191,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-
-
-
-
-            <div class="card">
-                <div class="card__pic">
-                    <a href="#">
-                        <img data-ripple class="card__img" src="/img/card5.jpg" alt="">
-                    </a>
-                    <div class="card__coloredbg" style="background-image: url(img/card5.jpg); opacity: 1;"></div>
-                </div>
-                <div class="card__content">
-                    <a class="title title_small card__title" href="#">Морской шторм</a>
-                    <div class="text text_grey text_small card__text card__text_painter">Егоров Андрей Афанасьевич</div>
-                    <div class="text text_grey text_small card__text">Картон, темпера , гуашь</div>
-                    <div class="text text_grey text_small card__text">35 х 25,5 см</div>
-                    <div class="text text_grey text_small card__text">1925г.</div>
-                    <div class="card__bottom">
-                        <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-                        <div class="card__bottominfo">
-                            <div class="card__price title title_small">65 000 руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
-                        </div>
-                    </div>
-                </div>
             </div>-->
-
 
         </section><!-- /.cards -->
     </div>

@@ -122,31 +122,14 @@ class ShopController extends Controller
         //
     }
 
-
-
-
     public function search(Request $request)
     {
-        // $request->validate([
-        //     'query' => 'required|min:3',
-        // ]);
         $query = $request->input('query');
-        
-        // $products = Product::where('name', 'like', "%$query%")
-        //                    ->orWhere('description', 'like', "%$query%")->get();
+        //$notfound = $request->input('query') == '' ? 'Вы ввели пустой поисковый запрос' : $request->input('query');
         $products = Product::search($query)->paginate(10);
-        return view('searchresults')->with('products', $products);
+        return view('searchresults')->with([
+            'products', $products,
+            //'notfound' => $notfound,
+        ]);
     }
-
-    // public function filter(Request $request)
-    // {
-    //     $query = $request->input('painting');
-        
-
-    //     $products = Product::with('styles')->whereHas('styles', function($query) {
-    //         $query->where('slug', 'painting');
-    //     })->get();
-
-    //     return view('shop')->with('products', $products);
-    // }
 }
