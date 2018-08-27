@@ -847,6 +847,9 @@ textarea:-ms-input-placeholder {
   .card {
     width: 100%;
     margin-right: 0;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
   }
 }
 
@@ -1682,6 +1685,24 @@ textarea:-ms-input-placeholder {
           box-sizing: border-box;
 }
 
+@media only screen and (max-width: 640px) {
+  .subscribe form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .subscribe form input {
+    padding: 2px 10px;
+    margin-bottom: 5px;
+    margin-right: 0;
+  }
+}
+
 .text {
   font-family: 'Roboto';
   font-weight: 400;
@@ -1900,7 +1921,7 @@ textarea:-ms-input-placeholder {
 @media only screen and (max-width: 768px) {
   .topmenu__wrapper {
     display: block;
-    background-image: url(/public/img/banner1.jpg);
+    background-image: url(/img/banner1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -2072,7 +2093,7 @@ textarea:-ms-input-placeholder {
   border-radius: 6px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
-  padding: 15px 25px;
+  padding: 2px 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -2104,6 +2125,7 @@ textarea:-ms-input-placeholder {
 @media only screen and (max-width: 640px) {
   .search__inputwrapper {
     display: block;
+    padding: 2px 10px;
   }
 }
 
@@ -2112,6 +2134,13 @@ textarea:-ms-input-placeholder {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+}
+
+@media only screen and (max-width: 640px) {
+  .search form {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 
 .slider {

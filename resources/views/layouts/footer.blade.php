@@ -68,10 +68,12 @@
             <div class="title title_white footer__title">Подписка на рассылку</div>
             <div class="text text_small text_grey footer__text">Хотите первыми узнавать о скидках<br>и уникальных предложениях?</div>
             <div class="subscribe">
-                <input type="text" class="input" placeholder="Ваш email">
-                <button data-ripple class="button">
-                    Подписаться
-                </button>
+                <form action="#">
+                    <input type="text" class="input" placeholder="Ваш email">
+                    <button data-ripple class="button">
+                        Подписаться
+                    </button>
+                </form>
             </div>
         </div>
     </div><!-- /.footer__right -->

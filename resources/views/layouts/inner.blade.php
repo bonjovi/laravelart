@@ -20,9 +20,9 @@
                     <div class="topcontacts__phone topcontacts__phone_basegrey">
                         <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (495) </span>507-64-85
                     </div>
-                    <span class="topcontacts__tomessengers text text_small text_grey">
+                    <!--<span class="topcontacts__tomessengers text text_small text_grey">
 	    					Написать в мессенджеры
-	    				</span>
+	    				</span>-->
                 </div>
                 @include('layouts.topmenu')
             </div>
@@ -30,9 +30,9 @@
                 <div class="topcontacts__phone topcontacts__phone_basegrey">
                     <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (495) </span>507-64-85
                 </div>
-                <span class="topcontacts__tomessengers text text_xsmall text_grey">
+                <!--<span class="topcontacts__tomessengers text text_xsmall text_grey">
     					Написать в мессенджеры
-    				</span>
+    				</span>-->
             </div>
         </div><!-- /.topline -->
     </div><!-- /.container -->

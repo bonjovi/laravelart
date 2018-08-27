@@ -22,9 +22,9 @@
                     <div class="topcontacts__phone">
                         <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
                     </div>
-                    <span class="topcontacts__tomessengers text text_xsmall text_grey">
+                    <!--<span class="topcontacts__tomessengers text text_xsmall text_grey">
 	    					Написать в мессенджеры
-	    				</span>
+	    				</span>-->
                 </div>
                 @include('layouts.topmenu')
             </div>
@@ -32,9 +32,9 @@
                 <div class="topcontacts__phone">
                     <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
                 </div>
-                <span class="topcontacts__tomessengers text text_small text_grey">
+                <!--<span class="topcontacts__tomessengers text text_small text_grey">
     					Написать в мессенджеры
-    				</span>
+    				</span>-->
             </div>
         </div><!-- /.topline -->
         <h1 class="slogan title title_xlarge title_white">Найди своего художника</h1>
