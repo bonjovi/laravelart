@@ -1685,11 +1685,15 @@ textarea:-ms-input-placeholder {
           box-sizing: border-box;
 }
 
+.subscribe form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 @media only screen and (max-width: 640px) {
   .subscribe form {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
@@ -2093,7 +2097,7 @@ textarea:-ms-input-placeholder {
   border-radius: 6px;
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
-  padding: 2px 10px;
+  padding: 15px 25px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
