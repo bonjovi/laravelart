@@ -34,7 +34,7 @@ Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 Route::get('/painters', 'PainterController@index')->name('painters.index');
 
-Route::get('/painters/{painter}', 'PainterController@index')->name('painters.show');
+Route::get('/painters/{painter}', 'PainterController@show')->name('painters.show');
 
 
 

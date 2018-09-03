@@ -158,7 +158,9 @@
                 </div>
             </div><!-- /.card -->
             @endforeach
-
+            @if(count($products)%3 == 2)
+                <div class="card card_empty"></div>
+            @endif
 
 
             <!--<div class="card card_auction">

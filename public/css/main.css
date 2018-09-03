@@ -1061,6 +1061,17 @@ textarea:-ms-input-placeholder {
   padding: 1px 0 0 2px;
 }
 
+.card_empty {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .card_empty {
+    display: none;
+  }
+}
+
 .cards {
   display: -webkit-box;
   display: -ms-flexbox;

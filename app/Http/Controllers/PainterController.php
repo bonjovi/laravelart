@@ -51,7 +51,11 @@ class PainterController extends Controller
      */
     public function show($id)
     {
-        //
+        $painter = Painter::where('id', $id)->first();
+
+        return view('painter')->with([
+            'painter' => $painter
+        ]);
     }
 
     /**

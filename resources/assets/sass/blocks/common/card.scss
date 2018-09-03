@@ -198,4 +198,12 @@
 	&__timeNumbers {
 		padding: 1px 0 0 2px;
 	}
+
+	&_empty {
+		box-shadow: none;
+
+		@media only screen and (max-width: 768px) {
+		    display: none;
+		}
+	}
 }

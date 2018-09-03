@@ -46,8 +46,11 @@ class PagesController extends Controller
      */
     public function show($slug)
     {
+       
+
         $page = Pages::where('slug', $slug)->first();
-        //dd($page);
+        
+        //$page->addView();
         
         return view('simplepage', [
             'page' => $page
