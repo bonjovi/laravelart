@@ -69,4 +69,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function messages()
+    {
+    return [
+        'title.required' => 'Необходимо указать заголовок',
+        'body.required'  => 'Необходимо написать статью',
+        'validation.min.string'  => 'Необходимо написать статью'
+    ];
+    }
 }
