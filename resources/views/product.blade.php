@@ -38,7 +38,7 @@
 				</div><!-- /.productGallery -->
 				<div class="product__info">
 					<h1 class="title title_basegrey">{{ $product->name }}</h1>
-					<a href="#" class="product__painter text text_small text_basegrey">{{ $product->painter }}</a>
+					<!--<a href="#" class="product__painter text text_small text_basegrey">{{ $product->painter }}</a>-->
 					<div class="product__seller text text_small text_basegrey">
 						Продавец:&nbsp;
 						<a href="#" class="product__painter text text_small text_basegrey">Bigboss43</a>

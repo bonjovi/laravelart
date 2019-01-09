@@ -62,7 +62,7 @@
 						<div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
 						<div class="text text_grey text_small card__text">{{ $product->year }}</div>
 						<div class="card__bottom">
-							<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
+							<a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
 							<div class="card__bottominfo">
 								<div class="card__price title title_small">{{ $product->price }} руб.</div>
 								<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>

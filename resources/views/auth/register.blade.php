@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="text">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="text">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
