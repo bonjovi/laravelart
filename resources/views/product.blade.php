@@ -49,7 +49,7 @@
 						<div class="product__seller text text_small text_basegrey">{{ $product->year }}</div>
 					</div>
 
-					<div class="product__lastbet">
+					<!--<div class="product__lastbet">
 						<div class="product__seller text text_small text_basegrey">Крайняя ставка:</div>
 						<h1 class="title title_basegrey title_middle">{{ $product->price }} руб.</h1>
 						<div class="product__seller text text_small text_grey">(Terminator23)</div>
@@ -71,7 +71,7 @@
 						</button>
 					</div>
 
-					<div class="product__betmore text text_small text_grey">Подробнее о минимальной ставке</div>
+					<div class="product__betmore text text_small text_grey">Подробнее о минимальной ставке</div>-->
 
 				</div>
 			</div><!-- /.product -->
