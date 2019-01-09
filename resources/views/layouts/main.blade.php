@@ -148,7 +148,8 @@
                             <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="hidden" name="name" value="{{ $product->name }}">
                             <input type="hidden" name="price" value="{{ $product->price }}">
-                            <button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>
+                            <!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
+                            <a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
                         </form>
                         <div class="card__bottominfo">
                             <div class="card__price title title_small">{{ $product->price }} руб.</div>
