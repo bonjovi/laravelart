@@ -77,8 +77,9 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {
+    {  
         $product = Product::where('slug', $slug)->firstOrFail();
+        
 
         return view('product')->with('product', $product);
     }

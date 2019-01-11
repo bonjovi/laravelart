@@ -12,6 +12,11 @@
         });
 	</script>
 @endsection
+
+@php
+	$product->painter->addView();
+@endphp
+
 <main class="main">
 		<div class="container">
 
@@ -40,11 +45,14 @@
 					<h1 class="title title_basegrey">{{ $product->name }}</h1>
 					<!--<a href="#" class="product__painter text text_small text_basegrey">{{ $product->painter }}</a>-->
 					<div class="product__seller text text_small text_basegrey">
-						Продавец:&nbsp;
-						<a href="#" class="product__painter text text_small text_basegrey">Bigboss43</a>
+						<a href="{{ route('painters.show', $product->painter->id) }}" class="product__painter text text_small text_basegrey">{{ $product->painter->full_name }}</a>
 					</div>
 					<div class="product__info">
-						<div class="product__seller text text_small text_basegrey">{{ $product->material }}</div>
+						<div class="product__seller text text_small text_basegrey">
+							@foreach ($product->materials as $material)
+								{{ $material->name }}
+							@endforeach
+						</div>
 						<div class="product__seller text text_small text_basegrey">{{ $product->dimensions }}</div>
 						<div class="product__seller text text_small text_basegrey">{{ $product->year }}</div>
 					</div>
@@ -75,7 +83,7 @@
 
 				</div>
 			</div><!-- /.product -->
-
+			
 			<div class="painters">
 				<h3 class="title title_middle title_basegred title_centered">Ещё работы художника:</h3>
 
@@ -86,65 +94,63 @@
 						</div>
 
 						<div class="onepainter__textsummary">
-							<a class="title title_small card__title" href="#">Сарычев Александр Васильевич</a>
+							<a class="title title_small card__title" href="{{ route('painters.show', $product->painter->id) }}">{{ $product->painter->full_name }}</a>
 							<div class="onepainter__textsummaryinner">
-								<div class="text text_grey text_small"><i class="material-icons">location_on</i>Советский союз</div>
-								<div class="text text_grey text_small">(1917-1988)</div>
-								<div class="text text_grey text_small">Работ: 6</div>
+								<div class="text text_grey text_small"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
+								<div class="text text_grey text_small">({{ $product->painter->birth_year }} - {{ painterDeathYear($product->painter->death_year) }})</div>
+								<div class="text text_grey text_small">Работ: {{ count($product->painter->paintings) }}</div>
 							</div>
 						</div>
 					</div>
 
 
-
+					
+						
+					
 					<section class="cards">
+						@foreach ($product->painter->paintings as $product)
 						<div class="card">
 							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card1.jpg" alt="">
+								<a href="{{ route('shop.show', $product->slug) }}">
+									<img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
 								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card1.jpg); opacity: 1;"></div>
+								<div class="card__coloredbg" style="opacity: 1;">
+									<img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+								</div>
 							</div>
 							<div class="card__content">
-								<a class="title title_small card__title" href="#">Вечерний морской бриз</a>
-								<div class="text text_grey text_small card__text card__text_painter">Сарычев Александр Васильевич</div>
-								<div class="text text_grey text_small card__text">Картон, масло</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1948г.</div>
+								<a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
+								<a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey text_small card__text card__text_painter">{{ $product->painter->full_name }}</a>
+								<div class="text text_grey text_small card__text">
+									@foreach ($product->materials as $material)
+										{{ $material->name }}
+									@endforeach
+								</div>
+								<div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
+								<div class="text text_grey text_small card__text">{{ $product->year }}</div>
 								<div class="card__bottom">
-									<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
+									
+									<form action="{{ route('cart.store') }}" method="POST">
+										{{csrf_field()}}
+										<input type="hidden" name="id" value="{{ $product->id }}">
+										<input type="hidden" name="name" value="{{ $product->name }}">
+										<input type="hidden" name="price" value="{{ $product->price }}">
+										<!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
+										<a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
+									</form>
 									<div class="card__bottominfo">
-										<div class="card__price title title_small">90 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
+										<div class="card__price title title_small">{{ $product->price }} руб.</div>
+										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
 									</div>
 								</div>
 							</div>
 						</div><!-- /.card -->
+						@endforeach
+						@if(count($product->painter->paintings)%3 == 2)
+							<div class="card card_empty"></div>
+						@endif
 
-						<div class="card">
-							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card2.jpg" alt="">
-								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card2.jpg); opacity: 1;"></div>
-							</div>
-							<div class="card__content">
-								<a class="title title_small card__title" href="#">Летняя деревня</a>
-								<div class="text text_grey text_small card__text card__text_painter">Егоров Андрей Афанасьевич</div>
-								<div class="text text_grey text_small card__text">Картон, темпера , гуашь</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1925г.</div>
-								<div class="card__bottom">
-									<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">65 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.card -->
-
-						<div class="card card_auction">
+						<!--<div class="card card_auction">
 							<div class="card__pic">
 								<a href="#">
 									<img data-ripple class="card__img" src="/img/card3.jpg" alt="">
@@ -174,95 +180,7 @@
 									</div>
 								</div>
 							</div>
-						</div><!-- /.card -->
-					</section><!-- /.cards -->
-				</div><!--/.onepainter-->
-
-				<div class="onepainter">
-					<div class="onepainter__info">
-						<div class="onepainter__avatar">
-							<img src="img/avatar2.png" alt="">
-						</div>
-
-						<div class="onepainter__textsummary">
-							<a class="title title_small card__title" href="#">Сарычев Александр Васильевич</a>
-							<div class="onepainter__textsummaryinner">
-								<div class="text text_grey text_small"><i class="material-icons">location_on</i>Советский союз</div>
-								<div class="text text_grey text_small">(1917-1988)</div>
-								<div class="text text_grey text_small">Работ: 6</div>
-							</div>
-						</div>
-					</div>
-
-					<section class="cards">
-						<div class="card">
-							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card4.jpg" alt="">
-								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card4.jpg); opacity: 1;"></div>
-							</div>
-							<div class="card__content">
-								<a class="title title_small card__title" href="#">Утренний рассвет</a>
-								<div class="text text_grey text_small card__text card__text_painter">Сарычев Александр Васильевич</div>
-								<div class="text text_grey text_small card__text">Картон, масло</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1948г.</div>
-								<div class="card__bottom">
-									<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">90 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.card -->
-
-						<div class="card">
-							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card5.jpg" alt="">
-								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card5.jpg); opacity: 1;"></div>
-							</div>
-							<div class="card__content">
-								<a class="title title_small card__title" href="#">Морской шторм</a>
-								<div class="text text_grey text_small card__text card__text_painter">Егоров Андрей Афанасьевич</div>
-								<div class="text text_grey text_small card__text">Картон, темпера , гуашь</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1925г.</div>
-								<div class="card__bottom">
-									<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">65 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Советский союз</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.card -->
-
-						<div class="card">
-							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card6.jpg" alt="">
-								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card6.jpg); opacity: 1;"></div>
-							</div>
-							<div class="card__content">
-								<a class="title title_small card__title" href="#">Кувшинки в пруду</a>
-								<div class="text text_grey text_small card__text card__text_painter">Сысоев Николай Александрович</div>
-								<div class="text text_grey text_small card__text">Холст, масло</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1948г.</div>
-								<div class="card__bottom">
-									<a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">35 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Россия</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.card -->
+						</div>--><!-- /.card -->
 					</section><!-- /.cards -->
 				</div><!--/.onepainter-->
 

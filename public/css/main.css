@@ -2281,8 +2281,12 @@ textarea:-ms-input-placeholder {
       -ms-flex-pack: center;
           justify-content: center;
   list-style: none;
-  margin: 40px 0 70px 0;
+  margin: 40px auto 70px auto;
   padding: 0;
+  max-width: 280px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 @media only screen and (max-width: 768px) {
@@ -2301,7 +2305,6 @@ textarea:-ms-input-placeholder {
   text-decoration: none;
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
-  margin-right: 55px;
 }
 
 @media only screen and (max-width: 768px) {

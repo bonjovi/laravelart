@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Auth;
+use CyrildeWit\EloquentViewable\Viewable;
 
 class Product extends Model
 {
 
     use SearchableTrait;
+    use Viewable;
 
     /**
      * Searchable rules.

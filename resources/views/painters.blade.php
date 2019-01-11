@@ -9,19 +9,19 @@
 	<div class="painters">
 		<ul class="painters__navigation">
 			<li>
-				<a href="#" class="painters__navigationlink text text_basegrey painters__navigationlink_active">Новые</a>
+				<a href="{{ route('painters.new') }}" class="painters__navigationlink text text_basegrey painters__navigationlink_active">Новые</a>
 			</li>
 			<li>
-				<a href="#" class="painters__navigationlink text text_basegrey">Популярные</a>
+				<a href="{{ route('painters.popular') }}" class="painters__navigationlink text text_basegrey">Популярные</a>
 			</li>
-			<li>
+			<!--<li>
 				<a href="#" class="painters__navigationlink text text_basegrey">Художник дня</a>
 			</li>
 			<li>
 				<a href="#" class="painters__navigationlink text text_basegrey">Самые продаваемые</a>
-			</li>
+			</li>-->
 			<li>
-				<a href="#" class="painters__navigationlink text text_basegrey">По алфавиту</a>
+				<a href="{{ route('painters.asc') }}" class="painters__navigationlink text text_basegrey">По алфавиту</a>
 			</li>
 		</ul>
 

@@ -3,7 +3,7 @@
 @section('content')
 
 
-
+	{{ $painter->getViews() }}
 	<h1 class="title title_basegrey title_centered">Художники</h1>
 
 	<div class="painters">

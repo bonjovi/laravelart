@@ -34,7 +34,13 @@ Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 Route::get('/painters', 'PainterController@index')->name('painters.index');
 
+Route::get('/painters/new', 'PainterController@new')->name('painters.new');
+Route::get('/painters/asc', 'PainterController@asc')->name('painters.asc');
+Route::get('/painters/popular', 'PainterController@popular')->name('painters.popular');
+
 Route::get('/painters/{painter}', 'PainterController@show')->name('painters.show');
+
+
 
 
 

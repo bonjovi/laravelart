@@ -16,6 +16,34 @@ class PainterController extends Controller
     {
         $painters = Painter::inRandomOrder()->take(8)->get();
 
+        return view('painters')->with([
+            'painters' => $painters
+        ]);
+    }
+
+    public function asc()
+    {
+        $painters = Painter::orderBy('lastname', 'asc')->get();;
+
+        return view('painters')->with([
+            'painters' => $painters
+        ]);
+    }
+
+    public function new()
+    {
+        $painters = Painter::latest()->take(8)->get();
+
+
+        return view('painters')->with([
+            'painters' => $painters
+        ]);
+    }
+
+    public function popular()
+    {
+        $painters = Painter::orderByViewsCount()->get();
+
 
         return view('painters')->with([
             'painters' => $painters
@@ -52,6 +80,7 @@ class PainterController extends Controller
     public function show($id)
     {
         $painter = Painter::where('id', $id)->first();
+        $painter->addView();
 
         return view('painter')->with([
             'painter' => $painter

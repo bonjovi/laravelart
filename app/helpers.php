@@ -8,7 +8,7 @@ function productImage($path)
 
 function painterPic($path)
 {
-    return $path && Storage::disk('local')->exists('public', $path) ? Storage::disk('local')->url($path) : asset('img/painter-not-found.png');
+    return $path && Storage::disk('local')->exists('public', $path) ? Storage::disk('local')->url($path) : asset('img/painter-not-found.svg');
 }
 
 function painterDeathYear($deathYear) {

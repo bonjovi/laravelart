@@ -50,7 +50,7 @@ class PagesController extends Controller
 
         $page = Pages::where('slug', $slug)->first();
         
-        //$page->addView();
+        $page->addView();
         
         return view('simplepage', [
             'page' => $page
