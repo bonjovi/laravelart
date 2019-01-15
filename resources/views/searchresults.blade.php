@@ -15,18 +15,25 @@
                 <div class="card">
                     <div class="card__pic">
                         <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
-                            <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
                         </a>
-                        <div class="card__coloredbg" style="background-image: url({{ productImage($product->image) }}); opacity: 1;"></div>
+                        <div class="card__coloredbg" style="opacity: 1;">
+                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                        </div>
                     </div>
                     <div class="card__content">
                         <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
                         <div class="text text_grey text_small card__text card__text_painter">{{ $product->painter->full_name }}</div>
-                        <div class="text text_grey text_small card__text">{{ $product->material }}</div>
+                        <div class="text text_grey text_small card__text">
+                            @foreach ($product->materials as $material)
+                                {{ $material->name }}
+                            @endforeach
+                        </div>
                         <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                         <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                         <div class="card__bottom">
-                            <a href="#" class="card__addtocart title title_xsmall title_white">В корзину</a>
+                            <!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
+                            <a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
                             <div class="card__bottominfo">
                                 <div class="card__price title title_small">{{ $product->price }} руб.</div>
                                 <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->country }}</div>
@@ -35,7 +42,9 @@
                     </div>
                 </div><!-- /.card -->
             @endforeach
-
+            @if(count($products)%3 == 2)
+                <div class="card card_empty"></div>
+            @endif
 
 
             <!--<div class="card card_auction">

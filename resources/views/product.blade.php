@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="productGallery__thumbnails">
-						<div class="productGallery__navigation productGallery__leftarrow"></div>
+						<!--<div class="productGallery__navigation productGallery__leftarrow"></div>-->
 						<div class="productGallery__thumbnail productGallery__thumbnail_active">
 							<img src="{{ productImage($product->image) }}" alt="product">
 						</div>
@@ -38,7 +38,7 @@
 								</div>
 							@endforeach
 						@endif
-						<div class="productGallery__navigation productGallery__rightarrow"></div>
+						<!--<div class="productGallery__navigation productGallery__rightarrow"></div>-->
 					</div>
 				</div><!-- /.productGallery -->
 				<div class="product__info">

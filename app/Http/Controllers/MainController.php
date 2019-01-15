@@ -19,7 +19,7 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::inRandomOrder()->take(8);
+        $products = Product::inRandomOrder()->take(12);
 
         if ($request->has('style'))
         {

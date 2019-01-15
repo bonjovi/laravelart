@@ -8,6 +8,9 @@
 @extends('layouts.app')
 
 @section('header')
+
+<script src="/js/jquery.lazyloadxt.js"></script>
+
 <header class="header">
     <div class="container">
         <div class="header__toggler">
@@ -125,10 +128,10 @@
             <div class="card {{ Request::get('min_price') ? 'card_twoinrow' : '' }}">
                 <div class="card__pic">
                     <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
-                        <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+                        <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
                     </a>
                     <div class="card__coloredbg" style="opacity: 1;">
-                        <img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+                        <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
                     </div>
                 </div>
                 <div class="card__content">

@@ -129,7 +129,7 @@ class ShopController extends Controller
         //$notfound = $request->input('query') == '' ? 'Вы ввели пустой поисковый запрос' : $request->input('query');
         $products = Product::search($query)->paginate(10);
         return view('searchresults')->with([
-            'products', $products,
+            'products' => $products,
             //'notfound' => $notfound,
         ]);
     }
