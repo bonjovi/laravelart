@@ -6,13 +6,13 @@
     justify-content: center;
     margin-bottom: 60px;
 
-	&__item {
+	&__item, .page-item {
 		display: flex;
     	justify-content: center;
     	text-align: center;
 
-		&_active {
-			& .pagination__link {
+		&_active, &.active {
+			& .pagination__link, & .page-link {
 				background-color: #9c27b0;
 			    border-color: #9c27b0;
 			    color: #FFFFFF;
@@ -22,7 +22,9 @@
 	}
 
 
-	&__link {
+	&__link, .page-link {
+		font-family: Roboto;
+		font-weight: 400;
 		border: 0;
 	    border-radius: 30px !important;
 	    transition: all .3s;
@@ -31,9 +33,9 @@
 	    min-width: 30px;
 	    height: 30px;
 	    line-height: 30px;
-	    color: #999999;
+	    color: #b2b2b2;
 	    font-weight: 400;
-	    font-size: 12px;
+	    font-size: 14px;
 	    text-transform: uppercase;
 	    background: transparent;
 	    text-decoration: none;
@@ -41,10 +43,11 @@
 	    position: relative;
 	    box-sizing: border-box;
 
-	    &:hover {
+	    &:hover, .page-link:hover {
 	    	z-index: 2;
 		    background-color: #eee;
 		    border-color: #ddd;
 	    }
 	}
 }
+

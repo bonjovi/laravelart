@@ -9,7 +9,7 @@
 
 @section('header')
 
-<script src="/js/jquery.lazyloadxt.js"></script>
+
 
 <header class="header">
     <div class="container">
@@ -128,10 +128,10 @@
             <div class="card {{ Request::get('min_price') ? 'card_twoinrow' : '' }}">
                 <div class="card__pic">
                     <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
-                        <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                        <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
                     </a>
                     <div class="card__coloredbg" style="opacity: 1;">
-                        <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                        <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
                     </div>
                 </div>
                 <div class="card__content">
@@ -144,66 +144,17 @@
                     </div>
                     <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                     <div class="text text_grey text_small card__text">{{ $product->year }}</div>
-                    <div class="card__bottom">
-                        
-                        <form action="{{ route('cart.store') }}" method="POST">
-                            {{csrf_field()}}
-                            <input type="hidden" name="id" value="{{ $product->id }}">
-                            <input type="hidden" name="name" value="{{ $product->name }}">
-                            <input type="hidden" name="price" value="{{ $product->price }}">
-                            <!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
-                            <a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
-                        </form>
-                        <div class="card__bottominfo">
-                            <div class="card__price title title_small">{{ $product->price }} руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
-                        </div>
-                    </div>
                 </div>
             </div><!-- /.card -->
             @endforeach
             @if(count($products)%3 == 2)
                 <div class="card card_empty"></div>
             @endif
-
-
-            <!--<div class="card card_auction">
-                <div class="card__pic">
-                    <a href="#">
-                        <img data-ripple class="card__img" src="/img/card3.jpg" alt="">
-                    </a>
-                    <div class="card__coloredbg" style="background-image: url(img/card3.jpg); opacity: 1;"></div>
-                </div>
-                <div class="card__content">
-                    <div class="card__auctionTitle">
-                        <a class="title title_small card__title" href="#">У берега</a>
-                        <div class="card__auctionIndicators">
-                            <div class="card__auctionSticker">Аукцион</div>
-                            <div class="card__auctiontime">
-                                <i class="material-icons">access_time</i>
-                                <span class="title title_small card__timeNumbers">23:43:03</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text text_grey text_small card__text card__text_painter">Сысоев Николай Александрович</div>
-                    <div class="text text_grey text_small card__text">Холст, масло</div>
-                    <div class="text text_grey text_small card__text">35 х 25,5 см</div>
-                    <div class="text text_grey text_small card__text">1948г.</div>
-                    <div class="card__bottom">
-                        <a href="#" class="card__addtocart card__addtocart_mint title title_xsmall title_white">Сделать ставку</a>
-                        <div class="card__bottominfo">
-                            <div class="card__price title title_small">35 000 руб.</div>
-                            <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Россия</div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-
         </section><!-- /.cards -->
     </div>
 
-    <!--<a class="promobanner" href="#">
-        <img src="/img/promobanner.jpg" alt="">
-    </a>-->
+    @if(!Request::query('style', false) || !Request::query('material', false) || !Request::query('surface', false) || !Request::query('theme', false))
+        {{ $products->links() }}
+    @endif  
 
 @endsection

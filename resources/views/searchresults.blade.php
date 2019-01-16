@@ -15,10 +15,10 @@
                 <div class="card">
                     <div class="card__pic">
                         <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
-                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                            <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
                         </a>
                         <div class="card__coloredbg" style="opacity: 1;">
-                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                            <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
                         </div>
                     </div>
                     <div class="card__content">
@@ -31,14 +31,6 @@
                         </div>
                         <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
                         <div class="text text_grey text_small card__text">{{ $product->year }}</div>
-                        <div class="card__bottom">
-                            <!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
-                            <a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
-                            <div class="card__bottominfo">
-                                <div class="card__price title title_small">{{ $product->price }} руб.</div>
-                                <div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->country }}</div>
-                            </div>
-                        </div>
                     </div>
                 </div><!-- /.card -->
             @endforeach

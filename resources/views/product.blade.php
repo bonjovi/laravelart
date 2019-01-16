@@ -4,10 +4,16 @@
 @section('extra-js')
 	<script>
         $(function() {
-            $('.productGallery__thumbnail').on('click', function() {
-                $('.productGallery__thumbnail').removeClass('productGallery__thumbnail_active');
-                $(this).addClass('productGallery__thumbnail_active');
-                $('.productGallery__mainpic img').attr('src', $(this).find('img').attr('src'));
+			jQuery.noConflict();
+
+			// Popup for product main image
+			jQuery('.fancybox').fancybox();
+
+            jQuery('.productGallery__thumbnail').on('click', function() {
+                jQuery('.productGallery__thumbnail').removeClass('productGallery__thumbnail_active');
+                jQuery(this).addClass('productGallery__thumbnail_active');
+				jQuery('.productGallery__mainpic a').attr('href', $(this).find('img').attr('src'));
+				jQuery('.productGallery__mainpic img').attr('src', $(this).find('img').attr('src'));
 			});
         });
 	</script>
@@ -23,7 +29,9 @@
 			<div class="product">
 				<div class="productGallery">
 					<div class="productGallery__mainpic">
-						<img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+						<a data-fancybox="gallery" href="{{ productImage($product->image) }}">
+							<img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+						</a>	
 					</div>
 
 					<div class="productGallery__thumbnails">
@@ -55,31 +63,9 @@
 						</div>
 						<div class="product__seller text text_small text_basegrey">{{ $product->dimensions }}</div>
 						<div class="product__seller text text_small text_basegrey">{{ $product->year }}</div>
+						<br>
+						<div class="text text_basegrey text_small card__text">{!! $product->description !!}</div>
 					</div>
-
-					<!--<div class="product__lastbet">
-						<div class="product__seller text text_small text_basegrey">Крайняя ставка:</div>
-						<h1 class="title title_basegrey title_middle">{{ $product->price }} руб.</h1>
-						<div class="product__seller text text_small text_grey">(Terminator23)</div>
-					</div>
-					<div class="product__betssummary">
-						<div class="product__seller text text_small text_basegrey">Всего ставок: <strong>12</strong></div>
-					</div>
-					<div class="product__auctionend">
-						<div class="product__seller text text_small text_basegrey">До окончания аукциона: <strong>12:30:45</strong></div>
-					</div>
-
-
-
-
-					<div class="product__makebet">
-						<input type="text" class="input" placeholder="20 000">
-						<button data-ripple class="button button_green product__makebetbutton">
-							Сделать ставку
-						</button>
-					</div>
-
-					<div class="product__betmore text text_small text_grey">Подробнее о минимальной ставке</div>-->
 
 				</div>
 			</div><!-- /.product -->
@@ -90,14 +76,14 @@
 				<div class="onepainter">
 					<div class="onepainter__info">
 						<div class="onepainter__avatar">
-							<img src="img/avatar1.png" alt="">
+							<img src="{{ painterPic($product->painter->pic) }}" alt="">
 						</div>
 
 						<div class="onepainter__textsummary">
 							<a class="title title_small card__title" href="{{ route('painters.show', $product->painter->id) }}">{{ $product->painter->full_name }}</a>
 							<div class="onepainter__textsummaryinner">
 								<div class="text text_grey text_small"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
-								<div class="text text_grey text_small">({{ $product->painter->birth_year }} - {{ painterDeathYear($product->painter->death_year) }})</div>
+								<!--<div class="text text_grey text_small">({{ $product->painter->birth_year }} - {{ painterDeathYear($product->painter->death_year) }})</div>-->
 								<div class="text text_grey text_small">Работ: {{ count($product->painter->paintings) }}</div>
 							</div>
 						</div>
@@ -111,11 +97,11 @@
 						@foreach ($product->painter->paintings as $product)
 						<div class="card">
 							<div class="card__pic">
-								<a href="{{ route('shop.show', $product->slug) }}">
-									<img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+								<a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
+									<img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
 								</a>
 								<div class="card__coloredbg" style="opacity: 1;">
-									<img data-ripple class="card__img" src="{{ productImage($product->image) }}" alt="">
+									<img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
 								</div>
 							</div>
 							<div class="card__content">
@@ -128,91 +114,15 @@
 								</div>
 								<div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
 								<div class="text text_grey text_small card__text">{{ $product->year }}</div>
-								<div class="card__bottom">
-									
-									<form action="{{ route('cart.store') }}" method="POST">
-										{{csrf_field()}}
-										<input type="hidden" name="id" value="{{ $product->id }}">
-										<input type="hidden" name="name" value="{{ $product->name }}">
-										<input type="hidden" name="price" value="{{ $product->price }}">
-										<!--<button type="submit" class="card__addtocart title title_xsmall title_white">В корзину</button>-->
-										<a href="{{ route('shop.show', $product->slug) }}" class="card__addtocart title title_xsmall title_white">Подробнее</a>
-									</form>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">{{ $product->price }} руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>{{ $product->painter->country }}</div>
-									</div>
-								</div>
 							</div>
 						</div><!-- /.card -->
 						@endforeach
 						@if(count($product->painter->paintings)%3 == 2)
 							<div class="card card_empty"></div>
 						@endif
-
-						<!--<div class="card card_auction">
-							<div class="card__pic">
-								<a href="#">
-									<img data-ripple class="card__img" src="/img/card3.jpg" alt="">
-								</a>
-								<div class="card__coloredbg" style="background-image: url(img/card3.jpg); opacity: 1;"></div>
-							</div>
-							<div class="card__content">
-								<div class="card__auctionTitle">
-									<a class="title title_small card__title" href="#">У берега</a>
-									<div class="card__auctionIndicators">
-										<div class="card__auctionSticker">Аукцион</div>
-										<div class="card__auctiontime">
-											<i class="material-icons">access_time</i>
-											<span class="title title_small card__timeNumbers">23:43:03</span>
-										</div>
-									</div>
-								</div>
-								<div class="text text_grey text_small card__text card__text_painter">Сысоев Николай Александрович</div>
-								<div class="text text_grey text_small card__text">Холст, масло</div>
-								<div class="text text_grey text_small card__text">35 х 25,5 см</div>
-								<div class="text text_grey text_small card__text">1948г.</div>
-								<div class="card__bottom">
-									<a href="#" class="card__addtocart card__addtocart_mint title title_xsmall title_white">Сделать ставку</a>
-									<div class="card__bottominfo">
-										<div class="card__price title title_small">35 000 руб.</div>
-										<div class="card__location text text_xsmall text_grey"><i class="material-icons">location_on</i>Россия</div>
-									</div>
-								</div>
-							</div>
-						</div>--><!-- /.card -->
 					</section><!-- /.cards -->
 				</div><!--/.onepainter-->
 
-				<ul class="pagination">
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">1</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">...</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">5</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">6</a>
-					</li>
-					<li class="pagination__item pagination__item_active">
-						<a href="#" class="pagination__link text text_grey">7</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">8</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">9</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">...</a>
-					</li>
-					<li class="pagination__item">
-						<a href="#" class="pagination__link text text_grey">11</a>
-					</li>
-				</ul>
 			</div>
 		</div><!-- /.container -->
 

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Auth;
 use CyrildeWit\EloquentViewable\Viewable;
+use TCG\Voyager\Traits\Resizable;
 
 class Product extends Model
 {
-
+    use Resizable;
     use SearchableTrait;
     use Viewable;
 

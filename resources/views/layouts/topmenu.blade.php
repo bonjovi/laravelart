@@ -3,13 +3,13 @@
         <a href="/about" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase" >О проекте</a>
     </li>
     <li>
-        <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Аукцион</a>
+        <a href="{{ route('shop.index') }}" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Картины</a>
     </li>
     <li>
         <a href="{{ route('painters.index') }}" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Художники</a>
     </li>
     <li>
-        <a href="#" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Галереи</a>
+        <a href="/rules" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Правила</a>
     </li>
     <li>
         <a href="/faq" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">FAQ</a>

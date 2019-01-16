@@ -19,7 +19,7 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::inRandomOrder()->take(12);
+        $products = Product::latest();
 
         if ($request->has('style'))
         {
@@ -48,7 +48,7 @@ class MainController extends Controller
         $max_price = Product::max('price');
 
 
-        $products = $products->get();
+        $products = $products->paginate(27);
         
         count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';
 

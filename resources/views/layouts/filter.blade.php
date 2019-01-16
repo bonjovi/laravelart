@@ -129,7 +129,7 @@
         </div>
     </div><!--/.filter__section-->
 
-    <div class="filter__section">
+    <div class="filter__section filter__section_price">
         <div class="title title_small filter__title">
             Цена
         </div>
@@ -138,11 +138,11 @@
             <div id="slider" class="slider slider-info noUi-target noUi-ltr noUi-horizontal"></div>
             <div class="slider__numbers">
                 <div class="slider__price">
-                    <input id="slider-margin-value-min" type="text" name="min_price" class="slider__input text text_small" value="{{ $min_price }}"/>
+                    <input id="slider-margin-value-min" type="text" class="slider__input text text_small" value="{{ $min_price }}"/>
                     <span class="text text_small">руб.</span>
                 </div>
                 <div class="slider__price">
-                    <input id="slider-margin-value-max" type="text" name="max_price" class="slider__input text text_small" value="{{ $max_price }}"/>
+                    <input id="slider-margin-value-max" type="text" class="slider__input text text_small" value="{{ $max_price }}"/>
                     <span class="text text_small">руб.</span>
                 </div>  
             </div>

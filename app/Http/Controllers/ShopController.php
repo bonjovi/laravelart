@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Style;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Style;
+use App\Material;
+use App\Surface;
+use App\Theme;
 use Auth;
+use Illuminate\Routing\Route;
 
 
 class ShopController extends Controller
@@ -22,30 +26,53 @@ class ShopController extends Controller
 
     
 
-    public function index()
+    public function index(Request $request)
     {
-        
-        
-        if(request()->style) {
+        $products = Product::latest();
+
+        if ($request->has('style'))
+        {
             $products = Product::with('styles')->whereHas('styles', function($query) {
-                $query->where('slug', request()->style);
-            })->get();
-            $styles = Style::all();
-        } else {
-            $products = Product::inRandomOrder()->take(8)->get();
-            $styles = Style::all();
+                $query->whereIn('slug', request()->style);
+            });
+            
+            
         }
 
+        $styles = Style::all();
+        $materials = Material::all();
+        $surfaces = Surface::all();
+        $themes = Theme::all();
+
+        if($request->min_price && $request->max_price){
+            $products = $products->where('price','>=',$request->min_price);
+            $products = $products->where('price','<=',$request->max_price);
+
+            $filterVisibility = 'filter_uncollapsed';
+        } else {
+            $filterVisibility = '';
+        }
+
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
 
 
+        $products = $products->paginate(27);
+        
+        count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';
 
         
-       
-
 
         return view('shop')->with([
             'products' => $products,
-            'styles' => $styles
+            'styles' => $styles,
+            'materials' => $materials,
+            'themes' => $themes,
+            'surfaces' => $surfaces,
+            'min_price' => $min_price,
+            'max_price' => $max_price,
+            'notfound' => $notfound,
+            'filterVisibility' => $filterVisibility
         ]);
     }
 
