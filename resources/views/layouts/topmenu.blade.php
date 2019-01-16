@@ -9,7 +9,7 @@
         <a href="{{ route('painters.index') }}" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Художники</a>
     </li>
     <li>
-        <a href="/rules" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Правила</a>
+        <a href="/dealer" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">Дилерский раздел</a>
     </li>
     <li>
         <a href="/faq" class="topmenu__link text text_{{ $topmenuColor  }} text_uppercase">FAQ</a>

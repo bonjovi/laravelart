@@ -65,6 +65,10 @@
 						<div class="product__seller text text_small text_basegrey">{{ $product->year }}</div>
 						<br>
 						<div class="text text_basegrey text_small card__text">{!! $product->description !!}</div>
+						<br>
+						<button data-ripple class="button button_green product__makebetbutton">
+							Показать контакты продавца
+						</button>
 					</div>
 
 				</div>

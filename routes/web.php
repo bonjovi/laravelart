@@ -40,6 +40,8 @@ Route::get('/painters/popular', 'PainterController@popular')->name('painters.pop
 
 Route::get('/painters/{painter}', 'PainterController@show')->name('painters.show');
 
+Route::get('/dealer', 'ShopController@showfordealer')->name('shop.showfordealer');
+
 
 
 
