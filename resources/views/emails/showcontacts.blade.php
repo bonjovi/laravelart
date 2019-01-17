@@ -1,0 +1,1 @@
+Пользователь {{ Auth::user()->name }} запросил контакты в картине <a href="{{request()->root()}}/shop/{{$product->slug}}">{{ $product->name }}</a>

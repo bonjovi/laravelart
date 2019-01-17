@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'http://laravel.jside.loc',
+        'secret' => '42342456245',
     ],
 
     'ses' => [

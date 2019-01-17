@@ -30,7 +30,7 @@ Route::post('/cart', 'CartController@store')->name('cart.store');
 Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
 
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
-
+Route::post('/shop/{product}/showcontacts', 'ShopController@showcontacts')->name('shop.showcontacts');
 
 Route::get('/painters', 'PainterController@index')->name('painters.index');
 
@@ -79,7 +79,9 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('account.paintings');
 
 
-
+    Route::get('/account/paintings/add', 'ShopController@store', function () {
+        return view('account.painting_add', ['user' => Auth::user(), 'title' => 'Картины'])->name('account.painting.add');
+    });
 
     Route::get('/account/paintings/{id}/edit', 'ShopController@edit', function () {
         return view('account.paintings_edit', ['user' => Auth::user(), 'title' => 'Картины']);

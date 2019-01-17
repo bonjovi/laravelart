@@ -1,0 +1,1 @@
+Пользователь {{ $name }} загрузил подтверждающий <a href="{{request()->root()}}/storage/{{ $certifyingDocumentPath }}">документ</a>

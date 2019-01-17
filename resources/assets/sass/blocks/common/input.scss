@@ -19,6 +19,11 @@
     margin-right: 30px;
     box-sizing: border-box;
 
+    &:focus {
+        background-color:#fff !important;
+    }
+    
+
     @media only screen and (max-width: 640px) {
         height: 30px;
         width: 100%;
@@ -34,3 +39,6 @@
 
 }
 
+input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
+    background-color:#fff !important;
+}

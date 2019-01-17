@@ -63,10 +63,45 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(request()->file('certifying_document') !== null)  {
+            $path = request()->file('certifying_document')->store('uploads', 'public');
+
+            \Mail::send('emails.certifying_document', [
+                'name' => $data['name'],
+                'certifyingDocumentPath' => $path
+            ], function($message)
+            {
+                $message->to(config('mail.username'), config('mail.from.name'))->subject('Новый пользователь загрузил подтверждающие документы');
+            });
+
+        } else {
+            $path = '';
+        }
+        
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'certifying_document' => $path,
+            'i_am_painter_lastname' => $data['i_am_painter_lastname'],
+            'i_am_painter_name' => $data['i_am_painter_name'],
+            'i_am_painter_patronymic_name' => $data['i_am_painter_patronymic_name'],
+            'i_am_painter_birthdate' => $data['i_am_painter_birthdate'],
+            'i_am_painter_phone' => $data['i_am_painter_phone'],
+            'i_am_painter_heir_or_painter' => isset($data['i_am_painter_heir_or_painter']) ? 1 : 0,
+            'i_am_painter_sculptor_or_painter' => isset($data['i_am_painter_sculptor_or_painter']) ? 1 : 0,
+            'i_am_painter_stylistics' => $data['i_am_painter_stylistics'],
+            'i_am_painter_exhibitions' => $data['i_am_painter_exhibitions'],
+
+            'i_am_dealer_lastname' => $data['i_am_dealer_lastname'],
+            'i_am_dealer_name' => $data['i_am_dealer_name'],
+            'i_am_dealer_patronymic_name' => $data['i_am_dealer_patronymic_name'],
+            'i_am_dealer_phone' => $data['i_am_dealer_phone'],
+            'i_am_dealer_modern_art' => isset($data['i_am_dealer_modern_art']) ? 1 : 0,
+            'i_am_dealer_old_art' => isset($data['i_am_dealer_old_art']) ? 1 : 0,
+            'i_am_dealer_period' => $data['i_am_dealer_period'],
+            'i_am_dealer_way' => $data['i_am_dealer_way']
         ]);
     }
 

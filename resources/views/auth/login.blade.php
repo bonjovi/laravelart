@@ -10,21 +10,22 @@
                         @csrf
 
 
-                            <label for="email" class="text">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="text">{{ __('E-Mail') }}</label>
 
 
-                                <input id="email" type="email" class="input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="text" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <!--<strong>{{ $errors->first('email') }}</strong>-->
+                                        <strong>пароль не верен</strong>
                                     </span>
                                 @endif
 
 
 
 
-                            <label for="password" class="text" style="margin:20px 0 0 0; display: block">{{ __('Password') }}</label>
+                            <label for="password" class="text" style="margin:20px 0 0 0; display: block">{{ __('Пароль') }}</label>
 
 
                                 <input id="password" type="password" class="input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>

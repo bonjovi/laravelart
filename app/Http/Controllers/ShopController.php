@@ -10,7 +10,7 @@ use App\Surface;
 use App\Theme;
 use Auth;
 use Illuminate\Routing\Route;
-
+use App\Http\Controllers\Mail;
 
 class ShopController extends Controller
 {
@@ -147,7 +147,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('account.painting_add');
     }
 
     /**
@@ -157,10 +157,9 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {  
+    {
         $product = Product::where('slug', $slug)->firstOrFail();
         
-
         return view('product')->with('product', $product);
     }
 
@@ -201,6 +200,33 @@ class ShopController extends Controller
         $product->save();
 
         return redirect()->route('account.paintings');
+    }
+
+    public function showcontacts(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if(Auth::user()) {
+
+            \Mail::send('emails.showcontacts', [
+                'product' => $product,
+            ], function($message)
+            {
+                $message->to(Auth::user()->email, Auth::user()->name)->subject('Посетитель посмотрел контакты продавца');
+            });
+
+            return view('product')->with([
+                'product' => $product,
+                'productSeller' => '<div class="text product__showcontacts">' . $product->user->email . '</div>'
+            ]);
+        } else {
+            return view('product')->with([
+                'product' => $product,
+                'productSeller' => '<div class="text product__showcontacts">Контакты доступны только зарегистрированным пользователям. <a href="/register" class="text">Зарегистрируйтесь</a> или <a href="/login" class="text">авторизуйтесь</a>.</div>'
+            ]);
+        }
+
+        
     }
 
     /**

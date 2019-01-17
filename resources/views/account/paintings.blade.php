@@ -2,6 +2,9 @@
 
 @section('accountcontent')
 
+<a href="/account/paintings/add" class="button">Добавить картину</a>
+<br><br><br><br>
+
 @foreach($user->products as $product)
 <div class="account__paintings">
     <div class="account__painting">
