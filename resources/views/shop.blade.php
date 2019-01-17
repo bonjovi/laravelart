@@ -1,7 +1,7 @@
 @extends('layouts.inner')
 
 @section('content')
-    <h1 class="title title_basegrey title_centered">Картины</h1>
+    <h1 class="title title_basegrey title_centered">{{ $title }}</h1>
     <!--<section class="selectedFilters">
         <button data-ripple class="button button_grey selectedFilters__button">
             Сбросить фильтры

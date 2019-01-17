@@ -40,7 +40,7 @@ Route::get('/painters/popular', 'PainterController@popular')->name('painters.pop
 
 Route::get('/painters/{painter}', 'PainterController@show')->name('painters.show');
 
-Route::get('/dealer', 'ShopController@showfordealer')->name('shop.showfordealer');
+
 
 
 
@@ -49,6 +49,15 @@ Route::get('/dealer', 'ShopController@showfordealer')->name('shop.showfordealer'
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/dealer', 'ShopController@index_dealer', function () {
+        return view('dealer.shop', ['user' => Auth::user(), 'title' => 'Картины для дилеров']);
+    })->name('dealer.index');
+
+    Route::get('/dealer/{product}', 'ShopController@show_dealer', function () {
+        return view('dealer.product', ['user' => Auth::user(), 'title' => 'Картины для дилеров']);
+    })->name('dealer.show');
+
     Route::get('/account/profile', function () {
         return view('account.profile', ['user' => Auth::user(), 'title' => 'Профиль']);
     })->name('account.profile');

@@ -72,7 +72,60 @@ class ShopController extends Controller
             'min_price' => $min_price,
             'max_price' => $max_price,
             'notfound' => $notfound,
-            'filterVisibility' => $filterVisibility
+            'filterVisibility' => $filterVisibility,
+            'title' => 'Картины'
+        ]);
+    }
+
+    public function index_dealer(Request $request)
+    {
+        $products = Product::where('is_for_dealers', 1)->latest();
+
+        if ($request->has('style'))
+        {
+            $products = Product::with('styles')->whereHas('styles', function($query) {
+                $query->whereIn('slug', request()->style);
+            });
+            
+            
+        }
+
+        $styles = Style::all();
+        $materials = Material::all();
+        $surfaces = Surface::all();
+        $themes = Theme::all();
+
+        if($request->min_price && $request->max_price){
+            $products = $products->where('price','>=',$request->min_price);
+            $products = $products->where('price','<=',$request->max_price);
+
+            $filterVisibility = 'filter_uncollapsed';
+        } else {
+            $filterVisibility = '';
+        }
+
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
+
+
+        $products = $products->paginate(27);
+        
+        count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';
+
+        
+
+        return view('dealer.shop')->with([
+            'products' => $products,
+            'styles' => $styles,
+            'materials' => $materials,
+            'themes' => $themes,
+            'surfaces' => $surfaces,
+            'min_price' => $min_price,
+            'max_price' => $max_price,
+            'notfound' => $notfound,
+            'filterVisibility' => $filterVisibility,
+            'title' => 'Картины для дилеров',
+            'user' => Auth::user()
         ]);
     }
 
@@ -109,6 +162,17 @@ class ShopController extends Controller
         
 
         return view('product')->with('product', $product);
+    }
+
+    public function show_dealer($slug)
+    {  
+        $product = Product::where('slug', $slug)->firstOrFail();
+        
+
+        return view('dealer.product')->with([
+            'product' => $product,
+            'user' => Auth::user()
+        ]);
     }
 
     /**
