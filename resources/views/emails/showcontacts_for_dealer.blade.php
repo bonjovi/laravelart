@@ -1,0 +1,1 @@
+Дилер {{ Auth::user()->name }} отправил запрос на цену картины <a href="{{request()->root()}}/shop/{{$product->slug}}">{{ $product->name }}</a>

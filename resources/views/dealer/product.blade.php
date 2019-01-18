@@ -67,9 +67,16 @@
 						<br>
 						<div class="text text_basegrey text_small card__text">{!! $product->description !!}</div>
 						<br>
-						<!-- <button data-ripple class="button button_green product__makebetbutton">
-							Показать контакты продавца
-						</button> -->
+						<form method="POST" action="{{ route('shop.showcontacts_for_dealer', $product->id) }}">
+							@csrf
+							<button data-ripple class="button button_green product__makebetbutton" type="submit">
+								Отправить запрос на цену
+							</button>
+						</form>	
+
+						@if(isset($productSeller))
+							{!! $productSeller !!}
+						@endif
 					</div>
 
 				</div>

@@ -243,22 +243,53 @@ class ShopController extends Controller
                 'product' => $product,
             ], function($message)
             {
-                $message->to(Auth::user()->email, Auth::user()->name)->subject('Посетитель посмотрел контакты продавца');
+                $message->to(config('mail.username'), config('mail.from.name'))->subject('Посетитель посмотрел контакты продавца');
             });
 
             return view('product')->with([
                 'product' => $product,
-                'productSeller' => '<div class="text product__showcontacts">' . $product->user->email . '</div>'
+                'productSeller' => '<div class="text product__showcontacts">' . $product->user->email . '</div>',
             ]);
         } else {
             return view('product')->with([
                 'product' => $product,
                 'productSeller' => '<div class="text product__showcontacts">Контакты доступны только зарегистрированным пользователям. <a href="/register" class="text">Зарегистрируйтесь</a> или <a href="/login" class="text">авторизуйтесь</a>.</div>'
             ]);
-        }
-
-        
+        }   
     }
+
+
+
+    public function showcontacts_for_dealer(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if(Auth::user()) {
+
+            \Mail::send('emails.showcontacts_for_dealer', [
+                'product' => $product,
+            ], function($message)
+            {
+                $message->to(config('mail.username'), config('mail.from.name'))->subject('Дилер отправил запрос на цену');
+            });
+
+            return view('dealer.product')->with([
+                'product' => $product,
+                'user' => Auth::user(),
+                'productSeller' => '<div class="text product__showcontacts">Ваш запрос отправлен администраторам сайта. С Вами свяжутся.</div>'
+            ]);
+        } else {
+            return view('dealer.product')->with([
+                'product' => $product,
+                'user' => Auth::user(),
+                'productSeller' => '<div class="text product__showcontacts">Контакты доступны только зарегистрированным пользователям. <a href="/register" class="text">Зарегистрируйтесь</a> или <a href="/login" class="text">авторизуйтесь</a>.</div>'
+            ]);
+        }   
+    }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

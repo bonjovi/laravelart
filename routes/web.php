@@ -31,6 +31,7 @@ Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy')
 
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 Route::post('/shop/{product}/showcontacts', 'ShopController@showcontacts')->name('shop.showcontacts');
+Route::post('/shop/{product}/showcontacts_for_dealer', 'ShopController@showcontacts_for_dealer')->name('shop.showcontacts_for_dealer');
 
 Route::get('/painters', 'PainterController@index')->name('painters.index');
 
