@@ -2,7 +2,7 @@
 
 @section('accountcontent')
 
-<form action="{{ route('account.painting.add') }}" method="POST">
+<form action="{{ route('account.painting.store') }}" method="POST">
     {{ csrf_field() }}
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Название: </label>

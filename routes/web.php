@@ -40,6 +40,10 @@ Route::get('/painters/popular', 'PainterController@popular')->name('painters.pop
 
 Route::get('/painters/{painter}', 'PainterController@show')->name('painters.show');
 
+Route::get('/subscription', 'SubscriptionController@index')->name('subscription.index');
+Route::post('/subscription', 'SubscriptionController@store')->name('subscription');
+
+
 
 
 
@@ -79,9 +83,11 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('account.paintings');
 
 
-    Route::get('/account/paintings/add', 'ShopController@store', function () {
+    Route::get('/account/paintings/add', 'ShopController@add', function () {
         return view('account.painting_add', ['user' => Auth::user(), 'title' => 'Картины'])->name('account.painting.add');
     });
+
+    Route::post('/account/paintings/store', 'ShopController@store')->name('account.painting.store');
 
     Route::get('/account/paintings/{id}/edit', 'ShopController@edit', function () {
         return view('account.paintings_edit', ['user' => Auth::user(), 'title' => 'Картины']);

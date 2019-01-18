@@ -9,7 +9,15 @@
 
 @section('header')
 
-
+<script>
+$(function() {
+    $('.search button').on('click', function(e) {
+        if($('.search input[name=query]').val().length < 2) {
+            e.preventDefault();
+        }
+	});
+});
+</script>
 
 <header class="header">
     <div class="container">

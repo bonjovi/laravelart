@@ -22,7 +22,7 @@
     </section>
 
     <div class="cardswrapper">
-        @include('layouts.filter')
+        @include('layouts.filter_shop')
 
         <section class="cards">
             @foreach ($products as $product)

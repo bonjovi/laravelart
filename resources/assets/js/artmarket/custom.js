@@ -1,5 +1,4 @@
 $(function() {
-
 	/* Прокрутка к поисковой выдаче */
 
 	function get_var(var_name){

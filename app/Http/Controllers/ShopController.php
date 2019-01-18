@@ -145,10 +145,24 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function add()
+    {
+        return view('account.painting.add')->with(['user' => Auth::user(), 'product' => $product, 'title'=> 'Картины']);
+    }
+
+
     public function store(Request $request)
     {
         return view('account.painting_add');
     }
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.

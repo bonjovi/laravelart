@@ -68,8 +68,18 @@
             <div class="title title_white footer__title">Подписка на рассылку</div>
             <div class="text text_small text_grey footer__text">Хотите первыми узнавать о скидках<br>и уникальных предложениях?</div>
             <div class="subscribe">
-                <form action="#">
-                    <input type="text" class="input" placeholder="Ваш email">
+                <script>
+                    $(function() {
+                        $('.subscribe button').on('click', function(e) {
+                            if($('.subscribe input[name=email]').val().length < 2) {
+                                e.preventDefault();
+                            }
+                        });
+                    });
+                </script>
+                <form action="{{ route('subscription') }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="text" class="input" placeholder="Ваш email" name="email">
                     <button data-ripple class="button">
                         Подписаться
                     </button>
@@ -79,7 +89,7 @@
     </div><!-- /.footer__right -->
 
     <div class="copyright">
-        <div class="text text_small text_grey">© 2018 ArtMarket. Все права защищены</div>
+        <div class="text text_small text_grey">© 2018 ArtMarket24. Все права защищены</div>
     </div>
 
 </footer>
