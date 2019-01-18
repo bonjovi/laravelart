@@ -148,13 +148,30 @@ class ShopController extends Controller
 
     public function add()
     {
-        return view('account.painting.add')->with(['user' => Auth::user(), 'product' => $product, 'title'=> 'Картины']);
+
+        $products = Product::all();
+        return view('account.painting_add')->with([
+            'user' => Auth::user(),
+            'products' => $products
+        ]);
     }
 
 
     public function store(Request $request)
     {
-        return view('account.painting_add');
+        //$path = $request->file('image')->store('uploads', 'public');
+
+       
+
+        Product::create([
+            'name' => $request->name,
+            'image' => $request->file('image')->store('uploads', 'public'),
+            'dimensions' => $request->dimensions,
+            'year' => $request->year,
+            'price' => $request->price,            
+        ]);
+
+        return redirect()->route('account.paintings');
     }
 
 
