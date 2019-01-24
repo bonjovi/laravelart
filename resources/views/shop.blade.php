@@ -2,29 +2,68 @@
 
 @section('content')
     <h1 class="title title_basegrey title_centered">{{ $title }}</h1>
-    <!--<section class="selectedFilters">
-        <button data-ripple class="button button_grey selectedFilters__button">
+    
+    <section class="selectedFilters">
+        @if(Request::get('style') || Request::get('material') || Request::get('theme') || Request::get('surface') || Request::get('min_width') || Request::get('max_width'))
+        <a href="/" data-ripple class="button button_grey selectedFilters__button">
             Сбросить фильтры
             <i class="material-icons">delete</i>
-        </button>
-        <button data-ripple class="button selectedFilters__button">
-            Новинки
-            <i class="material-icons">close</i>
-        </button>
-        <button data-ripple class="button selectedFilters__button">
-            Со скидкой
-            <i class="material-icons">close</i>
-        </button>
-    </section>--><!-- /.selectedFilters -->
+        </a>
+        @endif
+        
+
+        
+
+        @foreach($styles as $style)
+            @if(in_array($style->slug, Request::get('style') ? Request::get('style') : [])) 
+                <a href="{{ removeGetParams(Request::fullUrl(), 'style', $style->slug) }}" data-ripple class="button selectedFilters__button">
+                    {{ $style->name }}
+                    <i class="material-icons">close</i>
+                </a>
+            @endif
+        @endforeach
+
+        @foreach($materials as $material)
+            @if(in_array($material->slug, Request::get('material') ? Request::get('material') : [])) 
+                <a href="{{ removeGetParams(Request::fullUrl(), 'material', $material->slug) }}" data-ripple class="button selectedFilters__button">
+                    {{ $material->name }}
+                    <i class="material-icons">close</i>
+                </a>
+            @endif
+        @endforeach
+
+        @foreach($themes as $theme)
+            @if(in_array($theme->slug, Request::get('theme') ? Request::get('theme') : [])) 
+                <a href="{{ removeGetParams(Request::fullUrl(), 'theme', $theme->slug) }}" data-ripple class="button selectedFilters__button">
+                    {{ $theme->name }}
+                    <i class="material-icons">close</i>
+                </a>
+            @endif
+        @endforeach
+
+        @foreach($surfaces as $surface)
+            @if(in_array($surface->slug, Request::get('surface') ? Request::get('surface') : [])) 
+                <a href="{{ removeGetParams(Request::fullUrl(), 'surface', $surface->slug) }}" data-ripple class="button selectedFilters__button">
+                    {{ $surface->name }}
+                    <i class="material-icons">close</i>
+                </a>
+            @endif
+        @endforeach
+    </section><!-- /.selectedFilters -->
 
     <section class="selectedFilters selectedFilters_sorting">
-        <a href="#" class="text text_small text_grey filterToggler">ПОКАЗАТЬ ФИЛЬТРЫ</a>
+        <a href="#" class="text text_small text_grey filterToggler">{{ Request::get('min_price') ? 'СКРЫТЬ ФИЛЬТРЫ' : 'ПОКАЗАТЬ ФИЛЬТРЫ' }}</a>
     </section>
 
     <div class="cardswrapper">
         @include('layouts.filter_shop')
 
         <section class="cards">
+            @if($notfound)
+                <div class="text">
+                    {{ $notfound }}
+                </div>
+            @endif
             @foreach ($products as $product)
                 <div class="card">
                     <div class="card__pic">
