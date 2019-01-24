@@ -19,21 +19,21 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::latest();
+        $products = Product::oldest();
 
-        if ($request->has('style'))
-        {
-            $products = Product::with('styles')->whereHas('styles', function($query) {
-                $query->whereIn('slug', request()->style);
-            });
-            
-            
-        }
+        if($request->has('style')) $products = Product::with('styles')->whereHas('styles', function($query) { $query->whereIn('slug', request()->style); });
+        if($request->has('material')) $products = Product::with('materials')->whereHas('materials', function($query) { $query->whereIn('slug', request()->material); });
+        if($request->has('surface')) $products = Product::with('surfaces')->whereHas('surfaces', function($query) { $query->whereIn('slug', request()->surface); });
+        if($request->has('theme')) $products = Product::with('themes')->whereHas('themes', function($query) { $query->whereIn('slug', request()->theme); });
+        
 
         $styles = Style::all();
         $materials = Material::all();
         $surfaces = Surface::all();
         $themes = Theme::all();
+
+        /*$min_price = Product::min('price');
+        $max_price = Product::max('price');
 
         if($request->min_price && $request->max_price){
             $products = $products->where('price','>=',$request->min_price);
@@ -42,10 +42,35 @@ class MainController extends Controller
             $filterVisibility = 'filter_uncollapsed';
         } else {
             $filterVisibility = '';
+        }*/
+
+
+
+        
+        
+
+
+        $min_width = Product::min('dimension_width');
+        $max_width = Product::max('dimension_width');
+
+        $min_height = Product::min('dimension_height');
+        $max_height = Product::max('dimension_height');
+
+        if($request->min_width && $request->max_width){
+            $products = $products->where('dimension_width','>=',$request->min_width);
+            $products = $products->where('dimension_width','<=',$request->max_width);
+            $products = $products->where('dimension_height','>=',$request->min_height);
+            $products = $products->where('dimension_height','<=',$request->max_height);
+        } else {
+            $products = $products->where('dimension_width','>=',$min_width);
+            $products = $products->where('dimension_width','<=',$max_width);
+            $products = $products->where('dimension_height','>=',$min_height);
+            $products = $products->where('dimension_height','<=',$max_height);
         }
 
-        $min_price = Product::min('price');
-        $max_price = Product::max('price');
+        
+
+        
 
 
         $products = $products->paginate(27);
@@ -60,10 +85,14 @@ class MainController extends Controller
             'materials' => $materials,
             'themes' => $themes,
             'surfaces' => $surfaces,
-            'min_price' => $min_price,
-            'max_price' => $max_price,
+            /*'min_price' => $min_price,
+            'max_price' => $max_price,*/
+            'min_width' => $min_width,
+            'max_width' => $max_width,
+            'min_height' => $min_height,
+            'max_height' => $max_height,
             'notfound' => $notfound,
-            'filterVisibility' => $filterVisibility
+            /*'filterVisibility' => $filterVisibility*/
         ]);
     }
 

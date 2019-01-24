@@ -31,7 +31,7 @@ $(function() {
                 <a class="logo" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
                 <div class="topcontacts">
                     <div class="topcontacts__phone">
-                        <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
+                        <span class="topcontacts__phone_small">+7 (905) </span>551-36-15
                     </div>
                     <!--<span class="topcontacts__tomessengers text text_xsmall text_grey">
 	    					Написать в мессенджеры
@@ -41,7 +41,7 @@ $(function() {
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone">
-                    <span class="topcontacts__phone_small">+7 (495) </span>507-64-85
+                    <span class="topcontacts__phone_small">+7 (905) </span>551-36-15
                 </div>
                 <!--<span class="topcontacts__tomessengers text text_small text_grey">
     					Написать в мессенджеры
@@ -72,7 +72,7 @@ $(function() {
 @section('content')
 
     <section class="selectedFilters">
-        @if(Request::get('style') || Request::get('material') || Request::get('theme') || Request::get('surface'))
+        @if(Request::get('style') || Request::get('material') || Request::get('theme') || Request::get('surface') || Request::get('min_width') || Request::get('max_width'))
         <a href="/" data-ripple class="button button_grey selectedFilters__button">
             Сбросить фильтры
             <i class="material-icons">delete</i>
@@ -150,7 +150,7 @@ $(function() {
                             {{ $material->name }}
                         @endforeach
                     </div>
-                    <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
+                    <div class="text text_grey text_small card__text">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
                     <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                 </div>
             </div><!-- /.card -->

@@ -29,7 +29,7 @@
                                 {{ $material->name }}
                             @endforeach
                         </div>
-                        <div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
+                        <div class="text text_grey text_small card__text">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
                         <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                     </div>
                 </div><!-- /.card -->

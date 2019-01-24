@@ -18,7 +18,7 @@
                 <a class="logo logo_inner" href="/"><span class="logo_violet">Art</span>Market<span class="logo_violet">24</span></a>
                 <div class="topcontacts">
                     <div class="topcontacts__phone topcontacts__phone_basegrey">
-                        <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (495) </span>507-64-85
+                        <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (905) </span>551-36-15
                     </div>
                     <!--<span class="topcontacts__tomessengers text text_small text_grey">
 	    					Написать в мессенджеры
@@ -28,7 +28,7 @@
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone topcontacts__phone_basegrey">
-                    <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (495) </span>507-64-85
+                    <span class="topcontacts__phone_small topcontacts__phone_basegrey">+7 (905) </span>551-36-15
                 </div>
                 <!--<span class="topcontacts__tomessengers text text_xsmall text_grey">
     					Написать в мессенджеры

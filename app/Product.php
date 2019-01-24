@@ -30,7 +30,9 @@ class Product extends Model
         'columns' => [
             'products.name' => 10,
             'products.description' => 10,
+            'painters.firstname' => 2,
             'painters.lastname' => 2,
+            'painters.patronymic' => 2,
         ],
         'joins' => [
             'painters' => ['products.painter_id','painters.id'],
@@ -43,7 +45,8 @@ class Product extends Model
         'token',
         'name',
         'material',
-        'dimensions',
+        'dimension_width',
+        'dimension_height',
         'year',
         'price'
     ];

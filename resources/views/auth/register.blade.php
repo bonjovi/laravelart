@@ -169,6 +169,12 @@
                                     <input id="i_am_painter_exhibitions" type="text" class="input form-control{{ $errors->has('i_am_painter_exhibitions') ? ' is-invalid' : '' }}" name="i_am_painter_exhibitions" value="{{ old('i_am_painter_exhibitions') }}">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="text">Биография</label>
+                                <div class="col-md-6">
+                                    <textarea name="i_am_painter_biography" id="i_am_painter_biography" class="textarea" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
                         </div><!--./i_am_painter_container-->
 
                         <div class="form-group row">

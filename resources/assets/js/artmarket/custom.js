@@ -1,4 +1,8 @@
 $(function() {
+
+	$(".wrapper").tooltip();
+
+
 	/* Прокрутка к поисковой выдаче */
 
 	function get_var(var_name){
@@ -78,17 +82,18 @@ $(function() {
 
 	// СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
 	var slider = document.getElementById('slider');
-	var minimumPrice = document.getElementById('slider-margin-value-min').value;
-	var maximumPrice = document.getElementById('slider-margin-value-max').value;
-	console.log(minimumPrice);
-	console.log(maximumPrice);
+	var slider2 = document.getElementById('slider2');
+	var minimumWidth = document.getElementById('slider-margin-value-min-width').value;
+	var maximumWidth = document.getElementById('slider-margin-value-max-width').value;
+	var minimumHeight = document.getElementById('slider-margin-value-min-height').value;
+	var maximumHeight = document.getElementById('slider-margin-value-max-height').value;
 
 	noUiSlider.create(slider, {
-		start: [minimumPrice, maximumPrice],
+		start: [minimumWidth, maximumWidth],
 		connect: true,
 		range: {
-			'min': 15000,
-			'max': 325000
+			'min': parseInt(minimumWidth),
+			'max': parseInt(maximumWidth)
 		},
 		format: wNumb({
 			decimals: 0,
@@ -97,14 +102,37 @@ $(function() {
 		})
 	});
 
-	var marginMin = document.getElementById('slider-margin-value-min'),
-		marginMax = document.getElementById('slider-margin-value-max');
+	noUiSlider.create(slider2, {
+		start: [minimumHeight, maximumHeight],
+		connect: true,
+		range: {
+			'min': parseInt(minimumHeight),
+			'max': parseInt(maximumHeight)
+		},
+		format: wNumb({
+			decimals: 0,
+			thousand: '',
+			postfix: '',
+		})
+	});
 
+	var widthMin = document.getElementById('slider-margin-value-min-width'),
+		widthMax = document.getElementById('slider-margin-value-max-width');
 	slider.noUiSlider.on('update', function ( values, handle ) {
 		if ( handle ) {
-			marginMax.value = values[handle];
+			widthMax.value = values[handle];
 		} else {
-			marginMin.value = values[handle];
+			widthMin.value = values[handle];
+		}
+	});
+
+	var heightMin = document.getElementById('slider-margin-value-min-height'),
+		heightMax = document.getElementById('slider-margin-value-max-height');
+	slider2.noUiSlider.on('update', function ( values, handle ) {
+		if ( handle ) {
+			heightMax.value = values[handle];
+		} else {
+			heightMin.value = values[handle];
 		}
 	});
 	// end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ

@@ -166,7 +166,8 @@ class ShopController extends Controller
         Product::create([
             'name' => $request->name,
             'image' => $request->file('image')->store('uploads', 'public'),
-            'dimensions' => $request->dimensions,
+            'dimension_width' => $request->dimension_width,
+            'dimension_height' => $request->dimension_height,
             'year' => $request->year,
             'price' => $request->price,            
         ]);
@@ -248,7 +249,7 @@ class ShopController extends Controller
 
             return view('product')->with([
                 'product' => $product,
-                'productSeller' => '<div class="text product__showcontacts">' . $product->user->email . '</div>',
+                'productSeller' => '<div class="text product__showcontacts">' . $product->user->email . '<span class="product__greenstar" title="Продавец имеет статус подтверждённого нами партнёра"> *</span></div>',
             ]);
         } else {
             return view('product')->with([
@@ -306,7 +307,11 @@ class ShopController extends Controller
     {
         $query = $request->input('query');
         //$notfound = $request->input('query') == '' ? 'Вы ввели пустой поисковый запрос' : $request->input('query');
+
+        
         $products = Product::search($query)->paginate(10);
+
+        
         return view('searchresults')->with([
             'products' => $products,
             //'notfound' => $notfound,

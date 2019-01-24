@@ -93,6 +93,7 @@ class RegisterController extends Controller
             'i_am_painter_sculptor_or_painter' => isset($data['i_am_painter_sculptor_or_painter']) ? 1 : 0,
             'i_am_painter_stylistics' => $data['i_am_painter_stylistics'],
             'i_am_painter_exhibitions' => $data['i_am_painter_exhibitions'],
+            'i_am_painter_biography' => $data['i_am_painter_biography'],
 
             'i_am_dealer_lastname' => $data['i_am_dealer_lastname'],
             'i_am_dealer_name' => $data['i_am_dealer_name'],

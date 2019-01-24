@@ -29,20 +29,20 @@
 			<div class="product">
 				<div class="productGallery">
 					<div class="productGallery__mainpic">
-						<a data-fancybox="gallery" href="{{ productImage($product->image) }}">
-							<img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+						<a data-fancybox="gallery" href="{{ productImageWatermark($product->image) }}">
+							<img src="{{ productImageWatermark($product->image) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
 						</a>	
 					</div>
 
 					<div class="productGallery__thumbnails">
 						<!--<div class="productGallery__navigation productGallery__leftarrow"></div>-->
 						<div class="productGallery__thumbnail productGallery__thumbnail_active">
-							<img src="{{ productImage($product->image) }}" alt="product">
+							<img src="{{ productImageWatermark($product->image) }}" alt="product">
 						</div>
 						@if ($product->images)
 							@foreach (json_decode($product->images, true) as $image)
 								<div class="productGallery__thumbnail">
-									<img src="{{ productImage($image) }}" alt="product">
+									<img src="{{ productImageWatermark($image) }}" alt="product">
 								</div>
 							@endforeach
 						@endif
@@ -61,7 +61,7 @@
 								{{ $material->name }}
 							@endforeach
 						</div>
-						<div class="product__seller text text_small text_basegrey">{{ $product->dimensions }}</div>
+						<div class="product__seller text text_small text_basegrey">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
 						<div class="product__seller text text_small text_basegrey">{{ $product->year }}</div>
 						<br>
 						<div class="text text_basegrey text_small card__text">{!! $product->description !!}</div>
@@ -124,7 +124,7 @@
 										{{ $material->name }}
 									@endforeach
 								</div>
-								<div class="text text_grey text_small card__text">{{ $product->dimensions }}</div>
+								<div class="text text_grey text_small card__text">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
 								<div class="text text_grey text_small card__text">{{ $product->year }}</div>
 							</div>
 						</div><!-- /.card -->
