@@ -2,33 +2,25 @@
 
 @section('accountcontent')
 
+<?php
+$paintersArray = [];
+
+foreach($painters as $painter) {
+    $paintersArray[] = $painter->full_name;
+}
+?>
+
 <script>
 jQuery( function() {
-    //var availableTags = $('.input-painter');
-    
-    //availableTags = jQuery.makeArray(availableTags)
-    var fakedata = [
-        'Гречишников Михаил Григорьевич',
-        'Фатеев Владимир Афанасьевич',
-        'Шестаков Адолф Иванович',
-        'Ларин Юрий Николаевич',
-        'Гераскевич Валерий Алексеевич',
-        'Гроссе Олег Иванович',
-        'Thorald Laessoe',
-        'Изосимов Юрий',
-        'Тихов Михаил Вячеславович',
-        'Горбатюк Андрей Викторович',
-        'Ледков Сергей Евгеньевич',
-        'Наседкин Николай Николаевич',
-        'Куманьков Евгений Иванович',
-        'Миронова Марина Алексеевна',
-        'Ройтер Михаил Григорьевич',
-        'Бирштеин Анна Максовна',
-        'Соколов К.С.',
+    var painters = <?=json_encode($paintersArray)?>;
 
-    ];
     jQuery( "input[name=painter]" ).autocomplete({
-        source: fakedata
+        source: painters
+    });
+
+    jQuery('input[type=submit]').on('click', function(e) {
+        //e.preventDefault();
+        jQuery('input[name=painter]').val(jQuery('div[data-painter-id]').attr('data-painter-id'));
     });
 } );
 </script>
@@ -44,25 +36,65 @@ jQuery( function() {
         <input type="text" value="" name="painter" class="input">
         <div class="input-painters" style="display:none;">
             @foreach($products as $product)
-                <div class="input-painter" style="display:none;"> {{ $product->painter->full_name }} </div>
+                <div class="input-painter" style="display:none;" data-painter-id="{{ $product->painter->id }}"> {{ $product->painter->full_name }} </div>
             @endforeach
         </div>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Материал: </label>
-        <input type="text" value="" name="material" class="input">
+        <label for="name" class="text text_grey text_width100">Стиль: </label>
+        <select name="style">
+            @foreach($styles as $style)
+                <option value="{{ $style->name }}">{{ $style->name }}</option>
+            @endforeach
+        </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Габариты: </label>
-        <input type="text" value="" name="dimensions" class="input">
+        <label for="name" class="text text_grey text_width100">Материал: </label>
+        <select name="material">
+            @foreach($materials as $material)
+                <option value="{{ $material->name }}">{{ $material->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Поверхность: </label>
+        <select name="surface">
+            @foreach($surfaces as $surface)
+                <option value="{{ $surface->name }}">{{ $surface->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Тема: </label>
+        <select name="theme">
+            @foreach($themes as $theme)
+                <option value="{{ $theme->name }}">{{ $theme->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Ширина: </label>
+        <input type="text" value="" name="dimension_width" class="input">
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Высота: </label>
+        <input type="text" value="" name="dimension_height" class="input">
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Год: </label>
         <input type="text" value="" name="year" class="input">
     </div>
     <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Страна: </label>
+        <input type="text" value="" name="country" class="input">
+    </div>
+    <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Цена: </label>
         <input type="text" value="" name="price" class="input">
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Описание: </label>
+        <textarea name="description" class="textarea" cols="30" rows="10"></textarea>
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Фото:</label>

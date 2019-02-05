@@ -44,11 +44,16 @@ class Product extends Model
     protected $fillable = [
         'token',
         'name',
-        'material',
+        // 'style',
+        // 'material',
+        // 'surface',
+        // 'theme',
         'dimension_width',
         'dimension_height',
         'year',
-        'price'
+        'country',
+        'price',
+        'description'
     ];
 
 
@@ -114,3 +119,7 @@ class Product extends Model
     }
 
 }
+
+
+
+

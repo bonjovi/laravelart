@@ -8,6 +8,7 @@ use App\Style;
 use App\Material;
 use App\Surface;
 use App\Theme;
+use App\Painter;
 use Auth;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\Mail;
@@ -179,9 +180,20 @@ class ShopController extends Controller
     {
 
         $products = Product::all();
+        $painters = Painter::all();
+        $styles = Style::all();
+        $materials = Material::all();
+        $surfaces = Surface::all();
+        $themes = Theme::all();
+
         return view('account.painting_add')->with([
             'user' => Auth::user(),
-            'products' => $products
+            'products' => $products,
+            'painters' => $painters,
+            'styles' => $styles,
+            'materials' => $materials,
+            'surfaces' => $surfaces,
+            'themes' => $themes
         ]);
     }
 
@@ -192,19 +204,25 @@ class ShopController extends Controller
 
        
 
-        Product::create([
+       $product = Product::create([
             'name' => $request->name,
-            'image' => $request->file('image')->store('uploads', 'public'),
+            //'style' => $request->style,
+            // 'material' => $request->material,
+            // 'surface' => $request->surface,
+            // 'theme' => $request->theme,
             'dimension_width' => $request->dimension_width,
             'dimension_height' => $request->dimension_height,
             'year' => $request->year,
-            'price' => $request->price,            
+            'country' => $request->country,
+            'price' => $request->price, 
+            'description' => $request->description, 
+            //'image' => $request->file('image')->store('uploads', 'public'),           
         ]);
+
+        $product->styles()->save($product, ['product_id' => $product->id, 'style_id' => 2]);
 
         return redirect()->route('account.paintings');
     }
-
-
 
 
 

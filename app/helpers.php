@@ -8,6 +8,7 @@ function productImage($path)
 
 function productImageWatermark($path)
 {
+    $path = str_replace("\\", "/", $path);
     $watermark =  Image::make(storage_path('watermark.png'));
     $img = Image::make(storage_path('app/public/'.$path));
 
@@ -25,7 +26,7 @@ function productImageWatermark($path)
     //insert resized watermark to image center aligned
     $img->insert($watermark, 'top-left', 70, 70);
     //save new image
-    $watermarkedImage = $img->save(storage_path('app/public/watermarked/'.basename($path)));
+    $watermarkedImage = $img->save(public_path('storage/watermarked/'.basename($path)));
 
     return $path && Storage::disk('local')->exists('public', $path) ? Storage::disk('public')->url('watermarked/'.basename($path)) : asset('img/not-found.jpg');
 }
