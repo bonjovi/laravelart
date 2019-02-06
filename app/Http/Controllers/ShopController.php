@@ -12,6 +12,7 @@ use App\Painter;
 use Auth;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\Mail;
+use App\Http\Controllers\Session;
 
 class ShopController extends Controller
 {
@@ -219,7 +220,27 @@ class ShopController extends Controller
             //'image' => $request->file('image')->store('uploads', 'public'),           
         ]);
 
-        $product->styles()->save($product, ['product_id' => $product->id, 'style_id' => 2]);
+        $product->styles()->save($product, [
+            'product_id' => $product->id, 
+            'style_id' => $request->style,
+        ]);
+
+        $product->materials()->save($product, [
+            'product_id' => $product->id, 
+            'material_id' => $request->material,
+        ]);
+
+        $product->surfaces()->save($product, [
+            'product_id' => $product->id, 
+            'surface_id' => $request->surface,
+        ]);
+
+        $product->themes()->save($product, [
+            'product_id' => $product->id, 
+            'theme_id' => $request->theme,
+        ]);
+
+        \Session::flash('message', 'Картина была успешно добавлена');
 
         return redirect()->route('account.paintings');
     }
@@ -262,7 +283,18 @@ class ShopController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('account.paintings_edit')->with(['user' => Auth::user(), 'product' => $product, 'title'=> 'Картины']);
+        $products = Product::all();
+        $painters = Painter::all();
+        $styles = Style::all();
+
+        return view('account.paintings_edit')->with([
+            'user' => Auth::user(),
+            'product' => $product,
+            'products' => $products,
+            'styles' => $styles,
+            'title'=> 'Картины',
+            'painters' => $painters
+        ]);
     }
 
     /**

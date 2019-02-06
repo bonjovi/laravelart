@@ -5,6 +5,12 @@
 <a href="/account/paintings/add" class="button">Добавить картину</a>
 <br><br><br><br>
 
+@if(Session::has('message'))
+<p class="text flash flash_success">{{ Session::get('message') }}</p>
+@endif
+
+<br><br>
+
 @foreach($user->products as $product)
 <div class="account__paintings">
     <div class="account__painting">

@@ -44,7 +44,7 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Стиль: </label>
         <select name="style">
             @foreach($styles as $style)
-                <option value="{{ $style->name }}">{{ $style->name }}</option>
+                <option value="{{ $style->id }}">{{ $style->name }}</option>
             @endforeach
         </select>
     </div>
@@ -52,7 +52,7 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Материал: </label>
         <select name="material">
             @foreach($materials as $material)
-                <option value="{{ $material->name }}">{{ $material->name }}</option>
+                <option value="{{ $material->id }}">{{ $material->name }}</option>
             @endforeach
         </select>
     </div>
@@ -60,7 +60,7 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Поверхность: </label>
         <select name="surface">
             @foreach($surfaces as $surface)
-                <option value="{{ $surface->name }}">{{ $surface->name }}</option>
+                <option value="{{ $surface->id }}">{{ $surface->name }}</option>
             @endforeach
         </select>
     </div>
@@ -68,7 +68,7 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Тема: </label>
         <select name="theme">
             @foreach($themes as $theme)
-                <option value="{{ $theme->name }}">{{ $theme->name }}</option>
+                <option value="{{ $theme->id }}">{{ $theme->name }}</option>
             @endforeach
         </select>
     </div>
