@@ -20,7 +20,7 @@
 
         <div class="account__paintingdesc">
             <a href="#" class="title title_small">{{ $product->name }}</a>
-            <a href="#" class="text text_grey">{{ $product->name }}</a>
+            <a href="#" class="text text_grey">{{ $product->painter->full_name }}</a>
             <div class="title title_small">{{ $product->price }} руб.</div>
         </div>
 
@@ -28,7 +28,7 @@
             <a href="{{ route('account.paintings') }}/{{ $product->id }}/edit">
                 <i class="material-icons">edit</i>
             </a>
-            <a href="#">
+            <a href="{{ route('account.paintings') }}/{{ $product->id }}/delete">
                 <i class="material-icons">close</i>
             </a>
         </div>

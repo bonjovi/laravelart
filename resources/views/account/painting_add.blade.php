@@ -10,6 +10,9 @@ foreach($painters as $painter) {
 }
 ?>
 
+<link rel="stylesheet" href="/css/chosen.min.css">
+<script src="/js/chosen.jquery.min.js"></script>
+
 <script>
 jQuery( function() {
     var painters = <?=json_encode($paintersArray)?>;
@@ -22,6 +25,8 @@ jQuery( function() {
         //e.preventDefault();
         jQuery('input[name=painter]').val(jQuery('div[data-painter-id]').attr('data-painter-id'));
     });
+
+    jQuery("select[name^=style], select[name^=material], select[name^=surface], select[name^=theme]").chosen();
 } );
 </script>
 
@@ -42,7 +47,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Стиль: </label>
-        <select name="style">
+        <select name="style[]" multiple>
             @foreach($styles as $style)
                 <option value="{{ $style->id }}">{{ $style->name }}</option>
             @endforeach
@@ -50,7 +55,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Материал: </label>
-        <select name="material">
+        <select name="material[]" multiple>
             @foreach($materials as $material)
                 <option value="{{ $material->id }}">{{ $material->name }}</option>
             @endforeach
@@ -58,7 +63,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Поверхность: </label>
-        <select name="surface">
+        <select name="surface[]" multiple>
             @foreach($surfaces as $surface)
                 <option value="{{ $surface->id }}">{{ $surface->name }}</option>
             @endforeach
@@ -66,7 +71,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Тема: </label>
-        <select name="theme">
+        <select name="theme[]" multiple>
             @foreach($themes as $theme)
                 <option value="{{ $theme->id }}">{{ $theme->name }}</option>
             @endforeach

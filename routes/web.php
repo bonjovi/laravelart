@@ -94,6 +94,10 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.paintings_edit', ['user' => Auth::user(), 'title' => 'Картины']);
     });
 
+    Route::get('/account/paintings/{id}/delete', 'ShopController@destroy', function () {
+        return view('account.paintings', ['user' => Auth::user(), 'title' => 'Картины']);
+    });
+
     Route::post('/account/paintings/{id}/update', 'ShopController@update')->name('account.paintings.update');
 
 

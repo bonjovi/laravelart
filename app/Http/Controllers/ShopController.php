@@ -13,6 +13,7 @@ use Auth;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\Mail;
 use App\Http\Controllers\Session;
+use DB;
 
 class ShopController extends Controller
 {
@@ -220,25 +221,33 @@ class ShopController extends Controller
             //'image' => $request->file('image')->store('uploads', 'public'),           
         ]);
 
-        $product->styles()->save($product, [
-            'product_id' => $product->id, 
-            'style_id' => $request->style,
-        ]);
+        foreach($request->style as $oneStyle) {
+            $product->styles()->save($product, [
+                'product_id' => $product->id, 
+                'style_id' => $oneStyle,
+            ]);
+        }
 
-        $product->materials()->save($product, [
-            'product_id' => $product->id, 
-            'material_id' => $request->material,
-        ]);
+        foreach($request->material as $oneMaterial) {
+            $product->materials()->save($product, [
+                'product_id' => $product->id, 
+                'material_id' => $oneMaterial,
+            ]);
+        }
+        
+        foreach($request->surface as $oneSurface) {
+            $product->surfaces()->save($product, [
+                'product_id' => $product->id, 
+                'surface_id' => $oneSurface,
+            ]);  
+        }
 
-        $product->surfaces()->save($product, [
-            'product_id' => $product->id, 
-            'surface_id' => $request->surface,
-        ]);
-
-        $product->themes()->save($product, [
-            'product_id' => $product->id, 
-            'theme_id' => $request->theme,
-        ]);
+        foreach($request->theme as $oneTheme) {
+            $product->themes()->save($product, [
+                'product_id' => $product->id, 
+                'theme_id' => $oneTheme,
+            ]);
+        }
 
         \Session::flash('message', 'Картина была успешно добавлена');
 
@@ -286,12 +295,18 @@ class ShopController extends Controller
         $products = Product::all();
         $painters = Painter::all();
         $styles = Style::all();
+        $materials = Material::all();
+        $surfaces = Surface::all();
+        $themes = Theme::all();
 
         return view('account.paintings_edit')->with([
             'user' => Auth::user(),
             'product' => $product,
             'products' => $products,
             'styles' => $styles,
+            'materials' => $materials,
+            'surfaces' => $surfaces,
+            'themes' => $themes,
             'title'=> 'Картины',
             'painters' => $painters
         ]);
@@ -307,8 +322,63 @@ class ShopController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
+
+
+
+
+        // Deleting style_product
+        $oldStylesArray = [];
+        foreach($product->styles as $oneOldStyle) {
+            $oldStylesArray[] = $oneOldStyle->id;
+        }
+
+        $styleDiff = array_diff($oldStylesArray, $request->style);
+        foreach($styleDiff as $styleOneDiff) {
+            DB::table('style_product')->where(['product_id' => $id])->where(['style_id' => $styleOneDiff])->delete();
+        }
+
+        // Deleting material_product
+        $oldMaterialsArray = [];
+        foreach($product->materials as $oneOldMaterial) {
+            $oldMaterialsArray[] = $oneOldMaterial->id;
+        }
+
+        $materialDiff = array_diff($oldMaterialsArray, $request->material);
+        foreach($materialDiff as $materialOneDiff) {
+            DB::table('material_product')->where(['product_id' => $id])->where(['material_id' => $materialOneDiff])->delete();
+        }
+
+        // Deleting surface_product
+        $oldSurfacesArray = [];
+        foreach($product->surfaces as $oneOldSurface) {
+            $oldSurfacesArray[] = $oneOldSurface->id;
+        }
+
+        $surfaceDiff = array_diff($oldSurfacesArray, $request->surface);
+        foreach($surfaceDiff as $surfaceOneDiff) {
+            DB::table('surface_product')->where(['product_id' => $id])->where(['surface_id' => $surfaceOneDiff])->delete();
+        }
+
+        // Deleting theme_product
+        $oldThemesArray = [];
+        foreach($product->themes as $oneOldTheme) {
+            $oldThemesArray[] = $oneOldTheme->id;
+        }
+
+        $themeDiff = array_diff($oldThemesArray, $request->theme);
+        foreach($themeDiff as $themeOneDiff) {
+            DB::table('theme_product')->where(['product_id' => $id])->where(['theme_id' => $themeOneDiff])->delete();
+        }
+
+
+
+
+
+
         $product->fill($request->all());
         $product->save();
+
+        \Session::flash('message', 'Картина была успешно обновлена');
 
         return redirect()->route('account.paintings');
     }
@@ -379,7 +449,9 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('products')->where(['id' => $id])->delete();
+        \Session::flash('message', 'Картина была удалена');
+        return redirect()->route('account.paintings');
     }
 
     public function search(Request $request)
