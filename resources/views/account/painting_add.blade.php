@@ -29,7 +29,11 @@ jQuery( function() {
     jQuery("select[name^=style], select[name^=material], select[name^=surface], select[name^=theme]").chosen();
 } );
 </script>
-
+<br>
+@foreach($errors->all() as $error)
+    <p class="text flash flash_success">{{ $error }}</p>
+@endforeach
+<br>
 <form action="{{ route('account.painting.store') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="control-group account__control-group">
@@ -47,7 +51,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Стиль: </label>
-        <select name="style[]" multiple>
+        <select name="style[]" multiple data-placeholder="Укажите одно или несколько значений">
             @foreach($styles as $style)
                 <option value="{{ $style->id }}">{{ $style->name }}</option>
             @endforeach
@@ -55,7 +59,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Материал: </label>
-        <select name="material[]" multiple>
+        <select name="material[]" multiple data-placeholder="Укажите одно или несколько значений">
             @foreach($materials as $material)
                 <option value="{{ $material->id }}">{{ $material->name }}</option>
             @endforeach
@@ -63,7 +67,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Поверхность: </label>
-        <select name="surface[]" multiple>
+        <select name="surface[]" multiple data-placeholder="Укажите одно или несколько значений">
             @foreach($surfaces as $surface)
                 <option value="{{ $surface->id }}">{{ $surface->name }}</option>
             @endforeach
@@ -71,7 +75,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Тема: </label>
-        <select name="theme[]" multiple>
+        <select name="theme[]" multiple data-placeholder="Укажите одно или несколько значений">
             @foreach($themes as $theme)
                 <option value="{{ $theme->id }}">{{ $theme->name }}</option>
             @endforeach
@@ -105,7 +109,10 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Фото:</label>
         <input type="file" value="" name="image" class="input">
     </div>
-
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Дополнительные фото:</label>
+        <input type="file" value="" name="images[]" class="input" multiple>
+    </div>
     
     <input type="submit" value="Обновить" class="button account__savebutton">
 </form>

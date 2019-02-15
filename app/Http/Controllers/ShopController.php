@@ -14,6 +14,7 @@ use Illuminate\Routing\Route;
 use App\Http\Controllers\Mail;
 use App\Http\Controllers\Session;
 use DB;
+use App\Http\Controllers\Validator;
 
 class ShopController extends Controller
 {
@@ -202,9 +203,33 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
-        //$path = $request->file('image')->store('uploads', 'public');
+        // $this->validate(request(), [
+        //     'title' => 'required|min:2'
+        // ]);
 
-       
+        $messages = [
+            'title.required' => 'Fuf давай need to know your e-mail address!',
+        ];
+
+        $v = \Validator::make($request->all(), [
+            'title' => 'required'
+        ], $messages);
+    
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        //$path = $request->file('image')->store('uploads', 'public');
+        //echo $path; die;
+        
+        
+        $imagesArray = $request->file('images');
+
+        if(request()->hasFile('images')) {
+            foreach($imagesArray as $oneImage) {
+                $imagesData[] = $oneImage->store('uploads', 'public');
+            }
+        }
 
        $product = Product::create([
             'name' => $request->name,
@@ -218,8 +243,15 @@ class ShopController extends Controller
             'country' => $request->country,
             'price' => $request->price, 
             'description' => $request->description, 
-            //'image' => $request->file('image')->store('uploads', 'public'),           
+            'image' => $request->file('image')->store('uploads', 'public'),   
+            'images' => json_encode($imagesData)        
         ]);
+
+        $product->fill([
+            'slug' => $product->slug
+        ]);
+
+        
 
         foreach($request->style as $oneStyle) {
             $product->styles()->save($product, [
@@ -286,18 +318,20 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        
         $products = Product::all();
         $painters = Painter::all();
         $styles = Style::all();
         $materials = Material::all();
         $surfaces = Surface::all();
         $themes = Theme::all();
+        $product = Product::find($id);
 
         return view('account.paintings_edit')->with([
             'user' => Auth::user(),
@@ -321,10 +355,17 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $imagesArray = $request->file('images');
+
+        if(request()->hasFile('images')) {
+            foreach($imagesArray as $oneImage) {
+                $imagesData[] = $oneImage->store('uploads', 'public');
+            }
+        }
+
+
         $product = Product::find($id);
-
-
-
 
         // Deleting style_product
         $oldStylesArray = [];
@@ -376,9 +417,51 @@ class ShopController extends Controller
 
 
         $product->fill($request->all());
+        
+        if($request->file('image') != null) {
+            $product->fill([
+                'image' => $request->file('image')->store('uploads', 'public')
+            ]);
+        }
+
+        if($request->file('images') != null) {
+            $product->fill([
+                'images' => json_encode($imagesData)
+            ]);
+        }
+        
         $product->save();
 
         \Session::flash('message', 'Картина была успешно обновлена');
+
+        foreach($request->style as $oneStyle) {
+            $product->styles()->save($product, [
+                'product_id' => $product->id, 
+                'style_id' => $oneStyle,
+            ]);
+        }
+
+        foreach($request->material as $oneMaterial) {
+            $product->materials()->save($product, [
+                'product_id' => $product->id, 
+                'material_id' => $oneMaterial,
+            ]);
+        }
+        
+        foreach($request->surface as $oneSurface) {
+            $product->surfaces()->save($product, [
+                'product_id' => $product->id, 
+                'surface_id' => $oneSurface,
+            ]);  
+        }
+
+        foreach($request->theme as $oneTheme) {
+            $product->themes()->save($product, [
+                'product_id' => $product->id, 
+                'theme_id' => $oneTheme,
+            ]);
+        }
+
 
         return redirect()->route('account.paintings');
     }

@@ -7,12 +7,24 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 use Auth;
 use CyrildeWit\EloquentViewable\Viewable;
 use TCG\Voyager\Traits\Resizable;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
     use Resizable;
     use SearchableTrait;
     use Viewable;
+    use Sluggable;
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
 
     /**
      * Searchable rules.
@@ -44,6 +56,7 @@ class Product extends Model
     protected $fillable = [
         'token',
         'name',
+        'slug',
         // 'style',
         // 'material',
         // 'surface',
@@ -53,7 +66,9 @@ class Product extends Model
         'year',
         'country',
         'price',
-        'description'
+        'description',
+        'image',
+        'images'
     ];
 
 

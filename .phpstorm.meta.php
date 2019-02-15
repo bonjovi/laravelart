@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-02-06 07:29:20.
+    * Generated on 2019-02-07 15:03:40.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -200,6 +201,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -355,6 +357,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -510,6 +513,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -665,6 +669,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -820,6 +825,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
@@ -975,6 +981,7 @@ namespace PHPSTORM_META {
         'command.widget.make' => \Arrilot\Widgets\Console\WidgetMakeCommand::class,
         'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
         'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
+        'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
         'cart' => \Gloudemans\Shoppingcart\Cart::class,
         'image' => \Intervention\Image\ImageManager::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,

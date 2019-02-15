@@ -30,7 +30,7 @@ jQuery( function() {
 } );
 </script>
 
-<form action="{{ route('account.paintings.update', $product->id) }}" method="POST">
+<form action="{{ route('account.paintings.update', $product->id) }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Название: </label>
@@ -40,8 +40,8 @@ jQuery( function() {
         <label for="name" class="text text_grey text_width100">Художник: </label>
         <input type="text" value="{{ $product->painter->full_name }}" name="painter" class="input">
         <div class="input-painters" style="display:none;">
-            @foreach($products as $product)
-                <div class="input-painter" style="display:none;" data-painter-id="{{ $product->painter->id }}"> {{ $product->painter->full_name }} </div>
+            @foreach($products as $oneproduct)
+                <div class="input-painter" style="display:none;" data-painter-id="{{ $oneproduct->painter->id }}"> {{ $oneproduct->painter->full_name }} </div>
             @endforeach
         </div>
     </div>
@@ -128,6 +128,25 @@ jQuery( function() {
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width100">Описание: </label>
         <textarea name="description" class="textarea" cols="30" rows="10">{{ $product->description }}</textarea>
+    </div>
+    <div class="control-group account__control-group">
+        <img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" width="100">
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Поменять основное фото:</label>
+        <input type="file" value="{{ productImage($product->image) }}" name="image" class="input">
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width100">Поменять дополнительные фото:</label>
+        <input type="file" value="" name="images[]" class="input" multiple>
+    </div>
+    <div class="control-group account__control-group">
+        <?php
+            $productImages = json_decode($product->images);
+        ?>
+        @foreach($productImages as $productImage)
+            <img src="{{ productImage($productImage) }}" alt="" width="100">
+        @endforeach
     </div>
     <input type="submit" value="Обновить" class="button account__savebutton">
 </form>

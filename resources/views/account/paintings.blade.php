@@ -6,7 +6,7 @@
 <br><br><br><br>
 
 @if(Session::has('message'))
-<p class="text flash flash_success">{{ Session::get('message') }}</p>
+    <p class="text flash flash_success">{{ Session::get('message') }}</p>
 @endif
 
 <br><br>
@@ -19,8 +19,8 @@
         </div>
 
         <div class="account__paintingdesc">
-            <a href="#" class="title title_small">{{ $product->name }}</a>
-            <a href="#" class="text text_grey">{{ $product->painter->full_name }}</a>
+            <a href="{{ route('shop.show', $product->slug) }}" class="title title_small">{{ $product->name }}</a>
+            <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey">{{ $product->painter->full_name }}</a>
             <div class="title title_small">{{ $product->price }} руб.</div>
         </div>
 
