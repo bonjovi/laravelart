@@ -20,8 +20,22 @@
 
         <div class="account__paintingdesc">
             <a href="{{ route('shop.show', $product->slug) }}" class="title title_small">{{ $product->name }}</a>
-            <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey">{{ $product->painter->full_name }}</a>
-            <div class="title title_small">{{ $product->price }} руб.</div>
+            
+            @if(!isset($product->unknown_painter))
+                <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey">{{ $product->painter->full_name }}</a>
+            @else
+                <div class="text text_grey">{{ $product->unknown_painter }}</div>
+            @endif
+            
+            
+            <div class="title title_small">
+                @if($product->price != null)
+                    {{ $product->price }} 
+                @else
+                    {{ 0 }}
+                @endif
+                руб.
+            </div>
         </div>
 
         <div class="account__paintingcontrols">

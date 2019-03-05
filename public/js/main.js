@@ -1,5 +1,7 @@
 $(function() {
 
+    
+
     var sliderInputs = $('.slider__input');
     
 

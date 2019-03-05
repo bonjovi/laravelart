@@ -56,6 +56,8 @@ class Product extends Model
     protected $fillable = [
         'token',
         'name',
+        'painter_id',
+        'unknown_painter',
         'slug',
         // 'style',
         // 'material',

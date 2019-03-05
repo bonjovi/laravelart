@@ -25,6 +25,20 @@
 	    				</span>-->
                 </div>
                 @include('layouts.topmenu')
+
+                <div class="mobile-entrance">
+                    @if(Auth::user())
+                        <a href="{{ route('account.profile') }}" class="registrationLine__link registrationLine__link_useremail text text_small text_{{ $topmenuColor  }}">
+                            Личный кабинет
+                        </a>
+                        <a href="/logout" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">Выйти</a>
+                    @else
+                        <a href="/login" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">Вход</a>
+                        <span class="text text_small text_grey">&nbsp;или&nbsp;</span>
+                        <a href="/register" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">регистрация</a>
+                    @endif
+                </div>
+
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone topcontacts__phone_basegrey">

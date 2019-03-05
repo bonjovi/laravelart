@@ -10,6 +10,16 @@
     background: #fff;
     padding: 15px 25px;
     box-sizing: border-box;
+
+    &__for-inner {
+        margin-bottom: 90px;
+        margin-top: 20px;
+
+        @media only screen and (max-width: 640px) {
+            padding: 0 10px !important;
+        }
+        
+    }
     
     @media only screen and (max-width: 1200px) {
         margin-top: 35px;

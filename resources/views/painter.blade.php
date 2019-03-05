@@ -2,6 +2,17 @@
 
 @section('content')
 
+	<div class="search search__for-inner">
+		<form action="{{ route('search') }}" method="GET">
+			<div class="search__inputwrapper">
+				<input type="text" class="input" placeholder="Введите фамилию художника или название картины" name="query">
+			</div>
+			<button data-ripple class="button button_wide">
+				Искать
+			</button>
+		</form>
+	</div>
+
 	<!--<h1 class="title title_basegrey title_centered">{{ $painter->full_name }}</h1>-->
 
 	<div class="painters">
@@ -45,7 +56,7 @@
 								{{ $material->name }}
 							@endforeach
 						</div>
-						<div class="text text_grey text_small card__text">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
+						<div class="text text_grey text_small card__text">{{ $product->dimension_height }} x {{ $product->dimension_width }} см</div>
 						<div class="text text_grey text_small card__text">{{ $product->year }}</div>
 					</div>
 				</div><!-- /.card -->

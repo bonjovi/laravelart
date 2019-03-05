@@ -25,15 +25,16 @@
     
 
     @media only screen and (max-width: 1200px) {
-		width: 342px;
-
+		// width: 342px;
+		flex: 0 0 calc(50% - 12px);
+		width: calc(50% - 8px);
 		
 	}
 
-	@media only screen and (max-width: 768px) {
+	@media only screen and (max-width: 786px) {
 	    width: 100%;
 	    margin-right: 0;
-		flex-grow:1;
+		flex: 0 0 calc(100%);
 	    
 	}
 
@@ -85,6 +86,10 @@
 
 	&__content {
 		padding: 45px 30px 0 30px;
+
+		@media only screen and (max-width: 786px) {
+			padding: 35px 30px 30px 30px;
+		}
 	}
 
 	&__title {

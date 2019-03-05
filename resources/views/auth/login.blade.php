@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="login-wrapper" style="width: 500px; margin:0 auto;">
+    <div class="login-wrapper">
                 <h1 class="title title_centered">Вход</h1>
 
 
@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="button" style="margin-top: 20px;">
+                            <div class="">
+                                <button type="submit" class="button" style="margin-top: 20px; width: 100%;">
                                     Войти
                                 </button>
 

@@ -10,7 +10,7 @@ foreach($painters as $painter) {
 }
 ?>
 
-<link rel="stylesheet" href="/css/chosen.min.css">
+<link rel="stylesheet" href="/css/chosen.css">
 <script src="/js/chosen.jquery.min.js"></script>
 
 <script>
@@ -27,17 +27,25 @@ jQuery( function() {
     });
 
     jQuery("select[name^=style], select[name^=material], select[name^=surface], select[name^=theme]").chosen();
+
+    jQuery('input[name=dimension_width]').on('mouseout', function() {
+        jQuery(this).val(jQuery(this).val().replace(",", "."));
+    });
+
+    jQuery('input[name=dimension_height]').on('mouseout', function() {
+        jQuery(this).val(jQuery(this).val().replace(",", "."));
+    });
 } );
 </script>
 
 <form action="{{ route('account.paintings.update', $product->id) }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Название: </label>
+        <label for="name" class="text text_grey text_width120">Название: </label>
         <input type="text" value="{{ $product->name }}" name="name" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Художник: </label>
+        <label for="name" class="text text_grey text_width120">Художник: </label>
         <input type="text" value="{{ $product->painter->full_name }}" name="painter" class="input">
         <div class="input-painters" style="display:none;">
             @foreach($products as $oneproduct)
@@ -46,8 +54,8 @@ jQuery( function() {
         </div>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Стиль: </label>
-        <select name="style[]" multiple>
+        <label for="name" class="text text_grey text_width120">Стиль: </label>
+        <select name="style[]" multiple style="width: 100%;">
             @foreach($styles as $style)
                 <option 
                     @foreach($product->styles as $oneStyle)
@@ -61,8 +69,8 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Материал: </label>
-        <select name="material[]" multiple>
+        <label for="name" class="text text_grey text_width120">Материал: </label>
+        <select name="material[]" multiple style="width: 100%;">
             @foreach($materials as $material)
                 <option 
                     @foreach($product->materials as $oneMaterial)
@@ -76,8 +84,8 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Поверхность: </label>
-        <select name="surface[]" multiple>
+        <label for="name" class="text text_grey text_width120">Поверхность: </label>
+        <select name="surface[]" multiple style="width: 100%;">
             @foreach($surfaces as $surface)
                 <option 
                     @foreach($product->surfaces as $oneSurface)
@@ -91,8 +99,8 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Тема: </label>
-        <select name="theme[]" multiple>
+        <label for="name" class="text text_grey text_width120">Тема: </label>
+        <select name="theme[]" multiple style="width: 100%;">
             @foreach($themes as $theme)
                 <option 
                     @foreach($product->themes as $oneTheme)
@@ -106,47 +114,55 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Ширина: </label>
-        <input type="text" value="{{ $product->dimension_width }}" name="dimension_width" class="input">
-    </div>
-    <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Высота: </label>
+        <label for="name" class="text text_grey text_width120">Высота: </label>
         <input type="text" value="{{ $product->dimension_height }}" name="dimension_height" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Год: </label>
+        <label for="name" class="text text_grey text_width120">Ширина: </label>
+        <input type="text" value="{{ $product->dimension_width }}" name="dimension_width" class="input">
+    </div>
+    <div class="control-group account__control-group">
+        <label for="name" class="text text_grey text_width120">Год: </label>
         <input type="text" value="{{ $product->year }}" name="year" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Страна: </label>
+        <label for="name" class="text text_grey text_width120">Страна: </label>
         <input type="text" value="{{ $product->country }}" name="country" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Цена: </label>
+        <label for="name" class="text text_grey text_width120">Цена: </label>
         <input type="text" value="{{ $product->price }}" name="price" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Описание: </label>
+        <label for="name" class="text text_grey text_width120">Описание: </label>
         <textarea name="description" class="textarea" cols="30" rows="10">{{ $product->description }}</textarea>
     </div>
     <div class="control-group account__control-group">
-        <img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" width="100">
+        <div class="control-group__attached-image">
+            <img src="{{ productImage($product->image) }}" alt="{{ $product->name }}">
+        </div>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Поменять основное фото:</label>
+        <label for="name" class="text text_grey text_width120">Поменять основное фото:</label>
         <input type="file" value="{{ productImage($product->image) }}" name="image" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Поменять дополнительные фото:</label>
+        <label for="name" class="text text_grey text_width120">Поменять дополнительные фото:</label>
         <input type="file" value="" name="images[]" class="input" multiple>
     </div>
     <div class="control-group account__control-group">
         <?php
             $productImages = json_decode($product->images);
         ?>
-        @foreach($productImages as $productImage)
-            <img src="{{ productImage($productImage) }}" alt="" width="100">
-        @endforeach
+        <div class="control-group__attached-images">
+            @if(is_array($productImages))
+                @foreach($productImages as $productImage)
+                    <div class="control-group__attached-image">
+                        <img src="{{ productImage($productImage) }}" alt="">
+                    </div>
+                @endforeach
+            @endif
+        </div>
     </div>
     <input type="submit" value="Обновить" class="button account__savebutton">
 </form>

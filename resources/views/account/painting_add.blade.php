@@ -10,7 +10,7 @@ foreach($painters as $painter) {
 }
 ?>
 
-<link rel="stylesheet" href="/css/chosen.min.css">
+<link rel="stylesheet" href="/css/chosen.css">
 <script src="/js/chosen.jquery.min.js"></script>
 
 <script>
@@ -21,12 +21,24 @@ jQuery( function() {
         source: painters
     });
 
-    jQuery('input[type=submit]').on('click', function(e) {
+    jQuery('.input-painter').on('click', function(e) {
         //e.preventDefault();
-        jQuery('input[name=painter]').val(jQuery('div[data-painter-id]').attr('data-painter-id'));
+        //console.log(jQuery(this));
+        //jQuery('input[name=painter_id]').val(jQuery(this).attr('data-painter-id'));
     });
 
     jQuery("select[name^=style], select[name^=material], select[name^=surface], select[name^=theme]").chosen();
+
+    jQuery('.tooltip').tooltipster();
+
+
+    jQuery('input[name=dimension_width]').on('mouseout', function() {
+        jQuery(this).val(jQuery(this).val().replace(",", "."));
+    });
+
+    jQuery('input[name=dimension_height]').on('mouseout', function() {
+        jQuery(this).val(jQuery(this).val().replace(",", "."));
+    });
 } );
 </script>
 <br>
@@ -34,87 +46,132 @@ jQuery( function() {
     <p class="text flash flash_success">{{ $error }}</p>
 @endforeach
 <br>
-<form action="{{ route('account.painting.store') }}" method="POST" enctype="multipart/form-data">
+<form role="form" action="{{ route('account.painting.store') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Название: </label>
-        <input type="text" value="" name="name" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Название*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Введите название картины">
+        </label>
+        <input type="text" name="name" value="{{ old('name') }}" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Художник: </label>
-        <input type="text" value="" name="painter" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Художник*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Введите ФИО художника">
+        </label>
+        <input type="text" value="{{ old('painter') }}" name="painter" class="input">
+        
         <div class="input-painters" style="display:none;">
-            @foreach($products as $product)
-                <div class="input-painter" style="display:none;" data-painter-id="{{ $product->painter->id }}"> {{ $product->painter->full_name }} </div>
+            @foreach($painters as $painter)
+                <div class="input-painter" style="display:none;" data-painter-id="{{ $painter->id }}"> {{ $painter->full_name }} </div>
             @endforeach
         </div>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Стиль: </label>
-        <select name="style[]" multiple data-placeholder="Укажите одно или несколько значений">
+        <label for="name" class="text text_grey text_width120">
+            Стиль*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите один или несколько стилей для картины из нашего списка">
+        </label>
+        <select name="style[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($styles as $style)
-                <option value="{{ $style->id }}">{{ $style->name }}</option>
+                <option value="{{ $style->id }}" {{ (collect(old('style'))->contains($style->id)) ? 'selected':'' }}>{{ $style->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Материал: </label>
-        <select name="material[]" multiple data-placeholder="Укажите одно или несколько значений">
+        <label for="name" class="text text_grey text_width120">
+            Материал*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите чем была написана картина, выбрав один или несколько пунктов из нашего списка">
+        </label>
+        <select name="material[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($materials as $material)
-                <option value="{{ $material->id }}">{{ $material->name }}</option>
+                <option value="{{ $material->id }}" {{ (collect(old('material'))->contains($material->id)) ? 'selected':'' }}>{{ $material->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Поверхность: </label>
-        <select name="surface[]" multiple data-placeholder="Укажите одно или несколько значений">
+        <label for="name" class="text text_grey text_width120">
+            Поверхность*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите на какой поверхности была написана картина, выбрав один или несколько пунктов из нашего списка">
+        </label>
+        <select name="surface[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($surfaces as $surface)
-                <option value="{{ $surface->id }}">{{ $surface->name }}</option>
+                <option value="{{ $surface->id }}" {{ (collect(old('surface'))->contains($surface->id)) ? 'selected':'' }}>{{ $surface->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Тема: </label>
-        <select name="theme[]" multiple data-placeholder="Укажите одно или несколько значений">
+        <label for="name" class="text text_grey text_width120">
+            Тема*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите одну или несколько тем для картины из нашего списка">
+        </label>
+        <select name="theme[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($themes as $theme)
-                <option value="{{ $theme->id }}">{{ $theme->name }}</option>
+                <option value="{{ $theme->id }}" {{ (collect(old('theme'))->contains($theme->id)) ? 'selected':'' }}>{{ $theme->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Ширина: </label>
-        <input type="text" value="" name="dimension_width" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Высота*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите высоту картины в сантиметрах">
+        </label>
+        <input type="text" value="{{ old('dimension_height') }}" name="dimension_height" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Высота: </label>
-        <input type="text" value="" name="dimension_height" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Ширина*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите ширину картины в сантиметрах">
+        </label>
+        <input type="text" value="{{ old('dimension_width') }}" name="dimension_width" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Год: </label>
-        <input type="text" value="" name="year" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Год:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите год написания картины">
+        </label>
+        <input type="text" value="{{ old('year') }}" name="year" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Страна: </label>
-        <input type="text" value="" name="country" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Страна:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите страну, где была написана картина">
+        </label>
+        <input type="text" value="{{ old('country') }}" name="country" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Цена: </label>
-        <input type="text" value="" name="price" class="input">
+        <label for="name" class="text text_grey text_width120">
+            Цена:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите цену картины в рублях">
+        </label>
+        <input type="text" value="{{ old('price') }}" name="price" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Описание: </label>
-        <textarea name="description" class="textarea" cols="30" rows="10"></textarea>
+        <label for="name" class="text text_grey text_width120">
+            Описание:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите в свободной форме любую информацию о картине">
+        </label>
+        <textarea name="description" class="textarea" cols="30" rows="10">{{ old('description') }}</textarea>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Фото:</label>
+        <label for="name" class="text text_grey text_width120">
+            Фото*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Прикрепите одно основное фото картины">
+        </label>
         <input type="file" value="" name="image" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width100">Дополнительные фото:</label>
+        <label for="name" class="text text_grey text_width120">
+            Дополнительные фото:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Прикрепите (по желанию) несколько дополнительных фото картины">
+        </label>
         <input type="file" value="" name="images[]" class="input" multiple>
     </div>
     
     <input type="submit" value="Обновить" class="button account__savebutton">
 </form>
+<br><br>
+<div class="text text_xsmall">* Звёздочкой отмечены поля, обязательные для заполнения</div>
 
 @endsection

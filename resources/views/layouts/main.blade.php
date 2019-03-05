@@ -38,6 +38,20 @@ $(function() {
 	    				</span>-->
                 </div>
                 @include('layouts.topmenu')
+
+                <div class="mobile-entrance">
+                    @if(Auth::user())
+                        <a href="{{ route('account.profile') }}" class="registrationLine__link registrationLine__link_useremail text text_small text_{{ $topmenuColor  }}">
+                            Личный кабинет
+                        </a>
+                        <a href="/logout" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">Выйти</a>
+                    @else
+                        <a href="/login" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">Вход</a>
+                        <span class="text text_small text_grey">&nbsp;или&nbsp;</span>
+                        <a href="/register" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">регистрация</a>
+                    @endif
+                </div>
+                
             </div>
             <div class="topcontacts">
                 <div class="topcontacts__phone">
@@ -134,23 +148,38 @@ $(function() {
             @endif
             @foreach ($products as $product)
             <div class="card {{ Request::get('min_price') ? 'card_twoinrow' : '' }}">
-                <div class="card__pic">
-                    <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
-                        <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
-                    </a>
-                    <div class="card__coloredbg" style="opacity: 1;">
-                        <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
+                @if($product->user->role_id == 1)
+                    <div class="card__pic">
+                        <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
+                            <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
+                        </a>
+                        <div class="card__coloredbg" style="opacity: 1;">
+                            <img data-ripple class="card__img" data-src="{{Voyager::image($product->thumbnail('small'))}}" alt="">
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="card__pic">
+                        <a class="card__piclink" href="{{ route('shop.show', $product->slug) }}">
+                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                        </a>
+                        <div class="card__coloredbg" style="opacity: 1;">
+                            <img data-ripple class="card__img" data-src="{{ productImage($product->image) }}" alt="">
+                        </div>
+                    </div>
+                @endif
                 <div class="card__content">
                     <a class="title title_small card__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                    <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey text_small card__text card__text_painter">{{ $product->painter->full_name }}</a>
+                    @if(!isset($product->unknown_painter))
+                        <a href="{{ route('painters.show', $product->painter->id) }}" class="text text_grey card__text_painter">{{ $product->painter->full_name }}</a>
+                    @else
+                        <div class="text text_grey card__text_painter">{{ $product->unknown_painter }}</div>
+                    @endif
                     <div class="text text_grey text_small card__text">
                         @foreach ($product->materials as $material)
                             {{ $material->name }}
                         @endforeach
                     </div>
-                    <div class="text text_grey text_small card__text">{{ $product->dimension_width }} x {{ $product->dimension_height }} см</div>
+                    <div class="text text_grey text_small card__text">{{ $product->dimension_height }} x {{ $product->dimension_width }} см</div>
                     <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                 </div>
             </div><!-- /.card -->

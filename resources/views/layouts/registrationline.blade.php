@@ -1,7 +1,7 @@
 <div class="registrationLine registrationLine_{{ $layoutName  }}">
     @if(Auth::user())
         <a href="{{ route('account.profile') }}" class="registrationLine__link registrationLine__link_useremail text text_small text_{{ $topmenuColor  }}">
-            {{ Auth::user()->email }}
+            Личный кабинет
         </a>
         <a href="/logout" class="registrationLine__link text text_small text_{{ $topmenuColor  }}">Выйти</a>
     @else

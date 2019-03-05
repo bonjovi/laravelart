@@ -141,6 +141,30 @@ class ShopController extends Controller
         $max_price = Product::max('price');
 
 
+
+
+        $min_width = Product::min('dimension_width');
+        $max_width = Product::max('dimension_width');
+
+        $min_height = Product::min('dimension_height');
+        $max_height = Product::max('dimension_height');
+
+        if($request->min_width && $request->max_width){
+            $products = $products->where('dimension_width','>=',$request->min_width);
+            $products = $products->where('dimension_width','<=',$request->max_width);
+            $products = $products->where('dimension_height','>=',$request->min_height);
+            $products = $products->where('dimension_height','<=',$request->max_height);
+        } else {
+            $products = $products->where('dimension_width','>=',$min_width);
+            $products = $products->where('dimension_width','<=',$max_width);
+            $products = $products->where('dimension_height','>=',$min_height);
+            $products = $products->where('dimension_height','<=',$max_height);
+        }
+
+
+
+
+
         $products = $products->paginate(27);
         
         count($products) == 0 ? $notfound = 'К сожалению, под эти параметры ничего не нашлось. Попробуйте изменить данные в фильтре.' : $notfound = '';
@@ -153,8 +177,12 @@ class ShopController extends Controller
             'materials' => $materials,
             'themes' => $themes,
             'surfaces' => $surfaces,
-            'min_price' => $min_price,
-            'max_price' => $max_price,
+            // 'min_price' => $min_price,
+            // 'max_price' => $max_price,
+            'min_width' => $min_width,
+            'max_width' => $max_width,
+            'min_height' => $min_height,
+            'max_height' => $max_height,
             'notfound' => $notfound,
             'filterVisibility' => $filterVisibility,
             'title' => 'Картины для дилеров',
@@ -208,31 +236,66 @@ class ShopController extends Controller
         // ]);
 
         $messages = [
-            'title.required' => 'Fuf давай need to know your e-mail address!',
+            'name.required' => 'Поле "Название" должно быть заполнено',
+            'name.min' => 'Поле "Название" должно быть длиной не менее 2-х символов',
+            'painter.required' => 'Поле "Художник" должно быть заполнено',
+            'style.required' => 'Поле "Стиль" должно быть заполнено',
+            'material.required' => 'Поле "Материал" должно быть заполнено',
+            'surface.required' => 'Поле "Поверхность" должно быть заполнено',
+            'theme.required' => 'Поле "Тема" должно быть заполнено',
+            'dimension_width.required' => 'Поле "Ширина" должно быть заполнено',
+            'dimension_width.numeric' => 'Поле "Ширина" должно быть числом',
+            'dimension_height.required' => 'Поле "Высота" должно быть заполнено',
+            'dimension_height.numeric' => 'Поле "Высота" должно быть числом',
+            'image.required' => 'Поле "Фото" должно быть заполнено',
+            'price.numeric' => 'Поле "Цена" должно быть числом',
+            'year.numeric' => 'Поле "Год" должно быть числом',
         ];
 
         $v = \Validator::make($request->all(), [
-            'title' => 'required'
+            'name' => 'required|min:2',
+            'painter' => 'required',
+            'style' => 'required',
+            'material' => 'required',
+            'surface' => 'required',
+            'theme' => 'required',
+            'dimension_width' => 'required|numeric',
+            'dimension_height' => 'required|numeric',
+            'image' => 'required',
+            'price' => 'nullable|numeric',
+            'year' => 'nullable|numeric'
+
         ], $messages);
     
         if ($v->fails())
         {
-            return redirect()->back()->withErrors($v->errors());
+            return redirect()->back()->withErrors($v->errors())->withInput();
         }
         //$path = $request->file('image')->store('uploads', 'public');
         //echo $path; die;
         
-        
-        $imagesArray = $request->file('images');
+        if($request->file('images') != null) {
+            $imagesArray = $request->file('images');
 
-        if(request()->hasFile('images')) {
-            foreach($imagesArray as $oneImage) {
-                $imagesData[] = $oneImage->store('uploads', 'public');
+            if(request()->hasFile('images')) {
+                foreach($imagesArray as $oneImage) {
+                    $imagesData[] = $oneImage->store('uploads', 'public');
+                }
             }
+        } else {
+            $imagesData = '';
         }
+        
+        
+        
+        
+        
+        
+        
 
-       $product = Product::create([
+        $product = Product::create([
             'name' => $request->name,
+            //'painter_id' => (int)$painter_id->id,
             //'style' => $request->style,
             // 'material' => $request->material,
             // 'surface' => $request->surface,
@@ -247,9 +310,44 @@ class ShopController extends Controller
             'images' => json_encode($imagesData)        
         ]);
 
+
+
+
+
+        $painter_lastname = substr($request->painter, 0, strpos($request->painter, ' ' ));
+        
+        $painter_existing = Painter::where('lastname', $painter_lastname)->first();
+        //var_dump($painter_id->id); die;
+        if(isset($painter_existing->id)) {
+            $painter_id = $painter_existing->id;
+        } else {
+            $painter_id = 21;
+
+            $product->fill([
+                'unknown_painter' => $request->painter
+            ]);
+
+            \Mail::send('emails.unknownpainter', [
+                'painter' => $request->painter
+            ], function($message)
+            {
+                $message->to(config('mail.username'), config('mail.from.name'))->subject('Посетитель добавил картину с неизвестным художником');
+            });
+        }
+
+
+
+
+
         $product->fill([
             'slug' => $product->slug
         ]);
+
+        $product->fill([
+            'painter_id' => (int)$painter_id
+        ]);
+
+        
 
         
 

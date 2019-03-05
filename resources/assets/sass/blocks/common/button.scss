@@ -17,9 +17,11 @@
     color: #FFFFFF;
     text-decoration: none;
     display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
 
     @media only screen and (max-width: 640px) {
-        width: 555%;
+        width: 100%;
         margin-bottom: 10px;
     }  
 

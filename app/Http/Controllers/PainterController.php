@@ -14,7 +14,7 @@ class PainterController extends Controller
      */
     public function index()
     {
-        $painters = Painter::inRandomOrder()->take(8)->get();
+        $painters = Painter::inRandomOrder()->take(100)->get();
 
         return view('painters')->with([
             'painters' => $painters

@@ -1,4 +1,26 @@
 .control-group {
     display: flex;
     align-items: center;
+
+    &__tooltip {
+        width: 12px;
+        opacity: 0.2;
+    }
+
+    &__attached-images {
+        display: flex;
+    }
+
+    &__attached-image {
+        width: 100px;
+        height: 100px;
+
+        & img {
+            width: 100%;
+            height: inherit;
+            object-fit: cover;
+        }
+    }
+    
 }
+
