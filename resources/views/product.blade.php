@@ -51,7 +51,7 @@
 						<div class="productGallery__thumbnail productGallery__thumbnail_active">
 							<img src="{{ productImageWatermark($product->image) }}" alt="product">
 						</div>
-						@if(is_array($product->images))
+						@if(isset($product->images))
 							@foreach (json_decode($product->images, true) as $image)
 								<div class="productGallery__thumbnail">
 									<img src="{{ productImage($image) }}" alt="product">

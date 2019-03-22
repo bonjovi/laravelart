@@ -81,7 +81,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width120">
-            Материал*:
+            Техника*:
             <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите чем была написана картина, выбрав один или несколько пунктов из нашего списка">
         </label>
         <select name="material[]" multiple data-placeholder=" " style="width: 100%;">
@@ -92,8 +92,8 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width120">
-            Поверхность*:
-            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите на какой поверхности была написана картина, выбрав один или несколько пунктов из нашего списка">
+            Основа*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите на какой основе была написана картина, выбрав один или несколько пунктов из нашего списка">
         </label>
         <select name="surface[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($surfaces as $surface)
@@ -103,8 +103,8 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width120">
-            Тема*:
-            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите одну или несколько тем для картины из нашего списка">
+            Сюжет*:
+            <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите один или несколько сюжетов для картины из нашего списка">
         </label>
         <select name="theme[]" multiple data-placeholder=" " style="width: 100%;">
             @foreach($themes as $theme)
@@ -135,7 +135,7 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width120">
-            Страна:
+            Местонахождение/город:
             <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите страну, где была написана картина">
         </label>
         <input type="text" value="{{ old('country') }}" name="country" class="input">
@@ -168,8 +168,18 @@ jQuery( function() {
         </label>
         <input type="file" value="" name="images[]" class="input" multiple>
     </div>
+    <br><br>
+    <div class="control-group account__control-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="is_for_dealers" class="checkbox" value="1">
+                <span class="checkbox-material"><span class="check"></span></span>
+                <span class="text">Только для дилеров <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Если стоит галочка, это обозначает, что картина будет отображена в закрытом дилерском разделе"></span>
+            </label>
+        </div>
+    </div>
     
-    <input type="submit" value="Обновить" class="button account__savebutton">
+    <input type="submit" value="Сохранить" class="button account__savebutton">
 </form>
 <br><br>
 <div class="text text_xsmall">* Звёздочкой отмечены поля, обязательные для заполнения</div>

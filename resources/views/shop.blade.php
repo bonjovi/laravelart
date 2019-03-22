@@ -108,11 +108,17 @@
                             <div class="text text_grey card__text_painter">{{ $product->unknown_painter }}</div>
                         @endif
 
-                        <div class="text text_grey text_small card__text">
-                            @foreach ($product->materials as $material)
-                                {{ $material->name }}
-                            @endforeach
-                        </div>
+                        @if($product->materials)
+                            <div class="text text_grey text_small card__text">
+                                @foreach ($product->materials as $material)
+                                    <?php $allmaterials[] = $material->name; ?>
+                                @endforeach
+                                <?php $allmaterials = array_unique($allmaterials); ?>
+                                @foreach ($allmaterials as $material)
+                                    {{ $material }}
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="text text_grey text_small card__text">{{ $product->dimension_height }} x {{ $product->dimension_width }} см</div>
                         <div class="text text_grey text_small card__text">{{ $product->year }}</div>
                     </div>

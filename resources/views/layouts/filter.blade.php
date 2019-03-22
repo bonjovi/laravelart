@@ -80,7 +80,7 @@
 
     <div class="filter__section">
         <div class="title title_small filter__title">
-            Краска
+            Техника
             <i class="material-icons">remove</i>
         </div>
 
@@ -102,7 +102,7 @@
 
     <div class="filter__section">
         <div class="title title_small filter__title">
-             Поверхность
+             Основа
             <i class="material-icons">remove</i>
         </div>
 
@@ -124,7 +124,7 @@
 
     <div class="filter__section">
         <div class="title title_small filter__title">
-            Темы
+            Сюжет
             <i class="material-icons">remove</i>
         </div>
 

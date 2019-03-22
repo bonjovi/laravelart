@@ -11,40 +11,19 @@
                         <a class="text text_small text_grey footer__link" href="/about">О проекте</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Художники</a>
+                        <a class="text text_small text_grey footer__link" href="/shop">Картины</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Аукцион</a>
+                        <a class="text text_small text_grey footer__link" href="/painters">Художники</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="#">Галерея</a>
+                        <a class="text text_small text_grey footer__link" href="/dealer">Дилерский раздел</a>
                     </li>
                     <li class="footer__listitem">
                         <a class="text text_small text_grey footer__link" href="/faq">FAQ</a>
                     </li>
                     <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/personal">Персональные данные</a>
-                    </li>
-                    <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/sitemap">Карта сайта</a>
-                    </li>
-                </ul>
-            </div><!-- /.footer__section -->
-
-            <div class="footer__section">
-                <div class="title title_white footer__title">Покупателям</div>
-                <ul class="footer__list">
-                    <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/delivery">Доставка</a>
-                    </li>
-                    <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/payment">Способы оплаты</a>
-                    </li>
-                    <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/guarantees">Гарантии</a>
-                    </li>
-                    <li class="footer__listitem">
-                        <a class="text text_small text_grey footer__link" href="/support">Поддержка</a>
+                        <a class="text text_small text_grey footer__link" href="/contacts">Контакты</a>
                     </li>
                 </ul>
             </div><!-- /.footer__section -->

@@ -17,13 +17,13 @@ foreach($painters as $painter) {
 jQuery( function() {
     var painters = <?=json_encode($paintersArray)?>;
 
-    jQuery( "input[name=painter]" ).autocomplete({
+    jQuery( "input.painter-input" ).autocomplete({
         source: painters
     });
 
     jQuery('input[type=submit]').on('click', function(e) {
         //e.preventDefault();
-        jQuery('input[name=painter]').val(jQuery('div[data-painter-id]').attr('data-painter-id'));
+        //jQuery('input.painter-input').val(jQuery('div[data-painter-id]').attr('data-painter-id'));
     });
 
     jQuery("select[name^=style], select[name^=material], select[name^=surface], select[name^=theme]").chosen();
@@ -46,7 +46,16 @@ jQuery( function() {
     </div>
     <div class="control-group account__control-group">
         <label for="name" class="text text_grey text_width120">Художник: </label>
-        <input type="text" value="{{ $product->painter->full_name }}" name="painter" class="input">
+
+        <?php
+        if($product->painter_id == 21) {
+            $painterName = $product->unknown_painter;
+        } else {
+            $painterName = $product->painter->full_name;
+        }
+        ?>
+
+        <input type="text" value="{{ $painterName }}" name="painter" class="input painter-input">
         <div class="input-painters" style="display:none;">
             @foreach($products as $oneproduct)
                 <div class="input-painter" style="display:none;" data-painter-id="{{ $oneproduct->painter->id }}"> {{ $oneproduct->painter->full_name }} </div>
@@ -69,7 +78,7 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width120">Материал: </label>
+        <label for="name" class="text text_grey text_width120">Техника: </label>
         <select name="material[]" multiple style="width: 100%;">
             @foreach($materials as $material)
                 <option 
@@ -84,7 +93,7 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width120">Поверхность: </label>
+        <label for="name" class="text text_grey text_width120">Основа: </label>
         <select name="surface[]" multiple style="width: 100%;">
             @foreach($surfaces as $surface)
                 <option 
@@ -99,7 +108,7 @@ jQuery( function() {
         </select>
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width120">Тема: </label>
+        <label for="name" class="text text_grey text_width120">Сюжет: </label>
         <select name="theme[]" multiple style="width: 100%;">
             @foreach($themes as $theme)
                 <option 
@@ -126,7 +135,7 @@ jQuery( function() {
         <input type="text" value="{{ $product->year }}" name="year" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width120">Страна: </label>
+        <label for="name" class="text text_grey text_width120">Местонахождение/город: </label>
         <input type="text" value="{{ $product->country }}" name="country" class="input">
     </div>
     <div class="control-group account__control-group">
@@ -162,6 +171,15 @@ jQuery( function() {
                     </div>
                 @endforeach
             @endif
+        </div>
+    </div>
+    <br><br>
+    <div class="control-group account__control-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="is_for_dealers" class="checkbox" value="1" <?php if($product->is_for_dealers == 1) echo 'checked' ?>>
+                <span class="checkbox-material"><span class="check"></span></span>
+            </label>
         </div>
     </div>
     <input type="submit" value="Обновить" class="button account__savebutton">

@@ -70,7 +70,8 @@ class Product extends Model
         'price',
         'description',
         'image',
-        'images'
+        'images',
+        'is_for_dealers'
     ];
 
 

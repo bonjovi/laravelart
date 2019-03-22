@@ -290,7 +290,7 @@ class ShopController extends Controller
         
         
         
-        
+        //var_dump($request->is_for_dealers); die;
         
 
         $product = Product::create([
@@ -307,7 +307,8 @@ class ShopController extends Controller
             'price' => $request->price, 
             'description' => $request->description, 
             'image' => $request->file('image')->store('uploads', 'public'),   
-            'images' => json_encode($imagesData)        
+            'images' => json_encode($imagesData),
+            'is_for_dealers' => ($request->is_for_dealers != NULL) ? $request->is_for_dealers : '0'
         ]);
 
 
@@ -466,48 +467,16 @@ class ShopController extends Controller
         $product = Product::find($id);
 
         // Deleting style_product
-        $oldStylesArray = [];
-        foreach($product->styles as $oneOldStyle) {
-            $oldStylesArray[] = $oneOldStyle->id;
-        }
-
-        $styleDiff = array_diff($oldStylesArray, $request->style);
-        foreach($styleDiff as $styleOneDiff) {
-            DB::table('style_product')->where(['product_id' => $id])->where(['style_id' => $styleOneDiff])->delete();
-        }
+        DB::table('style_product')->where(['product_id' => $id])->delete();
 
         // Deleting material_product
-        $oldMaterialsArray = [];
-        foreach($product->materials as $oneOldMaterial) {
-            $oldMaterialsArray[] = $oneOldMaterial->id;
-        }
-
-        $materialDiff = array_diff($oldMaterialsArray, $request->material);
-        foreach($materialDiff as $materialOneDiff) {
-            DB::table('material_product')->where(['product_id' => $id])->where(['material_id' => $materialOneDiff])->delete();
-        }
+        DB::table('material_product')->where(['product_id' => $id])->delete();
 
         // Deleting surface_product
-        $oldSurfacesArray = [];
-        foreach($product->surfaces as $oneOldSurface) {
-            $oldSurfacesArray[] = $oneOldSurface->id;
-        }
-
-        $surfaceDiff = array_diff($oldSurfacesArray, $request->surface);
-        foreach($surfaceDiff as $surfaceOneDiff) {
-            DB::table('surface_product')->where(['product_id' => $id])->where(['surface_id' => $surfaceOneDiff])->delete();
-        }
+        DB::table('surface_product')->where(['product_id' => $id])->delete();
 
         // Deleting theme_product
-        $oldThemesArray = [];
-        foreach($product->themes as $oneOldTheme) {
-            $oldThemesArray[] = $oneOldTheme->id;
-        }
-
-        $themeDiff = array_diff($oldThemesArray, $request->theme);
-        foreach($themeDiff as $themeOneDiff) {
-            DB::table('theme_product')->where(['product_id' => $id])->where(['theme_id' => $themeOneDiff])->delete();
-        }
+        DB::table('theme_product')->where(['product_id' => $id])->delete();
 
 
 
@@ -527,6 +496,53 @@ class ShopController extends Controller
                 'images' => json_encode($imagesData)
             ]);
         }
+
+
+        $painter_lastname = substr($request->painter, 0, strpos($request->painter, ' ' ));
+        
+        $painter_existing = Painter::where('lastname', $painter_lastname)->first();
+        //var_dump($painter_id->id); die;
+        if(isset($painter_existing->id)) {
+            $painter_id = $painter_existing->id;
+            $product->fill([
+                'painter_id' => (int)$painter_id
+            ]);
+            $product->fill([
+                'unknown_painter' => NULL
+            ]);
+        } else {
+            $painter_id = 21;
+
+            $product->fill([
+                'painter_id' => 21
+            ]);
+
+            $product->fill([
+                'unknown_painter' => $request->painter
+            ]);
+
+            \Mail::send('emails.unknownpainter', [
+                'painter' => $request->painter
+            ], function($message)
+            {
+                $message->to(config('mail.username'), config('mail.from.name'))->subject('Посетитель добавил картину с неизвестным художником');
+            });
+        }
+
+        $product->fill([
+            'slug' => $product->slug
+        ]);
+
+        $product->fill([
+            'is_for_dealers' => ($request->is_for_dealers != NULL) ? $request->is_for_dealers : '0'
+        ]);
+
+        
+
+
+
+
+
         
         $product->save();
 
@@ -559,6 +575,9 @@ class ShopController extends Controller
                 'theme_id' => $oneTheme,
             ]);
         }
+
+
+        
 
 
         return redirect()->route('account.paintings');

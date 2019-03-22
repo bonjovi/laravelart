@@ -2789,3 +2789,16 @@ select:-internal-autofill-selected {
   }
 }
 
+body {
+  font-family: 'Roboto';
+  font-size: 14px;
+}
+
+a {
+  color: #9C27B0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
