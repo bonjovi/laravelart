@@ -42,7 +42,7 @@
             <a href="{{ route('account.paintings') }}/{{ $product->id }}/edit">
                 <i class="material-icons">edit</i>
             </a>
-            <a href="{{ route('account.paintings') }}/{{ $product->id }}/delete">
+            <a href="{{ route('account.paintings') }}/{{ $product->id }}/delete" onclick="return confirm('Вы действительно хотите удалить картину?')">
                 <i class="material-icons">close</i>
             </a>
         </div>

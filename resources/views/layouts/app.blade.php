@@ -28,6 +28,8 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
     <script src="/js/jquery.lazyloadxt.js"></script>
     <script src="/js/tooltipster.bundle.min.js"></script>
+    <script src="/js/jquery.validate.js"></script>
+    <script src="/js/additional-methods.js"></script>
 
     
     

@@ -39,8 +39,108 @@ jQuery( function() {
     jQuery('input[name=dimension_height]').on('mouseout', function() {
         jQuery(this).val(jQuery(this).val().replace(",", "."));
     });
+
+    jQuery.validator.setDefaults({ ignore: ":hidden:not(select)" });
+
+    
+
+    jQuery('form').validate({
+        rules: {
+            name: {
+                required: true
+            },
+            painter: {
+                required: true
+            },
+            'style[]': {
+                required: true
+            },
+            'material[]': {
+                required: true
+            },
+            'surface[]': {
+                required: true
+            },
+            'theme[]': {
+                required: true
+            },
+            dimension_width: {
+                required: true,
+                number: true
+            },
+            dimension_height: {
+                required: true,
+                number: true
+            },
+            image: {
+                required: true
+            },
+            price: {
+                number: true
+            },
+            year: {
+                number: true
+            }
+        },
+        messages: {
+            name: {
+                required: "Поле 'Название' обязательно к заполнению",
+                minlength: "Введите не менее 2-х символов в поле 'Название'"
+            },
+            painter: {
+                required: "Поле 'Художник' обязательно к заполнению"
+            },
+            'style[]': {
+                required: "Поле 'Стиль' обязательно к заполнению"
+            },
+            'material[]': {
+                required: "Поле 'Техника' обязательно к заполнению"
+            },
+            'surface[]': {
+                required: "Поле 'Основа' обязательно к заполнению"
+            },
+            'theme[]': {
+                required: "Поле 'Сюжет' обязательно к заполнению"
+            },
+            dimension_width: {
+                required: "Поле 'Ширина' обязательно к заполнению",
+                number: "Поле 'Ширина' должно быть числом"
+            },
+            dimension_height: {
+                required: "Поле 'Высота' обязательно к заполнению",
+                number: "Поле 'Высота' должно быть числом"
+            },
+            image: {
+                required: "Поле 'Фото' обязательно к заполнению"
+            },
+            price: {
+                number: "Поле 'Цена' должно быть числом"
+            },
+            year: {
+                number: "Поле 'Год' должно быть числом"
+            }
+        }
+    });
+
+    
 } );
 </script>
+
+<style>
+form label.error {
+    position: absolute;
+    margin-left: 120px;
+    margin-top: 34px;
+    font-family: 'Roboto';
+    font-size: 11px;
+    color: #9c27b0;
+}
+
+input[name=image] ~ label.error {
+    margin-top: 28px;
+}
+</style>
+
 <br>
 @foreach($errors->all() as $error)
     <p class="text flash flash_success">{{ $error }}</p>
@@ -73,7 +173,7 @@ jQuery( function() {
             Стиль*:
             <img class="control-group__tooltip tooltip" src="{{ asset('img/information.svg') }}" title="Укажите один или несколько стилей для картины из нашего списка">
         </label>
-        <select name="style[]" multiple data-placeholder=" " style="width: 100%;">
+        <select name="style[]" multiple data-placeholder=" " style="width: 100%;" id="mySelect">
             @foreach($styles as $style)
                 <option value="{{ $style->id }}" {{ (collect(old('style'))->contains($style->id)) ? 'selected':'' }}>{{ $style->name }}</option>
             @endforeach
