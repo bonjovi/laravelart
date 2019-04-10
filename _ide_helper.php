@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.33 on 2019-02-07 15:03:40.
+ * Generated for Laravel 5.6.33 on 2019-04-08 15:03:28.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -6827,6 +6827,46 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
             return \Illuminate\Routing\Redirector::hasMacro($name);
+        }
+         
+    }
+
+    class Redis {
+        
+        /**
+         * Get a Redis connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @static 
+         */ 
+        public static function connection($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::connection($name);
+        }
+        
+        /**
+         * Resolve the given connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function resolve($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::resolve($name);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function connections()
+        {
+            return \Illuminate\Redis\RedisManager::connections();
         }
          
     }
@@ -14521,6 +14561,328 @@ namespace Gloudemans\Shoppingcart\Facades {
  
 }
 
+namespace Nahid\Talk\Facades { 
+
+    class Talk {
+        
+        /**
+         * set currently authenticated user id for global usage.
+         *
+         * @param int $id
+         * @return int|bool 
+         * @static 
+         */ 
+        public static function setAuthUserId($id = null)
+        {
+            return \Nahid\Talk\Talk::setAuthUserId($id);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function user($id = null)
+        {
+            return \Nahid\Talk\Talk::user($id);
+        }
+        
+        /**
+         * make sure is this conversation exist for this user with currently loggedin user.
+         *
+         * @param int $userId
+         * @return bool|int 
+         * @static 
+         */ 
+        public static function isConversationExists($userId)
+        {
+            return \Nahid\Talk\Talk::isConversationExists($userId);
+        }
+        
+        /**
+         * check the given user exist for the given conversation.
+         *
+         * @param int $conversationId
+         * @param int $userId
+         * @return bool 
+         * @static 
+         */ 
+        public static function isAuthenticUser($conversationId, $userId)
+        {
+            return \Nahid\Talk\Talk::isAuthenticUser($conversationId, $userId);
+        }
+        
+        /**
+         * send a message by using converstionid.
+         *
+         * @param int $conversationId
+         * @param string $message
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function sendMessage($conversatonId, $message)
+        {
+            return \Nahid\Talk\Talk::sendMessage($conversatonId, $message);
+        }
+        
+        /**
+         * create a new message by using receiverid.
+         *
+         * @param int $receiverId
+         * @param string $message
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function sendMessageByUserId($receiverId, $message)
+        {
+            return \Nahid\Talk\Talk::sendMessageByUserId($receiverId, $message);
+        }
+        
+        /**
+         * fetch all inbox for currently loggedin user with pagination.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function getInbox($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getInbox($order, $offset, $take);
+        }
+        
+        /**
+         * fetch all inbox with soft deleted message for currently loggedin user with pagination.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function getInboxAll($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getInboxAll($order, $offset, $take);
+        }
+        
+        /**
+         * its a alias of getInbox method.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function threads($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::threads($order, $offset, $take);
+        }
+        
+        /**
+         * its a alias of getInboxAll method.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function threadsAll($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::threadsAll($order, $offset, $take);
+        }
+        
+        /**
+         * fetch all conversation by using coversation id.
+         *
+         * @param int $conversationId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function getConversationsById($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsById($conversationId, $offset, $take);
+        }
+        
+        /**
+         * fetch all conversation with soft deleted messages by using coversation id.
+         *
+         * @param int $conversationId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function getConversationsAllById($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsAllById($conversationId, $offset, $take);
+        }
+        
+        /**
+         * create a new message by using sender id.
+         *
+         * @param int $senderId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getConversationsByUserId($senderId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsByUserId($senderId, $offset, $take);
+        }
+        
+        /**
+         * create a new message by using sender id.
+         *
+         * @param int $senderId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getConversationsAllByUserId($senderId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsAllByUserId($senderId, $offset, $take);
+        }
+        
+        /**
+         * its an alias of getConversationById.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessages($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessages($conversationId, $offset, $take);
+        }
+        
+        /**
+         * its an alias of getConversationAllById.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesAll($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesAll($conversationId, $offset, $take);
+        }
+        
+        /**
+         * its an alias by getConversationByUserId.
+         *
+         * @param int $senderId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesByUserId($userId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesByUserId($userId, $offset, $take);
+        }
+        
+        /**
+         * its an alias by getConversationAllByUserId.
+         *
+         * @param int $senderId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesAllByUserId($userId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesAllByUserId($userId, $offset, $take);
+        }
+        
+        /**
+         * read a single message by message id.
+         *
+         * @param int $messageId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function readMessage($messageId = null)
+        {
+            return \Nahid\Talk\Talk::readMessage($messageId);
+        }
+        
+        /**
+         * make a message as seen.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function makeSeen($messageId)
+        {
+            return \Nahid\Talk\Talk::makeSeen($messageId);
+        }
+        
+        /**
+         * get receiver information for this conversation.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\UserModel 
+         * @deprecated since version 2.0.0 Remove it from version 2.0.2
+         * @static 
+         */ 
+        public static function getReceiverInfo($conversationId)
+        {
+            return \Nahid\Talk\Talk::getReceiverInfo($conversationId);
+        }
+        
+        /**
+         * delete a specific message, its a softdelete process. All message stored in db.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteMessage($messageId)
+        {
+            return \Nahid\Talk\Talk::deleteMessage($messageId);
+        }
+        
+        /**
+         * permanently delete message for this id.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteForever($messageId)
+        {
+            return \Nahid\Talk\Talk::deleteForever($messageId);
+        }
+        
+        /**
+         * delete message threat or conversation by conversation id.
+         *
+         * @param int $id
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteConversations($id)
+        {
+            return \Nahid\Talk\Talk::deleteConversations($id);
+        }
+        
+        /**
+         * its an alias of deleteConversations.
+         *
+         * @param int $id
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteThread($id = null)
+        {
+            return \Nahid\Talk\Talk::deleteThread($id);
+        }
+         
+    }
+ 
+}
+
 namespace TCG\Voyager\Facades { 
 
     class Voyager {
@@ -17111,6 +17473,8 @@ namespace  {
 
     class Redirect extends \Illuminate\Support\Facades\Redirect {}
 
+    class Redis extends \Illuminate\Support\Facades\Redis {}
+
     class Request extends \Illuminate\Support\Facades\Request {}
 
     class Response extends \Illuminate\Support\Facades\Response {}
@@ -17142,6 +17506,8 @@ namespace  {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Cart extends \Gloudemans\Shoppingcart\Facades\Cart {}
+
+    class Talk extends \Nahid\Talk\Facades\Talk {}
 
     class Voyager extends \TCG\Voyager\Facades\Voyager {}
  

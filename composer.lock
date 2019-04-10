@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0f661734080aae6db5c78a99cee13c6",
+    "content-hash": "66781029649ade4b257366cdb6c9c8c0",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2374,6 +2374,76 @@
             "time": "2017-06-19T01:22:40+00:00"
         },
         {
+            "name": "nahid/talk",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nahid/talk.git",
+                "reference": "dcd6d06af234143a21723c052a95a9ebbb1403c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nahid/talk/zipball/dcd6d06af234143a21723c052a95a9ebbb1403c8",
+                "reference": "dcd6d06af234143a21723c052a95a9ebbb1403c8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": ">=5.0.0",
+                "illuminate/support": ">=5.0.0",
+                "nesbot/carbon": "^1.21",
+                "php": ">=5.5.9",
+                "predis/predis": "~1.1.1",
+                "pusher/pusher-php-server": "^3.0",
+                "sebastian-berc/repositories": "^1.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.1",
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nahid\\Talk\\TalkServiceProvider"
+                    ],
+                    "aliases": {
+                        "Talk": "Nahid\\Talk\\Facades\\Talk"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nahid\\Talk\\": "src/"
+                },
+                "files": [
+                    "src/helpers/talk.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nahid Bin Azhar",
+                    "email": "nahid.dns@gmail.com"
+                }
+            ],
+            "description": "Talk is a Laravel 5 based realtime messaging, chatting and conversation system. It helps to develop users messaging, chatting and conversations in easy way.",
+            "homepage": "https://github.com/nahid/talk",
+            "keywords": [
+                "chat",
+                "conversations",
+                "inbox",
+                "laravel",
+                "message",
+                "php",
+                "real-time",
+                "realtime"
+            ],
+            "time": "2018-07-02T18:15:17+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "1.25.0",
             "source": {
@@ -2567,6 +2637,56 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "psr/container",
@@ -2835,6 +2955,58 @@
             "time": "2018-06-10T17:57:20+00:00"
         },
         {
+            "name": "pusher/pusher-php-server",
+            "version": "dev-new-lib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/pusher-http-php.git",
+                "reference": "bd6e4cb32b7d93de9196d6e21ef266a8aeadf9a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/bd6e4cb32b7d93de9196d6e21ef266a8aeadf9a7",
+                "reference": "bd6e4cb32b7d93de9196d6e21ef266a8aeadf9a7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.x"
+            },
+            "suggest": {
+                "ext-curl": "Pusher will use a different HTTP adapter if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-new-lib": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pusher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Client code for the REST API",
+            "homepage": "https://github.com/pusher/pusher-http-php/",
+            "keywords": [
+                "http",
+                "pusher",
+                "rest",
+                "web service"
+            ],
+            "time": "2018-11-07T10:44:03+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.8.0",
             "source": {
@@ -2915,6 +3087,64 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "sebastian-berc/repositories",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SebastianBerc/Repositories.git",
+                "reference": "26e3041e4bdfabb22f2c46ee4362f152718eb444"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SebastianBerc/Repositories/zipball/26e3041e4bdfabb22f2c46ee4362f152718eb444",
+                "reference": "26e3041e4bdfabb22f2c46ee4362f152718eb444",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.0|~5.1",
+                "illuminate/database": "~5.0|~5.1",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.4",
+                "laracasts/testdummy": "^2.3",
+                "mockery/mockery": "^0.9.4",
+                "orchestra/testbench": "3.0.*",
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SebastianBerc\\Repositories\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Berć",
+                    "email": "contact@sebastian-berc.pl",
+                    "homepage": "http://sebastian-berc.pl/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexable Laravel ~5.0 Repository Library.",
+            "homepage": "https://github.com/SebastianBerc/Repositories",
+            "keywords": [
+                "league",
+                "repository"
+            ],
+            "time": "2015-10-09T22:53:54+00:00"
         },
         {
             "name": "seld/jsonlint",

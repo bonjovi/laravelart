@@ -15,11 +15,7 @@
         <a class="text text_middle accountmenu__link {{ Request::is('account/paintings') ? 'accountmenu__link_active' : '' }}" href="{{route('account.paintings')}}">Картины</a>
     </li>
 
-    <!--<li>
-        <a class="text text_middle accountmenu__link {{ Request::is('account/auctions') ? 'accountmenu__link_active' : '' }}" href="{{route('account.auctions')}}">Аукционы</a>
-    </li>
-
     <li>
-        <a class="text text_middle accountmenu__link {{ Request::is('account/favs') ? 'accountmenu__link_active' : '' }}" href="{{route('account.favs')}}">Избранное</a>
-    </li>-->
+        <a class="text text_middle accountmenu__link {{ Request::is('account/messages') ? 'accountmenu__link_active' : '' }}" href="{{route('account.messages')}}">Сообщения</a>
+    </li>
 </ul>

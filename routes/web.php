@@ -75,9 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.orders', ['user' => Auth::user(), 'title' => 'Заказы']);
     })->name('account.orders');
 
-    Route::get('/account/messages', function () {
-        return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
-    })->name('account.messages');
+    
 
     Route::get('/account/paintings', function () {
         return view('account.paintings', ['user' => Auth::user(), 'title' => 'Картины']);
@@ -104,9 +102,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-    Route::get('/account/auctions', function () {
-        return view('account.auctions', ['user' => Auth::user(), 'title' => 'Аукционы']);
-    })->name('account.auctions');
+    Route::get('/account/messages', function () {
+        return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
+    })->name('account.messages');
+
+
+
+
+
 
     Route::get('/account/favs', function () {
         return view('account.favs', ['user' => Auth::user(), 'title' => 'Избранное']);
@@ -114,7 +117,6 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::post('/account/profile', 'UserController@update')->name('user.update');
 });
-
 
 
 
