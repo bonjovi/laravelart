@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('account.messages');
 
+    Route::get('message/{id}', 'MessageController@chatHistory')->name('message.read');
+
 
 
 
