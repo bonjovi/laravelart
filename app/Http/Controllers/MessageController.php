@@ -13,7 +13,7 @@ class MessageController extends Controller
         $this->middleware('auth');
         Talk::setAuthUserId(Auth::id());
         //var_dump(Auth::user()->id); die;
-        View::composer('partials.peoplelist', function($view) {
+        View::composer('account.messages', function($view) {
             $threads = Talk::threads();
             $view->with(compact('threads'));
         });
