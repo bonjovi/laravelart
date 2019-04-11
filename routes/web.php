@@ -106,11 +106,16 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('account.messages');
 
-    Route::get('message/{id}', 'MessageController@chatHistory')->name('message.read');
+    Route::get('/message/{id}', 'MessageController@chatHistory', function () {
+        return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
+    })->name('message.read');
+
+    Route::post('/message/send', 'MessageController@ajaxSendMessage')->name('message.new');
+    Route::delete('message/delete/{id}', 'MessageController@ajaxDeleteMessage')->name('message.delete');
 
 
 
-
+    
 
 
     Route::get('/account/favs', function () {
@@ -119,6 +124,10 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::post('/account/profile', 'UserController@update')->name('user.update');
 });
+
+
+
+
 
 
 
