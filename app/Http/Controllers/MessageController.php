@@ -13,11 +13,26 @@ class MessageController extends Controller
         $this->middleware('auth');
         Talk::setAuthUserId(Auth::id());
         //var_dump(Auth::user()->id); die;
-        View::composer('account.messages', function($view) {
-            $threads = Talk::threads();
-            $view->with(compact('threads'));
-        });
+        // View::composer('account.messages', function($view) {
+        //     $threads = Talk::threads();
+        //     $view->with(compact('threads'));
+        // });
     }
+
+    public function index()
+    {
+        Talk::setAuthUserId(Auth::id());
+        $inboxes = Talk::getInbox();
+        //var_dump($inboxes); die;
+        //var_dump(Auth::id()); die;
+        $user = $user = User::find(Auth::id());
+        View::composer('account.messages', function($view) {
+            //$threads = Talk::threads();
+            $view->with(compact('inboxes', 'user'));
+        });
+        return view('account.messages', compact('inboxes', 'user'));
+    }
+
     public function chatHistory($id)
     {
         Talk::setAuthUserId(Auth::id());

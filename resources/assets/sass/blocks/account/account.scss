@@ -82,5 +82,48 @@
         }
     }
 
+    &__messages {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__message {
+        background-color: #faf8f8;
+        padding: 20px;
+        border-radius: 3px;
+    }
+
+    &__message-link {
+        text-decoration: none;
+        color: #3c4858;
+    }
+
+    &__message-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        & span:first-child {
+            display: flex;
+            align-items: flex-start;
+
+            & i {
+                margin-top: -6px;
+                color: #afadad;
+            }
+        }
+    }
+
+    &__message-name {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    &__message-time {
+        margin-left: 20px;
+        color: #afadad;
+    }
+
 
 }

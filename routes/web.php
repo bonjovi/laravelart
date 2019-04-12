@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-    Route::get('/account/messages', function () {
+    Route::get('/account/messages', 'MessageController@index', function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('account.messages');
 
