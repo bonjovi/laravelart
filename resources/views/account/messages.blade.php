@@ -4,7 +4,7 @@
 
 @if(count($inboxes) == 0)
     <div class="text">
-        У вас нет активных переписок
+        У вас нет активных диалогов
     </div>
 @else
     <ul class="account__messages">

@@ -1,0 +1,12 @@
+.contacts {
+    margin-top: 40px;
+
+    &__form {
+        width: 50%;
+        margin-top: 40px;
+
+        & input {
+            margin-right: 0;
+        }
+    }
+}

@@ -68,7 +68,7 @@
     </div><!-- /.footer__right -->
 
     <div class="copyright">
-        <div class="text text_small text_grey">© 2018 ArtMarket24. Все права защищены</div>
+        <div class="text text_small text_grey">© 2019 ArtMarket24. Все права защищены</div>
     </div>
 
 </footer>

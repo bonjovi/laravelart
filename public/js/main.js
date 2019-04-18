@@ -7,7 +7,6 @@ $(function() {
 
     $.each(sliderInputs, function(index, element){
         $(this).width((($(this).val().length + 1) * 8) + 'px');
-        console.log($('[name=min_price]').val());
     });
 
 
@@ -55,7 +54,11 @@ $(function() {
 			marginMin.value = values[handle];
 		}
 	});
-	// end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
+  // end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
+
+
+
+
 
 	$('.filter__title').on('click', function() {
 		$(this).next('.filter__sectioncontent').slideToggle();

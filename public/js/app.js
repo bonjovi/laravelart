@@ -47234,10 +47234,13 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 	// СЛАЙДЕР ЦЕН В ФИЛЬТРЕ
 	var slider = document.getElementById('slider');
 	var slider2 = document.getElementById('slider2');
+	var slider3 = document.getElementById('slider3');
 	var minimumWidth = document.getElementById('slider-margin-value-min-width').value;
 	var maximumWidth = document.getElementById('slider-margin-value-max-width').value;
 	var minimumHeight = document.getElementById('slider-margin-value-min-height').value;
 	var maximumHeight = document.getElementById('slider-margin-value-max-height').value;
+	var minimumYear = document.getElementById('slider-margin-value-min-year').value;
+	var maximumYear = document.getElementById('slider-margin-value-max-year').value;
 
 	noUiSlider.create(slider, {
 		start: [minimumWidth, maximumWidth],
@@ -47267,6 +47270,20 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 		})
 	});
 
+	noUiSlider.create(slider3, {
+		start: [minimumYear, maximumYear],
+		connect: true,
+		range: {
+			'min': parseInt(minimumYear),
+			'max': parseInt(maximumYear)
+		},
+		format: wNumb({
+			decimals: 0,
+			thousand: '',
+			postfix: ''
+		})
+	});
+
 	var widthMin = document.getElementById('slider-margin-value-min-width'),
 	    widthMax = document.getElementById('slider-margin-value-max-width');
 	slider.noUiSlider.on('update', function (values, handle) {
@@ -47284,6 +47301,16 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 			heightMax.value = values[handle];
 		} else {
 			heightMin.value = values[handle];
+		}
+	});
+
+	var yearMin = document.getElementById('slider-margin-value-min-year'),
+	    yearMax = document.getElementById('slider-margin-value-max-year');
+	slider3.noUiSlider.on('update', function (values, handle) {
+		if (handle) {
+			yearMax.value = values[handle];
+		} else {
+			yearMin.value = values[handle];
 		}
 	});
 	// end of СЛАЙДЕР ЦЕН В ФИЛЬТРЕ

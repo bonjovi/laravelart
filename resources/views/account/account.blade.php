@@ -22,7 +22,7 @@
         <!--<div class="account__pic">
             <img src="/public/img/account-not-found.png" alt="{{ $user->name }}">
         </div>-->
-        <h3 class="account__username title title_middle">{{ $user->name }}</h3>
+        <h3 class="account__username title title_middle">{{ Auth::user()->name }}</h3>
         @yield('rightmenu')
     </div>
 </div>

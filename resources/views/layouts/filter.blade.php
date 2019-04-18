@@ -146,6 +146,26 @@
 
     <div class="filter__section">
         <div class="title title_small filter__title">
+            Диапазон лет
+        </div>
+
+        <div class="filter__sectioncontent">
+            <div id="slider3" class="slider slider-info noUi-target noUi-ltr noUi-horizontal"></div>
+            <div class="slider__numbers">
+                <div class="slider__price">
+                    <input id="slider-margin-value-min-year" name="min_year" type="text" class="slider__input text text_small" value="{{ $min_year }}"/>
+                    <span class="text text_small">г.</span>
+                </div>
+                <div class="slider__price">
+                    <input id="slider-margin-value-max-year" name="max_year" type="text" class="slider__input text text_small" value="{{ $max_year }}"/>
+                    <span class="text text_small">г.</span>
+                </div>  
+            </div>
+        </div>
+    </div><!--/.filter__section-->
+
+    <div class="filter__section">
+        <div class="title title_small filter__title">
             Ширина
         </div>
 

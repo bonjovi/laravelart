@@ -7,8 +7,12 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Http\Request;
 
+use Socialite;
+
 class LoginController extends Controller
 {
+
+    
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -42,5 +46,24 @@ class LoginController extends Controller
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/login');
+    }
+
+
+
+
+
+
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        // $user->token;
     }
 }

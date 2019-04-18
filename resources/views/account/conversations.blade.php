@@ -2,48 +2,62 @@
 
 @section('accountcontent')
 
+<script>
+$(function() {
+    var div = $(".account__conversations");
+    div.scrollTop(div.prop('scrollHeight'));
+});
+</script>
 
-<div class="chat-history">
-    <ul id="talkMessages">
+<a href="{{ route('account.messages') }}" class="account__conversation-backlink">
+    <i class="material-icons">keyboard_backspace</i>
+    Назад ко всем диалогам
+</a>
+<br><br><br>
+<div class="title title_middle">
+    Диалог с пользователем: {{ $user->name }}
+</div>
 
+<ul class="account__conversations">
+    <div class="account__conversations-box">
         @foreach($messages as $message)
             @if($message->sender->id == auth()->user()->id)
-                <li class="clearfix" id="message-{{$message->id}}">
-                    <div class="message-data align-right">
-                        <span class="message-data-time" >{{$message->humans_time}} ago</span> &nbsp; &nbsp;
-                        <span class="message-data-name" >{{$message->sender->name}}</span>
-                        <a href="#" class="talkDeleteMessage" data-message-id="{{$message->id}}" title="Delete Message"><i class="fa fa-close"></i></a>
-                    </div>
-                    <div class="message other-message float-right">
-                        {{$message->message}}
+                <li class="account__conversation account__conversation_left" id="message-{{$message->id}}">
+                    <div class="account__conversation-wrapper">
+                        <div class="account__conversation-time">
+                            {{$message->created_at}}
+                        </div>
+                        <div class="message other-message float-right">
+                            {{$message->message}}
+                        </div>
                     </div>
                 </li>
             @else
 
-                <li id="message-{{$message->id}}">
-                    <div class="message-data">
-                        <span class="message-data-name"> <a href="#" class="talkDeleteMessage" data-message-id="{{$message->id}}" title="Delete Messag"><i class="fa fa-close" style="margin-right: 3px;"></i></a>{{$message->sender->name}}</span>
-                        <span class="message-data-time">{{$message->humans_time}} ago</span>
-                    </div>
-                    <div class="message my-message">
-                        {{$message->toHtmlString()}}
+                <li class="account__conversation account__conversation_right" id="message-{{$message->id}}">
+                    <div class="account__conversation-wrapper">
+                        <div class="account__conversation-time">
+                            {{$message->created_at}}
+                        </div>
+                        <div class="message my-message">
+                            {{$message->message}}
+                        </div>
                     </div>
                 </li>
             @endif
         @endforeach
+    </div>
+</ul>
 
 
-    </ul>
-
-</div> <!-- end chat-history -->
 
 
-    <form action="{{ route('message.new') }}" method="post" id="talkSendMessage">
+<form action="{{ route('message.new') }}" method="post" class="account__conversation-form">
     {{ csrf_field() }}
-            <textarea name="message-data" id="message-data" placeholder ="Type your message" rows="3"></textarea>
-            <input type="hidden" name="_id" value="{{@request()->route('id')}}">
-            <button type="submit">Send</button>
-      </form>
+    <textarea name="message-data" id="message-data" placeholder ="Введите сообщение" rows="3" class="textarea"></textarea>
+    <input type="hidden" name="_id" value="{{@request()->route('id')}}">
+    <button type="submit" class="button">Отправить</button>
+</form>
 
 
 @endsection

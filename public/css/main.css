@@ -672,6 +672,11 @@ textarea:-ms-input-placeholder {
   background-color: #faf8f8;
   padding: 20px;
   border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.account__message_active {
+  background-color: #fef8ff;
 }
 
 .account__message-link {
@@ -713,6 +718,100 @@ textarea:-ms-input-placeholder {
 .account__message-time {
   margin-left: 20px;
   color: #afadad;
+}
+
+.account__conversations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 40px;
+  overflow-y: scroll;
+  max-height: 500px;
+  padding-right: 20px;
+}
+
+.account__conversations-box {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.account__conversation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.account__conversation_left .account__conversation-wrapper {
+  background-color: #f0f0f0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.account__conversation_left .account__conversation-time {
+  font-size: 10px;
+  color: #c3c2c2;
+  margin-bottom: 5px;
+}
+
+.account__conversation_right {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.account__conversation_right .account__conversation-wrapper {
+  background-color: #d9f3ff;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+.account__conversation_right .account__conversation-time {
+  font-size: 10px;
+  color: #b6d6e5;
+  margin-bottom: 5px;
+}
+
+.account__conversation-form {
+  margin-top: 40px;
+}
+
+.account__conversation-backlink {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  color: #3c4858;
+}
+
+.account__conversation-backlink i {
+  margin-right: 5px;
+}
+
+.account__email-confirmation {
+  background-color: #fdf4f4;
+  padding: 20px;
+  color: #9c27b0;
+  margin-bottom: 40px;
 }
 
 .accountmenu {
@@ -1794,6 +1893,9 @@ select:-internal-autofill-selected {
 }
 
 .selectedFilters_sorting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -2171,6 +2273,19 @@ select:-internal-autofill-selected {
           flex-direction: column;
   height: 100%;
   min-height: 100vh;
+}
+
+.contacts {
+  margin-top: 40px;
+}
+
+.contacts__form {
+  width: 50%;
+  margin-top: 40px;
+}
+
+.contacts__form input {
+  margin-right: 0;
 }
 
 .approved_account_container,

@@ -36,7 +36,7 @@ class MessageController extends Controller
     public function chatHistory($id)
     {
         Talk::setAuthUserId(Auth::id());
-        $conversations = Talk::getMessagesByUserId($id, 0, 5);
+        $conversations = Talk::getMessagesByUserId($id, 0, 1115);
         $user = '';
         $messages = [];
         if(!$conversations) {
@@ -45,9 +45,11 @@ class MessageController extends Controller
             $user = $conversations->withUser;
             $messages = $conversations->messages;
         }
+        //var_dump($conversations->messages); die;
         if (count($messages) > 0) {
             $messages = $messages->sortBy('id');
         }
+        
         return view('account.conversations', compact('messages', 'user'));
     }
     public function ajaxSendMessage(Request $request)
@@ -67,7 +69,7 @@ class MessageController extends Controller
 
 
 
-            $conversations = Talk::getMessagesByUserId($userId, 0, 5);
+            $conversations = Talk::getMessagesByUserId($userId, 0, 1115);
             $user = '';
             $messages = [];
             if(!$conversations) {

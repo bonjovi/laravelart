@@ -27,12 +27,33 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    //
     
 
     public function index(Request $request)
     {
-        $products = Product::oldest();
+
+        if($request->has('sorting')) {
+            if(request()->sorting == 'oldest') {
+                $products = Product::oldest();
+            } elseif(request()->sorting == 'latest') {
+                $products = Product::latest();
+            } elseif(request()->sorting == 'asc') {
+                $products = Product::orderBy('name', 'asc');
+            } elseif(request()->sorting == 'desc') {
+                $products = Product::orderBy('name', 'desc');
+            } elseif(request()->sorting == 'year-asc') {
+                $products = Product::orderBy('year', 'asc');
+            } elseif(request()->sorting == 'year-desc') {
+                $products = Product::orderBy('year', 'desc');
+            }  elseif(request()->sorting == 'random') {
+                $products = Product::inRandomOrder();
+            } else {
+                $products = Product::latest();
+            }
+        } else {
+            $products = Product::latest();
+        }
 
         if($request->has('style')) $products = Product::with('styles')->whereHas('styles', function($query) { $query->whereIn('slug', request()->style); });
         if($request->has('material')) $products = Product::with('materials')->whereHas('materials', function($query) { $query->whereIn('slug', request()->material); });
@@ -69,11 +90,18 @@ class ShopController extends Controller
         $min_height = Product::min('dimension_height');
         $max_height = Product::max('dimension_height');
 
+        $min_year = Product::min('year');
+        $max_year = Product::max('year');
+
+        //echo $min_year; echo $max_year; die;
+
         if($request->min_width && $request->max_width){
             $products = $products->where('dimension_width','>=',$request->min_width);
             $products = $products->where('dimension_width','<=',$request->max_width);
             $products = $products->where('dimension_height','>=',$request->min_height);
             $products = $products->where('dimension_height','<=',$request->max_height);
+            $products = $products->where('year','>=',(int)$request->min_year);
+            $products = $products->where('year','<=',(int)$request->max_year);
         } else {
             $products = $products->where('dimension_width','>=',$min_width);
             $products = $products->where('dimension_width','<=',$max_width);
@@ -106,7 +134,9 @@ class ShopController extends Controller
             'max_height' => $max_height,
             'notfound' => $notfound,
             /*'filterVisibility' => $filterVisibility,*/
-            'title' => 'Картины'
+            'title' => 'Картины',
+            'min_year' => $min_year,
+            'max_year' => $max_year,
         ]);  
     }
 
@@ -149,11 +179,16 @@ class ShopController extends Controller
         $min_height = Product::min('dimension_height');
         $max_height = Product::max('dimension_height');
 
+        $min_year = Product::min('year');
+        $max_year = Product::max('year');
+
         if($request->min_width && $request->max_width){
             $products = $products->where('dimension_width','>=',$request->min_width);
             $products = $products->where('dimension_width','<=',$request->max_width);
             $products = $products->where('dimension_height','>=',$request->min_height);
             $products = $products->where('dimension_height','<=',$request->max_height);
+            $products = $products->where('year','>=',$request->min_year);
+            $products = $products->where('year','<=',$request->max_year);
         } else {
             $products = $products->where('dimension_width','>=',$min_width);
             $products = $products->where('dimension_width','<=',$max_width);
@@ -186,7 +221,9 @@ class ShopController extends Controller
             'notfound' => $notfound,
             'filterVisibility' => $filterVisibility,
             'title' => 'Картины для дилеров',
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'min_year' => $min_year,
+            'max_year' => $max_year,
         ]);
     }
 

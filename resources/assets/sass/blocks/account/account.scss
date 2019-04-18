@@ -92,6 +92,11 @@
         background-color: #faf8f8;
         padding: 20px;
         border-radius: 3px;
+        margin-bottom: 10px;
+
+        &_active {
+            background-color: #fef8ff;
+        }
     }
 
     &__message-link {
@@ -125,5 +130,84 @@
         color: #afadad;
     }
 
+
+    &__conversations {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 40px;
+        overflow-y: scroll;
+        max-height: 500px;
+        padding-right: 20px;
+    }
+
+    &__conversations-box {
+        flex-direction: column;
+        justify-content: flex-end;
+        display: flex;
+        
+    }
+
+    &__conversation {
+        display: flex;
+        margin-bottom: 5px;
+
+        &_left {
+            & .account__conversation-wrapper {
+                background-color: #f0f0f0;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 8px;
+            }
+
+            & .account__conversation-time {
+                font-size: 10px;
+                color: #c3c2c2;
+                margin-bottom: 5px;
+            }
+        }
+
+        &_right {
+            justify-content: flex-end;
+            & .account__conversation-wrapper {
+                background-color: #d9f3ff;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 8px;
+                text-align: right;
+            }
+
+            & .account__conversation-time {
+                font-size: 10px;
+                color: #b6d6e5;
+                margin-bottom: 5px;
+            }
+            
+        }
+        
+    }
+
+    &__conversation-form {
+        margin-top: 40px;
+    }
+
+    &__conversation-backlink {
+        display: flex;
+        height: 20px;
+        align-items: center;
+        overflow: hidden;
+        color: #3c4858;
+
+        & i {
+            margin-right: 5px;
+        }
+    }
+
+    &__email-confirmation {
+        background-color: #fdf4f4;
+        padding: 20px;
+        color: $violet;
+        margin-bottom: 40px; 
+    }
 
 }

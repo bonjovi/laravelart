@@ -83,6 +83,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'confirmation_token' => str_random(30),
             'certifying_document' => $path,
             'i_am_painter_lastname' => $data['i_am_painter_lastname'],
             'i_am_painter_name' => $data['i_am_painter_name'],

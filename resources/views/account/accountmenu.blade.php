@@ -16,6 +16,14 @@
     </li>
 
     <li>
-        <a class="text text_middle accountmenu__link {{ Request::is('account/messages') ? 'accountmenu__link_active' : '' }}" href="{{route('account.messages')}}">Сообщения</a>
+        <a class="text text_middle accountmenu__link 
+        <?php 
+            if(Request::is('account/messages') || Request::is('account/messages/'.$user->id)) {
+                echo 'accountmenu__link_active';
+            } else {
+                echo '';
+            }
+        ?>
+        " href="{{route('account.messages')}}">Сообщения</a>
     </li>
 </ul>

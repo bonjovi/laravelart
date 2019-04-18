@@ -1,0 +1,1 @@
+<a href="http://artmarket24.ru/email/confirmation/{{ $confirmation_token }}">Подтвердить мой email</a>

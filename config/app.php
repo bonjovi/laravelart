@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ArtMarket24'),
 
     /*
     |--------------------------------------------------------------------------
@@ -216,7 +216,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Talk' => Nahid\Talk\Facades\Talk::class,
-
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];

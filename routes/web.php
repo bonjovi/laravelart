@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/', 'MainController@index')->name('layouts.main');
 
+Route::post('/contacts', 'ContactController@sendMessage')->name('contacts');
+
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 
 Route::get('/cart', 'CartController@index')->name('cart.index');
@@ -47,13 +49,21 @@ Route::post('/subscription', 'SubscriptionController@store')->name('subscription
 
 
 
+Route::get('/email/confirmation/{token}', 'EmailConfirmationController@confirm');
 
 
 
+Route::get('facebook', function () {
+    return view('facebook');
+});
+Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
+Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
 
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::post('/confirm/email', 'EmailConfirmationController@getLink')->name('confirm.email');
 
     Route::get('/dealer', 'ShopController@index_dealer', function () {
         return view('dealer.shop', ['user' => Auth::user(), 'title' => 'Картины для дилеров']);
@@ -106,7 +116,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('account.messages');
 
-    Route::get('/message/{id}', 'MessageController@chatHistory', function () {
+    Route::get('/account/messages/{id}', 'MessageController@chatHistory', function () {
         return view('account.messages', ['user' => Auth::user(), 'title' => 'Сообщения']);
     })->name('message.read');
 

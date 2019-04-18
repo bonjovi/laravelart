@@ -4,7 +4,10 @@
 <div class="container">
     <div class="login-wrapper">
                 <h1 class="title title_centered">Вход</h1>
-
+                
+                    <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-primary btn-block">
+                        <strong>Login With Facebook</strong>
+                    </a>  
 
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
@@ -46,6 +49,9 @@
                                     <label class="text" for="remember">
                                         Запомнить меня
                                     </label>
+
+                                    <br><br>
+                                    <a href="/password/reset">Забыли пароль?</a>
                                 </div>
                             </div>
                         </div>

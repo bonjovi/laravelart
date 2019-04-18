@@ -136,7 +136,7 @@
 
 						<br>
 
-						<a href="{{route('message.read', ['id'=>1])}}" class="btn btn-success pull-right">Send Message</a>
+						<a href="{{route('message.read', ['id'=>$product->user_id])}}" class="button button_violet">Написать продавцу</a>
 						
 						@if(isset($productSeller))
 							{!! $productSeller !!}
