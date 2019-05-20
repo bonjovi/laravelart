@@ -6,9 +6,45 @@
             margin-bottom: 20px;
         }
     </style>
+
+    
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2316287201916038',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v3.3'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="container">
     <div class="login-wrapper" style="width: 500px; margin:0 auto;">
                 <h1 class="title title_centered">Регистрация</h1>
+
+                <div class="login-wrapper__social-entrance">
+                    <a href="{{ url('auth/facebook') }}" class="login-wrapper__social-entrance_fb">
+                        <img src="/img/facebook.svg" alt="" width="20">
+                        <strong>Регистрация через Facebook</strong>
+                    </a>  
+
+                    <a href="{{ url('auth/vkontakte') }}" class="login-wrapper__social-entrance_vk">
+                        <img src="/img/vk.svg" alt="" width="25">
+                        <strong>Регистрация через Вконтакте</strong>
+                    </a> 
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}" enctype="multipart/form-data">

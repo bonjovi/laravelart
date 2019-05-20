@@ -27,7 +27,7 @@ class User extends \TCG\Voyager\Models\User
         'name', 'email', 'password', 'confirmation_token', 'is_verified', 'certifying_document', 
         'i_am_painter_lastname', 'i_am_painter_name', 'i_am_painter_patronymic_name', 'i_am_painter_birthdate', 'i_am_painter_phone', 'i_am_painter_heir_or_painter', 'i_am_painter_sculptor_or_painter', 'i_am_painter_stylistics', 'i_am_painter_exhibitions', 'i_am_painter_biography',
         'i_am_dealer_lastname', 'i_am_dealer_name', 'i_am_dealer_patronymic_name', 'i_am_dealer_phone', 'i_am_dealer_modern_art', 'i_am_dealer_old_art', 'i_am_dealer_period', 'i_am_dealer_way',
-        'token', 'facebook_id'
+        'token', 'vkontakte_id', 'facebook_id'
     ];
 
     /**

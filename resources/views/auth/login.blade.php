@@ -4,10 +4,18 @@
 <div class="container">
     <div class="login-wrapper">
                 <h1 class="title title_centered">Вход</h1>
-                
-                    <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-primary btn-block">
-                        <strong>Login With Facebook</strong>
-                    </a>  
+                    <div class="login-wrapper__social-entrance">
+                        <a href="{{ url('auth/facebook') }}" class="login-wrapper__social-entrance_fb">
+                            <img src="/img/facebook.svg" alt="" width="20">
+                            <strong>Войти через Facebook</strong>
+                        </a>  
+
+                        <a href="{{ url('auth/vkontakte') }}" class="login-wrapper__social-entrance_vk">
+                            <img src="/img/vk.svg" alt="" width="25">
+                            <strong>Войти через Вконтакте</strong>
+                        </a> 
+                    </div>
+                     
 
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf

@@ -20,7 +20,7 @@
 @endsection
 
 @php
-	$product->painter->addView();
+	// $product->painter->record();
 	$real_unknown_painter = (isset($product->unknown_painter) && $product->unknown_painter != '') ? $product->unknown_painter : '';
 @endphp
 
@@ -51,7 +51,10 @@
 						<div class="productGallery__thumbnail productGallery__thumbnail_active">
 							<img src="{{ productImageWatermark($product->image) }}" alt="product">
 						</div>
-						@if(isset($product->images))
+						<?php
+						//echo strlen($product->images); die;
+						?>
+						@if(isset($product->images) && strlen($product->images) > 2)
 							@foreach (json_decode($product->images, true) as $image)
 								<div class="productGallery__thumbnail">
 									<img src="{{ productImage($image) }}" alt="product">

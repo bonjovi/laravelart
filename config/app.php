@@ -150,6 +150,7 @@ return [
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Nahid\Talk\TalkServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...

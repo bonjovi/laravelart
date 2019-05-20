@@ -61,6 +61,15 @@ Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCall
 
 
 
+
+Route::get('vkontakte', function () {
+    return view('vkontakte');
+});
+Route::get('auth/vkontakte', 'Auth\VkontakteController@redirectToVkontakte');
+Route::get('auth/vkontakte/callback', 'Auth\VkontakteController@handleVkontakteCallback');
+
+
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/confirm/email', 'EmailConfirmationController@getLink')->name('confirm.email');

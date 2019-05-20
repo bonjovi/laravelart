@@ -156,8 +156,8 @@ jQuery( function() {
         <input type="file" value="{{ productImage($product->image) }}" name="image" class="input">
     </div>
     <div class="control-group account__control-group">
-        <label for="name" class="text text_grey text_width120">Поменять дополнительные фото:</label>
-        <input type="file" value="" name="images[]" class="input" multiple>
+        <label for="name" class="text text_grey text_width120">Дополнительные фото:</label>
+        
     </div>
     <div class="control-group account__control-group">
         <?php
@@ -167,10 +167,24 @@ jQuery( function() {
             @if(is_array($productImages))
                 @foreach($productImages as $productImage)
                     <div class="control-group__attached-image">
+                        <i class="material-icons" data-image="{{ productImage($productImage) }}">close</i>
                         <img src="{{ productImage($productImage) }}" alt="">
                     </div>
                 @endforeach
             @endif
+
+            
+
+            <div class="control-group__upload">
+                <label>
+                    <img class="control-group__visible-pic" src="#" alt="" />	
+                    <input type="file" value="" name="images[]" class="input input__additional-pic">
+                    <span>
+                        <i class="material-icons">add</i><br>
+                        Загрузить ещё
+                    </span>
+                </label>
+            </div>
         </div>
     </div>
     <br><br>
@@ -179,10 +193,46 @@ jQuery( function() {
             <label>
                 <input type="checkbox" name="is_for_dealers" class="checkbox" value="1" <?php if($product->is_for_dealers == 1) echo 'checked' ?>>
                 <span class="checkbox-material"><span class="check"></span></span>
+                <span class="text">Только для дилеров</span>
             </label>
         </div>
     </div>
-    <input type="submit" value="Обновить" class="button account__savebutton">
+    <input type="submit" value="Сохранить изменения" class="button account__savebutton">
 </form>
+
+<script>
+$(function() {
+    $('.control-group__attached-image i').on('click', function() {
+        $('<input type="hidden" name="deleted_images[]" value="' + $(this).attr('data-image') + '">').appendTo('form');
+        $(this).parent().remove();
+    });
+
+    $('.control-group__upload i').on('click', function() {
+        $(this).parent().remove();
+    });
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(input).prev().attr('src', e.target.result);
+                $('<i class="material-icons">close</i>').insertBefore($(input).parent());
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(".control-group__attached-images").on('change', '.input__additional-pic', function() {
+        if($(this).prev().attr('src') == '#') {
+            $('<div class="control-group__upload"><label><img class="control-group__visible-pic" src="#" alt="" /><input type="file" value="" name="images[]" class="input input__additional-pic"><span><i class="material-icons">add</i><br>Загрузить ещё</span></label></div>').appendTo(".control-group__attached-images");
+            readURL(this);
+        } else {
+            readURL(this);
+        }
+    });
+    
+});
+</script>
 
 @endsection

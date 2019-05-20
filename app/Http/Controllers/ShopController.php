@@ -517,8 +517,50 @@ class ShopController extends Controller
 
 
 
+        if($request->file('images') != null) {
+            $request_images = $request->file('images');
+
+            foreach($request_images as $request_images_element) {    
+                $request_images_array[] = $request_images_element->store('uploads', 'public');
+            }
+        }
+
+       
+
+        $old_images = $product->images;
+        $old_images_array = json_decode($old_images);
+
+        $deleted_images_array = $request->deleted_images;
+       
+
+        if(is_array($deleted_images_array)) {
+
+            foreach($deleted_images_array as $deleted_images_array_key => $deleted_images_array_val) {    
+                $deleted_images_array[] = substr($deleted_images_array_val, 9);
+                array_shift($deleted_images_array);
+            }
+
+            $result_array = array_diff($old_images_array, $deleted_images_array);
+
+            if(!is_array($request->images)) {
+                $request_images_array = [];
+            }
+    
+            $imagesData = array_merge($result_array, $request_images_array);
+        } else {
+            if(!is_array($request->images)) {
+                $request_images_array = [];
+            }
+            $imagesData = array_merge($old_images_array, $request_images_array);
+        }
+
+        
+        
+        
 
 
+        
+        
 
         $product->fill($request->all());
         
@@ -528,11 +570,17 @@ class ShopController extends Controller
             ]);
         }
 
-        if($request->file('images') != null) {
-            $product->fill([
-                'images' => json_encode($imagesData)
-            ]);
-        }
+        
+
+        // if($request->file('images') != null) {
+        //     $product->fill([
+        //         'images' => json_encode($imagesData)
+        //     ]);
+        // }
+
+        $product->fill([
+            'images' => json_encode($imagesData)
+        ]);
 
 
         $painter_lastname = substr($request->painter, 0, strpos($request->painter, ' ' ));
