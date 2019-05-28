@@ -3,7 +3,7 @@
 @if($user->is_dealer == 1)
     @section('content')
 
-    <div class="search search__for-inner">
+    <!--<div class="search search__for-inner">
         <form action="{{ route('search') }}" method="GET">
             <div class="search__inputwrapper">
                 <input type="text" class="input" placeholder="Введите фамилию художника или название картины" name="query">
@@ -12,16 +12,100 @@
                 Искать
             </button>
         </form>
-    </div>
+    </div>-->
     
     <h1 class="title title_basegrey title_centered">{{ $title }}</h1>
 
+        <section class="selectedFilters">
+            @if(Request::get('style') || Request::get('material') || Request::get('theme') || Request::get('surface') || Request::get('min_width') || Request::get('max_width'))
+            <a href="/dealer" data-ripple class="button button_grey selectedFilters__button">
+                Сбросить фильтры
+                <i class="material-icons">delete</i>
+            </a>
+            @endif
+            
+
+            
+
+            @foreach($styles as $style)
+                @if(in_array($style->slug, Request::get('style') ? Request::get('style') : [])) 
+                    <a href="{{ removeGetParams(Request::fullUrl(), 'style', $style->slug) }}" data-ripple class="button selectedFilters__button">
+                        {{ $style->name }}
+                        <i class="material-icons">close</i>
+                    </a>
+                @endif
+            @endforeach
+
+            @foreach($materials as $material)
+                @if(in_array($material->slug, Request::get('material') ? Request::get('material') : [])) 
+                    <a href="{{ removeGetParams(Request::fullUrl(), 'material', $material->slug) }}" data-ripple class="button selectedFilters__button">
+                        {{ $material->name }}
+                        <i class="material-icons">close</i>
+                    </a>
+                @endif
+            @endforeach
+
+            @foreach($themes as $theme)
+                @if(in_array($theme->slug, Request::get('theme') ? Request::get('theme') : [])) 
+                    <a href="{{ removeGetParams(Request::fullUrl(), 'theme', $theme->slug) }}" data-ripple class="button selectedFilters__button">
+                        {{ $theme->name }}
+                        <i class="material-icons">close</i>
+                    </a>
+                @endif
+            @endforeach
+
+            @foreach($surfaces as $surface)
+                @if(in_array($surface->slug, Request::get('surface') ? Request::get('surface') : [])) 
+                    <a href="{{ removeGetParams(Request::fullUrl(), 'surface', $surface->slug) }}" data-ripple class="button selectedFilters__button">
+                        {{ $surface->name }}
+                        <i class="material-icons">close</i>
+                    </a>
+                @endif
+            @endforeach
+        </section><!-- /.selectedFilters -->
+
         <section class="selectedFilters selectedFilters_sorting">
-            <a href="#" class="text text_small text_grey filterToggler">ПОКАЗАТЬ ФИЛЬТРЫ</a>
+            <a href="#" class="text text_small text_grey filterToggler">{{ Request::get('min_price') ? 'СКРЫТЬ ФИЛЬТРЫ' : 'ПОКАЗАТЬ ФИЛЬТРЫ' }}</a>
+            <select name="" id="">
+                <option value="latest" {{ (Request::get('sorting') == 'latest') ? 'selected' : '' }}>Сначала новые</option>
+                <option value="oldest" {{ (Request::get('sorting') == 'oldest') ? 'selected' : '' }}>Сначала старые</option>
+                <option value="asc" {{ (Request::get('sorting') == 'asc') ? 'selected' : '' }}>По алфавиту А-Я</option>
+                <option value="desc" {{ (Request::get('sorting') == 'desc') ? 'selected' : '' }}>По алфавиту Я-А</option>
+                <option value="year-asc" {{ (Request::get('sorting') == 'year-asc') ? 'selected' : '' }}>По году (по возрастанию)</option>
+                <option value="year-desc" {{ (Request::get('sorting') == 'year-desc') ? 'selected' : '' }}>По году (по убыванию)</option>
+                <option value="random" {{ (Request::get('sorting') == 'random') ? 'selected' : '' }}>Рандомный вывод</option>
+            </select>
         </section>
 
+        <script>
+            jQuery(function() {
+                jQuery('.selectedFilters select').select2();
+
+                jQuery('.selectedFilters select').change(function () {
+                    var optionSelected = $(this).find("option:selected");
+                    if(optionSelected.attr('value') == 'latest') {
+                        document.location.href = document.location.href + "?&sorting=latest";
+                    } else if(optionSelected.attr('value') == 'oldest') {
+                        document.location.href = document.location.href + "?&sorting=oldest";
+                    } else if(optionSelected.attr('value') == 'asc') {
+                        document.location.href = document.location.href + "?&sorting=asc";
+                    } else if(optionSelected.attr('value') == 'desc') {
+                        document.location.href = document.location.href + "?&sorting=desc";
+                    } else if(optionSelected.attr('value') == 'year-asc') {
+                        document.location.href = document.location.href + "?&sorting=year-asc";
+                    } else if(optionSelected.attr('value') == 'year-desc') {
+                        document.location.href = document.location.href + "?&sorting=year-desc";
+                    } else if(optionSelected.attr('value') == 'random') {
+                        document.location.href = document.location.href + "?&sorting=random";
+                    }
+                });
+
+                
+            });
+        </script>
+
         <div class="cardswrapper">
-            @include('layouts.filter')
+            @include('layouts.filter_shop_dealer')
 
             <section class="cards">
                 @foreach ($products as $product)

@@ -23,20 +23,42 @@ class MessageController extends Controller
     {
         Talk::setAuthUserId(Auth::id());
         $inboxes = Talk::getInbox();
-        //var_dump($inboxes); die;
-        //var_dump(Auth::id()); die;
         $user = $user = User::find(Auth::id());
+
+        //dd($inboxes);
+        $unreaded_messages = [];
+        foreach($inboxes as $item) {
+            //dd($item->thread->is_seen);
+            if($item->thread->is_seen == 0 && $item->thread->user_id != Auth::id()) {
+                $unreaded_messages[] = $item;
+            }
+        } 
+        
+        if(count($unreaded_messages) == 0) {
+            $unreaded_messages = null;
+        }
+
         View::composer('account.messages', function($view) {
-            //$threads = Talk::threads();
-            $view->with(compact('inboxes', 'user'));
+            $view->with(compact('inboxes', 'user', 'unreaded_messages'));
         });
-        return view('account.messages', compact('inboxes', 'user'));
+        return view('account.messages', compact('inboxes', 'user', 'unreaded_messages'));
     }
 
     public function chatHistory($id)
     {
         Talk::setAuthUserId(Auth::id());
         $conversations = Talk::getMessagesByUserId($id, 0, 1115);
+        
+        if(isset($conversations->messages)) {
+            foreach($conversations->messages as $message) {
+                if($message->user_id != Auth::id()) {
+                    Talk::makeSeen($message->id);
+                }
+            } 
+        }
+
+        
+
         $user = '';
         $messages = [];
         if(!$conversations) {

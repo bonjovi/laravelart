@@ -2,6 +2,8 @@
 
 @section('accountcontent')
 
+
+
 @if(count($inboxes) == 0)
     <div class="text">
         У вас нет активных диалогов

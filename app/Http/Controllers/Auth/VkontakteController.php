@@ -44,13 +44,14 @@ class VkontakteController extends Controller
             $user = User::create([
                 'name' => $vkontakteUser->name,
                 'email' => $vkontakteUser->accessTokenResponseBody['email'],
+                'confirmation_token' => str_random(30),
                 'vkontakte_id' => $vkontakteUser->id,
             ]);
         }
 
         Auth::login($user, true);
 
-        return redirect()->route('home');
+        return redirect('/account/profile');
 
 
 

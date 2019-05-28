@@ -20,7 +20,7 @@
 @endsection
 
 @php
-	$product->painter->addView();
+	//$product->painter->addView();
 	$real_unknown_painter = (isset($product->unknown_painter) && $product->unknown_painter != '') ? $product->unknown_painter : '';
 @endphp
 
@@ -126,16 +126,21 @@
 						<br>
 						<div class="text text_basegrey text_small card__text">{!! $product->description !!}</div>
 						<br>
-						<form method="POST" action="{{ route('shop.showcontacts_for_dealer', $product->id) }}">
+						<!--<form method="POST" action="{{ route('shop.showcontacts_for_dealer', $product->id) }}">
 							@csrf
 							<button data-ripple class="button button_green product__makebetbutton" type="submit">
 								Отправить запрос на цену
 							</button>
-						</form>	
+						</form>-->
+
+						<br>
+
+						<a href="{{route('message.read', ['id'=>$product->user_id])}}" class="button button_violet">Написать продавцу</a>
 
 						@if(isset($productSeller))
 							{!! $productSeller !!}
 						@endif
+						
 					</div>
 
 				</div>

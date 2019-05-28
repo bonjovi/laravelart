@@ -140,55 +140,66 @@ class ShopController extends Controller
         ]);  
     }
 
+
+
+
+
     public function index_dealer(Request $request)
     {
-        $products = Product::where('is_for_dealers', 1)->latest();
 
-        if ($request->has('style'))
-        {
-            $products = Product::with('styles')->whereHas('styles', function($query) {
-                $query->whereIn('slug', request()->style);
-            });
-            
-            
+        if($request->has('sorting')) {
+            if(request()->sorting == 'oldest') {
+                $products = Product::where('is_for_dealers', 1)->oldest();
+            } elseif(request()->sorting == 'latest') {
+                $products = Product::where('is_for_dealers', 1)->latest();
+            } elseif(request()->sorting == 'asc') {
+                $products = Product::where('is_for_dealers', 1)->orderBy('name', 'asc');
+            } elseif(request()->sorting == 'desc') {
+                $products = Product::where('is_for_dealers', 1)->orderBy('name', 'desc');
+            } elseif(request()->sorting == 'year-asc') {
+                $products = Product::where('is_for_dealers', 1)->orderBy('year', 'asc');
+            } elseif(request()->sorting == 'year-desc') {
+                $products = Product::where('is_for_dealers', 1)->orderBy('year', 'desc');
+            }  elseif(request()->sorting == 'random') {
+                $products = Product::where('is_for_dealers', 1)->inRandomOrder();
+            } else {
+                $products = Product::where('is_for_dealers', 1)->latest();
+            }
+        } else {
+            $products = Product::where('is_for_dealers', 1)->latest();
         }
+
+        if($request->has('style')) $products = Product::where('is_for_dealers', 1)->with('styles')->whereHas('styles', function($query) { $query->whereIn('slug', request()->style); });
+        if($request->has('material')) $products = Product::where('is_for_dealers', 1)->with('materials')->whereHas('materials', function($query) { $query->whereIn('slug', request()->material); });
+        if($request->has('surface')) $products = Product::where('is_for_dealers', 1)->with('surfaces')->whereHas('surfaces', function($query) { $query->whereIn('slug', request()->surface); });
+        if($request->has('theme')) $products = Product::where('is_for_dealers', 1)->with('themes')->whereHas('themes', function($query) { $query->whereIn('slug', request()->theme); });
+        
 
         $styles = Style::all();
         $materials = Material::all();
         $surfaces = Surface::all();
-        $themes = Theme::all();
-
-        if($request->min_price && $request->max_price){
-            $products = $products->where('price','>=',$request->min_price);
-            $products = $products->where('price','<=',$request->max_price);
-
-            $filterVisibility = 'filter_uncollapsed';
-        } else {
-            $filterVisibility = '';
-        }
-
-        $min_price = Product::min('price');
-        $max_price = Product::max('price');
+        $themes = Theme::all();      
+        
 
 
+        $min_width = Product::where('is_for_dealers', 1)->min('dimension_width');
+        $max_width = Product::where('is_for_dealers', 1)->max('dimension_width');
 
+        $min_height = Product::where('is_for_dealers', 1)->min('dimension_height');
+        $max_height = Product::where('is_for_dealers', 1)->max('dimension_height');
 
-        $min_width = Product::min('dimension_width');
-        $max_width = Product::max('dimension_width');
+        $min_year = Product::where('is_for_dealers', 1)->min('year');
+        $max_year = Product::where('is_for_dealers', 1)->max('year');
 
-        $min_height = Product::min('dimension_height');
-        $max_height = Product::max('dimension_height');
-
-        $min_year = Product::min('year');
-        $max_year = Product::max('year');
+        
 
         if($request->min_width && $request->max_width){
             $products = $products->where('dimension_width','>=',$request->min_width);
             $products = $products->where('dimension_width','<=',$request->max_width);
             $products = $products->where('dimension_height','>=',$request->min_height);
             $products = $products->where('dimension_height','<=',$request->max_height);
-            $products = $products->where('year','>=',$request->min_year);
-            $products = $products->where('year','<=',$request->max_year);
+            $products = $products->where('year','>=',(int)$request->min_year);
+            $products = $products->where('year','<=',(int)$request->max_year);
         } else {
             $products = $products->where('dimension_width','>=',$min_width);
             $products = $products->where('dimension_width','<=',$max_width);
@@ -196,8 +207,7 @@ class ShopController extends Controller
             $products = $products->where('dimension_height','<=',$max_height);
         }
 
-
-
+        
 
 
         $products = $products->paginate(27);
@@ -212,19 +222,16 @@ class ShopController extends Controller
             'materials' => $materials,
             'themes' => $themes,
             'surfaces' => $surfaces,
-            // 'min_price' => $min_price,
-            // 'max_price' => $max_price,
             'min_width' => $min_width,
             'max_width' => $max_width,
             'min_height' => $min_height,
             'max_height' => $max_height,
             'notfound' => $notfound,
-            'filterVisibility' => $filterVisibility,
-            'title' => 'Картины для дилеров',
-            'user' => Auth::user(),
+            'title' => 'Картины',
             'min_year' => $min_year,
             'max_year' => $max_year,
-        ]);
+            'user' => Auth::user(),
+        ]);  
     }
 
     /**
